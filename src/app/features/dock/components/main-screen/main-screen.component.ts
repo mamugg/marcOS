@@ -14,5 +14,7 @@ import { MessageService } from 'primeng/api';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [MessageService]
 })
-export class MainScreenComponent {}
+export class MainScreenComponent {
+  debugMode = false;
+}
 
