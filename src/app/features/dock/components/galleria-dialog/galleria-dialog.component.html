@@ -1,0 +1,16 @@
+<p-galleria
+  [value]="images()"
+  [showThumbnails]="false"
+  [showThumbnailNavigators]="false"
+  [showItemNavigators]="true"
+  [(visible)]="dockState.displayGalleria"
+  [circular]="true"
+  [responsiveOptions]="responsiveOptions()"
+  [fullScreen]="true"
+  [containerStyle]="{ width: '400px' }"
+>
+  <ng-template #item let-item>
+    <img [src]="item.itemImageSrc" style="width: 100%; display: block;" />
+  </ng-template>
+</p-galleria>
+

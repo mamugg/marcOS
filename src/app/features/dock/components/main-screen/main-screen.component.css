@@ -1,0 +1,12 @@
+:host ::ng-deep {
+  .main-screen-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .main-screen-container p-menubar {
+    width: 100%;
+  }
+}
+

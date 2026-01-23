@@ -1,0 +1,8 @@
+<p-dock [model]="dockItems()" position="bottom">
+  <ng-template #item let-item>
+    <a [pTooltip]="item.label" tooltipPosition="top" class="p-dock-item-link">
+      <img [alt]="item.label" [src]="item.icon" style="width: 100%" />
+    </a>
+  </ng-template>
+</p-dock>
+
