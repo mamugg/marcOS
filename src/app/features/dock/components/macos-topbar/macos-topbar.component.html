@@ -3,12 +3,14 @@
     <i class="pi pi-apple px-2"></i>
   </ng-template>
   <ng-template #end>
-    <i class="pi pi-video px-2"></i>
-    <i class="pi pi-wifi px-2"></i>
-    <i class="pi pi-volume-up px-2"></i>
-    <span class="px-2">Fri 13:07</span>
-    <i class="pi pi-search px-2"></i>
-    <i class="pi pi-bars px-2"></i>
+    <div class="topbar-icons">
+      <i class="pi pi-video"></i>
+      <i class="pi pi-wifi"></i>
+      <i class="pi pi-volume-up"></i>
+      <span>{{ currentTime() }}</span>
+      <i class="pi pi-search"></i>
+      <i class="pi pi-bars"></i>
+    </div>
   </ng-template>
 </p-menubar>
 
