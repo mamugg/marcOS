@@ -7,14 +7,14 @@ import { signal } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-macos-topbar',
+  selector: 'app-topbar',
   standalone: true,
   imports: [CommonModule, MenubarModule],
-  templateUrl: './macos-topbar.component.html',
-  styleUrl: './macos-topbar.component.css',
+  templateUrl: './topbar.component.html',
+  styleUrl: './topbar.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MacosTopbarComponent implements OnInit, OnDestroy {
+export class TopbarComponent implements OnInit, OnDestroy {
   private dockMenuService = inject(DockMenuService);
 
   menubarItems = signal<MenuItem[]>(this.dockMenuService.getMenubarItems());
