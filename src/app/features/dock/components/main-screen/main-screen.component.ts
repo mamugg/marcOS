@@ -16,5 +16,6 @@ import { MessageService } from 'primeng/api';
 })
 export class MainScreenComponent {
   debugMode = false;
+  wallpaperImage = '/wallpaper.png';
 }
 

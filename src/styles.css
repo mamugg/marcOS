@@ -23,6 +23,7 @@
 
 html {
   font-size: 14px;
+  height: 100%;
 }
 
 body {
@@ -46,7 +47,6 @@ body {
 .main-screen-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
 
 .dock-window {
