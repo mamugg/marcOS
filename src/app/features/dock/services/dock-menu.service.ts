@@ -10,13 +10,6 @@ export class DockMenuService {
     return [
       {
         label: 'Finder',
-        tooltipOptions: {
-          tooltipLabel: 'Finder',
-          tooltipPosition: 'top',
-          positionTop: -15,
-          positionLeft: 15,
-          showDelay: 1000
-        },
         icon: 'https://primefaces.org/cdn/primeng/images/dock/finder.svg',
         command: () => {
           this.dockState.toggleFinder();
@@ -24,13 +17,6 @@ export class DockMenuService {
       },
       {
         label: 'Terminal',
-        tooltipOptions: {
-          tooltipLabel: 'Terminal',
-          tooltipPosition: 'top',
-          positionTop: -15,
-          positionLeft: 15,
-          showDelay: 1000
-        },
         icon: 'https://primefaces.org/cdn/primeng/images/dock/terminal.svg',
         command: () => {
           this.dockState.toggleTerminal();
@@ -38,36 +24,15 @@ export class DockMenuService {
       },
       {
         label: 'App Store',
-        tooltipOptions: {
-          tooltipLabel: 'App Store',
-          tooltipPosition: 'top',
-          positionTop: -15,
-          positionLeft: 15,
-          showDelay: 1000
-        },
         icon: 'https://primefaces.org/cdn/primeng/images/dock/appstore.svg',
         url: 'https://www.apple.com/app-store/'
       },
       {
         label: 'Safari',
-        tooltipOptions: {
-          tooltipLabel: 'Safari',
-          tooltipPosition: 'top',
-          positionTop: -15,
-          positionLeft: 15,
-          showDelay: 1000
-        },
         icon: 'https://primefaces.org/cdn/primeng/images/dock/safari.svg'
       },
       {
         label: 'Photos',
-        tooltipOptions: {
-          tooltipLabel: 'Photos',
-          tooltipPosition: 'top',
-          positionTop: -15,
-          positionLeft: 15,
-          showDelay: 1000
-        },
         icon: 'https://primefaces.org/cdn/primeng/images/dock/photos.svg',
         command: () => {
           this.dockState.toggleGalleria();
@@ -75,25 +40,11 @@ export class DockMenuService {
       },
       {
         label: 'GitHub',
-        tooltipOptions: {
-          tooltipLabel: 'GitHub',
-          tooltipPosition: 'top',
-          positionTop: -15,
-          positionLeft: 15,
-          showDelay: 1000
-        },
         icon: 'https://primefaces.org/cdn/primeng/images/dock/github.svg',
         url: 'https://github.com/primefaces/primeng'
       },
       {
         label: 'Trash',
-        tooltipOptions: {
-          tooltipLabel: 'Trash',
-          tooltipPosition: 'top',
-          positionTop: -15,
-          positionLeft: 15,
-          showDelay: 1000
-        },
         icon: 'https://primefaces.org/cdn/primeng/images/dock/trash.png',
         command: () => {
           this.messageService.add({ severity: 'info', summary: 'Trash is empty', key: 'tc' });
