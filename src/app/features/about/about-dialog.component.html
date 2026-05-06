@@ -1,0 +1,36 @@
+<p-dialog
+  [(visible)]="dockState.displayAbout"
+  [modal]="false"
+  [resizable]="false"
+  [draggable]="true"
+  [style]="{ width: '380px' }"
+  styleClass="about-dialog"
+>
+  <div class="about-content">
+    <img src="/logo.png" alt="marcOS logo" class="about-logo" />
+    <h1 class="about-title">marcOS</h1>
+    <p class="about-version">Version 1.0 &mdash; 2025</p>
+    <p class="about-subtitle">Portfolio de Marc-Antoine Muggeo</p>
+
+    <hr class="about-divider" />
+
+    <p class="about-stack-label">Construit avec</p>
+    <div class="about-stack">
+      @for (tech of techStack; track tech.name) {
+        <div class="tech-badge">
+          <img [src]="tech.icon" [alt]="tech.name" class="tech-icon" />
+          <span class="tech-name">{{ tech.name }}</span>
+          <span class="tech-version">v{{ tech.version }}</span>
+        </div>
+      }
+    </div>
+
+    <hr class="about-divider" />
+
+    <p class="about-footer">
+      <a href="https://github.com/mamugg/marcOS" target="_blank">Code source</a>
+      &nbsp;&middot;&nbsp;
+      <a href="https://github.com/mamugg" target="_blank">GitHub</a>
+    </p>
+  </div>
+</p-dialog>

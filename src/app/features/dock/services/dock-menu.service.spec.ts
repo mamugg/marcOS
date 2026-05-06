@@ -5,11 +5,11 @@ import { DockStateService } from './dock-state.service';
 
 describe('DockMenuService', () => {
   let service: DockMenuService;
-  let dockState: { toggleFinder: () => void; toggleTerminal: () => void; toggleGalleria: () => void };
+  let dockState: { toggleFinder: () => void; toggleTerminal: () => void; toggleGalleria: () => void; toggleAbout: () => void };
   let messageAddCalls: any[];
 
   beforeEach(() => {
-    dockState = { toggleFinder: () => {}, toggleTerminal: () => {}, toggleGalleria: () => {} };
+    dockState = { toggleFinder: () => {}, toggleTerminal: () => {}, toggleGalleria: () => {}, toggleAbout: () => {} };
     messageAddCalls = [];
 
     TestBed.configureTestingModule({
@@ -69,9 +69,9 @@ describe('DockMenuService', () => {
     expect(messageAddCalls[0].severity).toBe('info');
   });
 
-  it('should return menubar items with Finder, File, Edit labels', () => {
+  it('should return menubar items with About, File, Edit labels', () => {
     const labels = service.getMenubarItems().map((i) => i.label);
-    expect(labels).toContain('Finder');
+    expect(labels).toContain('About');
     expect(labels).toContain('File');
     expect(labels).toContain('Edit');
   });
@@ -79,5 +79,30 @@ describe('DockMenuService', () => {
   it('should return menubar items with nested sub-items under File', () => {
     const file = service.getMenubarItems().find((i) => i.label === 'File');
     expect(file?.items?.length).toBeGreaterThan(0);
+  });
+
+  it('should call toggleAbout when the About top-level item is clicked', () => {
+    let called = false;
+    dockState.toggleAbout = () => { called = true; };
+    const about = service.getMenubarItems().find((i) => i.label === 'About');
+    about?.command?.({} as any);
+    expect(called).toBe(true);
+  });
+
+  it('should have About as a direct command item without sub-items', () => {
+    const about = service.getMenubarItems().find((i) => i.label === 'About');
+    expect(about?.command).toBeTruthy();
+    expect(about?.items).toBeFalsy();
+  });
+
+  it('should bury 🎶 easter egg deep inside Events > Archive > Manage > Advanced > Options', () => {
+    const events   = service.getMenubarItems().find((i) => i.label === 'Events');
+    const archive  = events?.items?.find((i) => i.label === 'Archive');
+    const manage   = archive?.items?.find((i) => i.label === 'Manage');
+    const advanced = manage?.items?.find((i) => i.label === 'Advanced');
+    const options  = advanced?.items?.find((i) => i.label === 'Options');
+    const egg      = options?.items?.find((i) => i.label === '🎶');
+    expect(egg).toBeTruthy();
+    expect(egg?.url).toContain('youtube.com');
   });
 });
