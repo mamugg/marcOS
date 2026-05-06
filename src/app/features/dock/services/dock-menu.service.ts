@@ -170,6 +170,56 @@ export class DockMenuService {
         ]
       },
       {
+        label: 'Help',
+        items: [
+          {
+            label: 'Keyboard Shortcuts',
+            icon: 'pi pi-fw pi-key',
+            items: [
+              {
+                label: 'Navigation',
+                icon: 'pi pi-fw pi-compass',
+                items: [
+                  { label: '⌘K — Command Palette' },
+                  { label: '⌃T — Terminal' },
+                  { label: 'ESC — Close dialog' }
+                ]
+              }
+            ]
+          },
+          { separator: true },
+          {
+            label: 'Check for Updates',
+            icon: 'pi pi-fw pi-sync',
+            items: [
+              {
+                label: 'Download Update',
+                icon: 'pi pi-fw pi-download',
+                items: [
+                  {
+                    label: 'Verify Integrity',
+                    icon: 'pi pi-fw pi-shield',
+                    items: [
+                      {
+                        label: 'Run Diagnostics',
+                        icon: 'pi pi-fw pi-cog',
+                        items: [
+                          {
+                            label: '🎶',
+                            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                            target: '_blank'
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
         label: 'Quit',
         command: () => {
           this.messageService.add({
