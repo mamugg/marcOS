@@ -22,6 +22,7 @@ describe('DockStateService', () => {
     expect(service.displayGalleria()).toBe(false);
     expect(service.displayProjects()).toBe(false);
     expect(service.displayMail()).toBe(false);
+    expect(service.displayAbout()).toBe(false);
   });
 
   it('should toggle finder', () => {
@@ -116,6 +117,22 @@ describe('DockStateService', () => {
     expect(service.displayMail()).toBe(false);
   });
 
+  it('should toggle about', () => {
+    service.toggleAbout();
+    expect(service.displayAbout()).toBe(true);
+
+    service.toggleAbout();
+    expect(service.displayAbout()).toBe(false);
+  });
+
+  it('should set about to explicit value', () => {
+    service.setAbout(true);
+    expect(service.displayAbout()).toBe(true);
+
+    service.setAbout(false);
+    expect(service.displayAbout()).toBe(false);
+  });
+
   it('should always start closed regardless of any prior localStorage state', () => {
     // The constructor removes all localStorage keys, so signals should always start as false
     expect(service.displayFinder()).toBe(false);
@@ -123,5 +140,6 @@ describe('DockStateService', () => {
     expect(service.displayGalleria()).toBe(false);
     expect(service.displayProjects()).toBe(false);
     expect(service.displayMail()).toBe(false);
+    expect(service.displayAbout()).toBe(false);
   });
 });
