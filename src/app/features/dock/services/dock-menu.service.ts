@@ -30,9 +30,9 @@ export class DockMenuService {
         command: () => this.dockState.toggleGalleria()
       },
       {
-        label: 'Contact',
-        icon: 'https://primefaces.org/cdn/primeng/images/dock/notes.png',
-        command: () => this.dockState.toggleContact()
+        label: 'Mail',
+        icon: 'icons/mail.svg',
+        command: () => this.dockState.toggleMail()
       },
       {
         label: 'GitHub',
@@ -42,8 +42,8 @@ export class DockMenuService {
       },
       {
         label: 'LinkedIn',
-        icon: 'pi pi-fw pi-linkedin',
-        url: 'https://linkedin.com/in/marc',
+        icon: 'icons/linkedin.svg',
+        url: 'https://www.linkedin.com/in/marc-antoine-muggeo-87b794180',
         target: '_blank'
       },
       {

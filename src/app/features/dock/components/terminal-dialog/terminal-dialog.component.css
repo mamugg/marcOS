@@ -1,0 +1,3 @@
+::ng-deep .p-terminal-command-response {
+  white-space: pre-wrap;
+}
