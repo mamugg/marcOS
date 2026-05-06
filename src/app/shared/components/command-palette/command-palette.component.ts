@@ -6,9 +6,7 @@ import {
   computed,
   HostListener,
   ElementRef,
-  viewChild,
-  AfterViewInit,
-  OnDestroy
+  viewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -23,7 +21,7 @@ import { PaletteCommand } from '@app/shared/models';
   styleUrl: './command-palette.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CommandPaletteComponent implements AfterViewInit, OnDestroy {
+export class CommandPaletteComponent {
   private dockState = inject(DockStateService);
   private searchInputRef = viewChild<ElementRef<HTMLInputElement>>('searchInput');
 
@@ -93,7 +91,6 @@ export class CommandPaletteComponent implements AfterViewInit, OnDestroy {
         this.dockState.setGalleria(false);
         this.dockState.setProjects(false);
         this.dockState.setContact(false);
-        this.dockState.setAbout(false);
       }
     }
   ];
@@ -107,10 +104,6 @@ export class CommandPaletteComponent implements AfterViewInit, OnDestroy {
         cmd.description.toLowerCase().includes(q)
     );
   });
-
-  ngAfterViewInit(): void {}
-
-  ngOnDestroy(): void {}
 
   @HostListener('window:keydown.meta.k', ['$event'])
   @HostListener('window:keydown.control.k', ['$event'])
