@@ -23,6 +23,7 @@ describe('DockStateService', () => {
     expect(service.displayProjects()).toBe(false);
     expect(service.displayMail()).toBe(false);
     expect(service.displayAbout()).toBe(false);
+    expect(service.displayCommandPalette()).toBe(false);
   });
 
   it('should toggle finder', () => {
@@ -131,6 +132,48 @@ describe('DockStateService', () => {
 
     service.setAbout(false);
     expect(service.displayAbout()).toBe(false);
+  });
+
+  it('should toggle command palette', () => {
+    service.toggleCommandPalette();
+    expect(service.displayCommandPalette()).toBe(true);
+
+    service.toggleCommandPalette();
+    expect(service.displayCommandPalette()).toBe(false);
+  });
+
+  it('should set command palette to explicit value', () => {
+    service.setCommandPalette(true);
+    expect(service.displayCommandPalette()).toBe(true);
+
+    service.setCommandPalette(false);
+    expect(service.displayCommandPalette()).toBe(false);
+  });
+
+  it('should close all windows with closeAll()', () => {
+    service.setFinder(true);
+    service.setTerminal(true);
+    service.setGalleria(true);
+    service.setProjects(true);
+    service.setMail(true);
+
+    service.closeAll();
+
+    expect(service.displayFinder()).toBe(false);
+    expect(service.displayTerminal()).toBe(false);
+    expect(service.displayGalleria()).toBe(false);
+    expect(service.displayProjects()).toBe(false);
+    expect(service.displayMail()).toBe(false);
+  });
+
+  it('should not affect About or CommandPalette with closeAll()', () => {
+    service.setAbout(true);
+    service.setCommandPalette(true);
+
+    service.closeAll();
+
+    expect(service.displayAbout()).toBe(true);
+    expect(service.displayCommandPalette()).toBe(true);
   });
 
   it('should always start closed regardless of any prior localStorage state', () => {

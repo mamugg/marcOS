@@ -67,92 +67,119 @@ export class DockMenuService {
         label: 'File',
         items: [
           {
-            label: 'New',
-            icon: 'pi pi-fw pi-plus',
-            items: [
-              { label: 'Bookmark', icon: 'pi pi-fw pi-bookmark' },
-              { label: 'Video',    icon: 'pi pi-fw pi-video' }
-            ]
+            label: 'New Finder Window',
+            icon: 'pi pi-fw pi-folder-open',
+            command: () => this.dockState.toggleFinder()
           },
-          { label: 'Delete',  icon: 'pi pi-fw pi-trash' },
           { separator: true },
-          { label: 'Export',  icon: 'pi pi-fw pi-external-link' }
-        ]
-      },
-      {
-        label: 'Edit',
-        items: [
-          { label: 'Left',    icon: 'pi pi-fw pi-align-left' },
-          { label: 'Right',   icon: 'pi pi-fw pi-align-right' },
-          { label: 'Center',  icon: 'pi pi-fw pi-align-center' },
-          { label: 'Justify', icon: 'pi pi-fw pi-align-justify' }
-        ]
-      },
-      {
-        label: 'Users',
-        items: [
-          { label: 'New',    icon: 'pi pi-fw pi-user-plus' },
-          { label: 'Delete', icon: 'pi pi-fw pi-user-minus' },
           {
-            label: 'Search',
-            icon: 'pi pi-fw pi-users',
-            items: [
-              {
-                label: 'Filter',
-                icon: 'pi pi-fw pi-filter',
-                items: [
-                  { label: 'Print', icon: 'pi pi-fw pi-print' }
-                ]
-              },
-              { label: 'List', icon: 'pi pi-fw pi-bars' }
-            ]
+            label: 'Close All Windows',
+            icon: 'pi pi-fw pi-times',
+            command: () => this.dockState.closeAll()
           }
         ]
       },
       {
-        label: 'Events',
+        label: 'View',
         items: [
           {
-            label: 'Edit',
-            icon: 'pi pi-fw pi-pencil',
-            items: [
-              { label: 'Save',   icon: 'pi pi-fw pi-calendar-plus' },
-              { label: 'Delete', icon: 'pi pi-fw pi-calendar-minus' }
-            ]
+            label: 'Command Palette',
+            icon: 'pi pi-fw pi-search',
+            command: () => this.dockState.toggleCommandPalette()
+          },
+          { separator: true },
+          {
+            label: 'Reload',
+            icon: 'pi pi-fw pi-refresh',
+            command: () => window.location.reload()
+          }
+        ]
+      },
+      {
+        label: 'Go',
+        items: [
+          {
+            label: 'Finder',
+            icon: 'pi pi-fw pi-folder',
+            command: () => this.dockState.toggleFinder()
           },
           {
-            label: 'Archive',
-            icon: 'pi pi-fw pi-calendar-times',
-            items: [
-              {
-                label: 'Manage',
-                icon: 'pi pi-fw pi-cog',
-                items: [
-                  {
-                    label: 'Advanced',
-                    icon: 'pi pi-fw pi-sliders-h',
-                    items: [
-                      {
-                        label: 'Options',
-                        icon: 'pi pi-fw pi-ellipsis-h',
-                        items: [
-                          {
-                            label: '🎶',
-                            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-                            target: '_blank'
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              { label: 'Remove', icon: 'pi pi-fw pi-calendar-minus' }
-            ]
+            label: 'Terminal',
+            icon: 'pi pi-fw pi-code',
+            command: () => this.dockState.toggleTerminal()
+          },
+          {
+            label: 'Projects',
+            icon: 'pi pi-fw pi-briefcase',
+            command: () => this.dockState.toggleProjects()
+          },
+          {
+            label: 'Photos',
+            icon: 'pi pi-fw pi-images',
+            command: () => this.dockState.toggleGalleria()
+          },
+          {
+            label: 'Contact',
+            icon: 'pi pi-fw pi-envelope',
+            command: () => this.dockState.toggleMail()
+          },
+          { separator: true },
+          {
+            label: 'GitHub ↗',
+            icon: 'pi pi-fw pi-github',
+            url: 'https://github.com/mamugg',
+            target: '_blank'
+          },
+          {
+            label: 'LinkedIn ↗',
+            icon: 'pi pi-fw pi-linkedin',
+            url: 'https://www.linkedin.com/in/marc-antoine-muggeo-87b794180',
+            target: '_blank'
           }
         ]
       },
-      { label: 'Quit' }
+      {
+        label: 'Window',
+        items: [
+          {
+            label: 'Finder',
+            command: () => this.dockState.toggleFinder()
+          },
+          {
+            label: 'Terminal',
+            command: () => this.dockState.toggleTerminal()
+          },
+          {
+            label: 'Projects',
+            command: () => this.dockState.toggleProjects()
+          },
+          {
+            label: 'Photos',
+            command: () => this.dockState.toggleGalleria()
+          },
+          {
+            label: 'Contact',
+            command: () => this.dockState.toggleMail()
+          },
+          { separator: true },
+          {
+            label: 'Close All',
+            icon: 'pi pi-fw pi-times-circle',
+            command: () => this.dockState.closeAll()
+          }
+        ]
+      },
+      {
+        label: 'Quit',
+        command: () => {
+          this.messageService.add({
+            severity: 'warn',
+            summary: 'Nice try 😏',
+            detail: "You can't quit the OS that easily.",
+            key: 'tc'
+          });
+        }
+      }
     ];
   }
 }
