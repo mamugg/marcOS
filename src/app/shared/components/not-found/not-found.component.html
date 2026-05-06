@@ -1,0 +1,34 @@
+<div class="not-found-screen">
+  <div class="terminal-window">
+    <div class="terminal-titlebar">
+      <span class="dot dot-red"></span>
+      <span class="dot dot-yellow"></span>
+      <span class="dot dot-green"></span>
+      <span class="terminal-title">Terminal — sudo rm -rf /</span>
+    </div>
+
+    <div class="terminal-body">
+      <p class="terminal-prompt">marc&#64;macOS ~ % sudo rm -rf /</p>
+
+      @for (line of deletionLines(); track $index) {
+        <p
+          class="terminal-line"
+          [class.terminal-line--error]="line.includes('Permission denied') || line.includes('SYSTEM ERROR')"
+          [class.terminal-line--warning]="line.includes('Wait') || line.includes('Oops') || line.includes('Hmm') || line.includes('fine')"
+          [class.terminal-line--empty]="line === ''"
+        >{{ line }}</p>
+      }
+
+      @if (showError()) {
+        <div class="error-box">
+          <p class="error-code">404</p>
+          <p class="error-title">Page Not Found</p>
+          <p class="error-subtitle">You deleted it. Are you happy now?</p>
+          <button class="go-home-btn" (click)="goHome()">
+            sudo restore /Users/marc/portfolio
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</div>
