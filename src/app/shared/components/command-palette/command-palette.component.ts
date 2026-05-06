@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { PaletteCommand } from '@app/shared/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-command-palette',
@@ -23,6 +24,7 @@ import { PaletteCommand } from '@app/shared/models';
 })
 export class CommandPaletteComponent {
   private dockState = inject(DockStateService);
+  private router = inject(Router);
   private searchInputRef = viewChild<ElementRef<HTMLInputElement>>('searchInput');
 
   isOpen = signal(false);
@@ -140,6 +142,11 @@ export class CommandPaletteComponent {
   onEnter(event: Event): void {
     if (!this.isOpen()) return;
     event.preventDefault();
+    if (this.searchQuery().trim().toLowerCase() === 'void' && this.filteredCommands().length === 0) {
+      this.close();
+      this.router.navigate(['/404']);
+      return;
+    }
     const cmd = this.filteredCommands()[this.activeIndex()];
     if (cmd) this.execute(cmd);
   }
