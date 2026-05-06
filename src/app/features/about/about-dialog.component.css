@@ -1,0 +1,99 @@
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px 16px;
+  text-align: center;
+  gap: 6px;
+}
+
+.about-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.about-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.about-version {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--p-text-muted-color);
+}
+
+.about-subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--p-text-muted-color);
+}
+
+.about-divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid var(--p-content-border-color);
+  margin: 8px 0;
+}
+
+.about-stack-label {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--p-text-muted-color);
+}
+
+.about-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.tech-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: var(--p-content-background);
+  border: 1px solid var(--p-content-border-color);
+  font-size: 0.8rem;
+}
+
+.tech-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.tech-name {
+  font-weight: 500;
+}
+
+.tech-version {
+  color: var(--p-text-muted-color);
+  font-size: 0.72rem;
+}
+
+.about-footer {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--p-text-muted-color);
+}
+
+.about-footer a {
+  color: var(--p-primary-color);
+  text-decoration: none;
+}
+
+.about-footer a:hover {
+  text-decoration: underline;
+}
