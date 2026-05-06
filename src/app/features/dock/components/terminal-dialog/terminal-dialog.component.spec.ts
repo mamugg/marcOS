@@ -4,21 +4,25 @@ import { Subject } from 'rxjs';
 import { TerminalDialogComponent } from './terminal-dialog.component';
 import { TerminalService } from 'primeng/terminal';
 import { DockStateService } from '@features/dock/services/dock-state.service';
+import { Router } from '@angular/router';
 
 describe('TerminalDialogComponent', () => {
   let component: TerminalDialogComponent;
   let fixture: any;
   let commandHandlerSubject: Subject<string>;
   let sendResponseCalls: string[];
+  let mockRouter: { navigate: ReturnType<typeof vi.fn> };
 
   beforeEach(async () => {
     commandHandlerSubject = new Subject<string>();
     sendResponseCalls = [];
+    mockRouter = { navigate: vi.fn() };
 
     await TestBed.configureTestingModule({
       imports: [TerminalDialogComponent],
       providers: [
-        { provide: DockStateService, useValue: { displayTerminal: signal(false) } }
+        { provide: DockStateService, useValue: { displayTerminal: signal(false) } },
+        { provide: Router, useValue: mockRouter }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
@@ -104,5 +108,20 @@ describe('TerminalDialogComponent', () => {
     sendResponseCalls = [];
     commandHandlerSubject.next('help');
     expect(sendResponseCalls.length).toBe(0);
+  });
+
+  it('should respond with self-destruct message for sudo command', () => {
+    vi.useFakeTimers();
+    commandHandlerSubject.next('sudo rm -rf /');
+    expect(sendResponseCalls[0]).toContain('self-destruct');
+    vi.useRealTimers();
+  });
+
+  it('should navigate to /404 after timeout when sudo command is used', () => {
+    vi.useFakeTimers();
+    commandHandlerSubject.next('sudo rm -rf /');
+    vi.advanceTimersByTime(1200);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/404']);
+    vi.useRealTimers();
   });
 });
