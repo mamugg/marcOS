@@ -10,6 +10,5 @@
 - Ajouter un easter egg dans le terminal : une commande secrète qui fait renvoyer vers la 404
 
 ## Fixes
-- Corriger le bug de la commande help du Terminal qui affiche la liste de façon tres illisible. Reviens à quelque chose de simple listant simplement les differentes commande sans artiffice supplémentaires.
-- Mettre le bon logo "Mail" de macOS pour l'app "contact" du dock et le renommer en "Mail" au lieu de "Contact"
-- Idem pour le logo LinkedIn qui est cassé et changer le lien vers lequel il retourne pour celui ci: www.linkedin.com/in/marc-antoine-muggeo-87b794180
+- Renommer les composants de l'app "contact" en "mail-dialog" pour plus de clarté et de cohérence avec leur fonction réelle.
+- TOUTES les modales qui sont ouvertes en cliquant sur les icones du dock ou les documents du bureau sont actuellement non déplaceables et non redimensionnables (sauf le composant contact qui lui est déplaceable). Il faudrait les rendre déplaçables et redimensionnables pour une meilleure expérience utilisateur.
