@@ -12,7 +12,7 @@ export class DockStateService {
   displayMail = signal(false);
   displayAbout = signal(false);
 
-  wallpaper = signal('/wallpaper.png');
+  wallpaper = signal(this.storageService.get<string>('wallpaper') ?? '/wallpaper.png');
 
   constructor() {
     this.storageService.remove('displayFinder');
@@ -36,6 +36,9 @@ export class DockStateService {
   setMail(value: boolean) { this.displayMail.set(value); }
   setAbout(value: boolean) { this.displayAbout.set(value); }
 
-  setWallpaper(url: string) { this.wallpaper.set(url); }
+  setWallpaper(url: string) {
+    this.wallpaper.set(url);
+    this.storageService.set('wallpaper', url);
+  }
 }
 
