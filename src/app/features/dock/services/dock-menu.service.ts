@@ -11,32 +11,27 @@ export class DockMenuService {
       {
         label: 'Finder',
         icon: 'https://primefaces.org/cdn/primeng/images/dock/finder.svg',
-        command: () => {
-          this.dockState.toggleFinder();
-        }
+        command: () => this.dockState.toggleFinder()
       },
       {
         label: 'Terminal',
         icon: 'https://primefaces.org/cdn/primeng/images/dock/terminal.svg',
-        command: () => {
-          this.dockState.toggleTerminal();
-        }
+        command: () => this.dockState.toggleTerminal()
       },
       {
-        label: 'App Store',
+        label: 'Projects',
         icon: 'https://primefaces.org/cdn/primeng/images/dock/appstore.svg',
-        url: 'https://www.apple.com/app-store/'
-      },
-      {
-        label: 'Safari',
-        icon: 'https://primefaces.org/cdn/primeng/images/dock/safari.svg'
+        command: () => this.dockState.toggleProjects()
       },
       {
         label: 'Photos',
         icon: 'https://primefaces.org/cdn/primeng/images/dock/photos.svg',
-        command: () => {
-          this.dockState.toggleGalleria();
-        }
+        command: () => this.dockState.toggleGalleria()
+      },
+      {
+        label: 'Contact',
+        icon: 'https://primefaces.org/cdn/primeng/images/dock/notes.png',
+        command: () => this.dockState.toggleContact()
       },
       {
         label: 'GitHub',

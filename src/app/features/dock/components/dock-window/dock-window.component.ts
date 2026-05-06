@@ -5,6 +5,8 @@ import { FinderDialogComponent } from '../finder-dialog/finder-dialog.component'
 import { TerminalDialogComponent } from '../terminal-dialog/terminal-dialog.component';
 import { GalleriaDialogComponent } from '../galleria-dialog/galleria-dialog.component';
 import { ToastNotifierComponent } from '../toast-notifier/toast-notifier.component';
+import { ProjectsDialogComponent } from '@app/features/projects/projects-dialog.component';
+import { ContactDialogComponent } from '@app/features/contact/contact-dialog.component';
 
 @Component({
   selector: 'app-dock-window',
@@ -15,7 +17,9 @@ import { ToastNotifierComponent } from '../toast-notifier/toast-notifier.compone
     FinderDialogComponent,
     TerminalDialogComponent,
     GalleriaDialogComponent,
-    ToastNotifierComponent
+    ToastNotifierComponent,
+    ProjectsDialogComponent,
+    ContactDialogComponent
   ],
   templateUrl: './dock-window.component.html',
   styleUrl: './dock-window.component.css',
