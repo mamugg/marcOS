@@ -142,4 +142,35 @@ describe('DockStateService', () => {
     expect(service.displayMail()).toBe(false);
     expect(service.displayAbout()).toBe(false);
   });
+
+  it('should initialize wallpaper to default value when nothing is stored', () => {
+    expect(service.wallpaper()).toBe('/wallpaper.png');
+  });
+
+  it('should update wallpaper signal via setWallpaper', () => {
+    service.setWallpaper('https://example.com/new-wallpaper.jpg');
+    expect(service.wallpaper()).toBe('https://example.com/new-wallpaper.jpg');
+  });
+
+  it('should persist wallpaper to localStorage via setWallpaper', () => {
+    const storageService = TestBed.inject(StorageService);
+    service.setWallpaper('https://example.com/bg.jpg');
+    expect(storageService.get<string>('wallpaper')).toBe('https://example.com/bg.jpg');
+  });
+
+  it('should restore wallpaper from localStorage on init', () => {
+    const storageService = TestBed.inject(StorageService);
+    storageService.set('wallpaper', 'https://example.com/saved.jpg');
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({ providers: [DockStateService, StorageService] });
+    const freshService = TestBed.inject(DockStateService);
+    expect(freshService.wallpaper()).toBe('https://example.com/saved.jpg');
+  });
+
+  it('should allow updating wallpaper multiple times', () => {
+    service.setWallpaper('first.jpg');
+    service.setWallpaper('second.jpg');
+    expect(service.wallpaper()).toBe('second.jpg');
+  });
 });
