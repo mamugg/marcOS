@@ -1,0 +1,100 @@
+<p-dialog
+  [(visible)]="dockState.displayContact"
+  [modal]="false"
+  [resizable]="true"
+  [draggable]="true"
+  [style]="{ width: '520px' }"
+  header="Contact"
+  styleClass="contact-dialog"
+  (onHide)="onDialogHide()"
+>
+  @if (isSubmitted()) {
+    <div class="success-state">
+      <div class="success-icon">✉️</div>
+      <h3>Message envoyé !</h3>
+      <p>Je vous répondrai dans les plus brefs délais.</p>
+    </div>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="submit()" class="contact-form" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input
+            id="name"
+            type="text"
+            pInputText
+            formControlName="name"
+            placeholder="Votre nom"
+            [class.ng-invalid]="nameInvalid"
+          />
+          @if (nameInvalid) {
+            <span class="error-msg">Le nom est requis (min. 2 caractères)</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            pInputText
+            formControlName="email"
+            placeholder="votre@email.com"
+            [class.ng-invalid]="emailInvalid"
+          />
+          @if (emailInvalid) {
+            <span class="error-msg">Email invalide</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Sujet</label>
+        <input
+          id="subject"
+          type="text"
+          pInputText
+          formControlName="subject"
+          placeholder="Objet de votre message"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          pTextarea
+          formControlName="message"
+          placeholder="Décrivez votre projet ou votre demande..."
+          rows="5"
+          [class.ng-invalid]="messageInvalid"
+        ></textarea>
+        @if (messageInvalid) {
+          <span class="error-msg">Le message est requis (min. 10 caractères)</span>
+        }
+      </div>
+
+      <div class="form-actions">
+        <div class="contact-links">
+          <a href="https://github.com/mamugg" target="_blank" title="GitHub">
+            <i class="pi pi-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/marc" target="_blank" title="LinkedIn">
+            <i class="pi pi-linkedin"></i>
+          </a>
+        </div>
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="isSubmitting()"
+        >
+          @if (isSubmitting()) {
+            <i class="pi pi-spin pi-spinner"></i> Envoi en cours...
+          } @else {
+            <i class="pi pi-send"></i> Envoyer
+          }
+        </button>
+      </div>
+    </form>
+  }
+</p-dialog>
