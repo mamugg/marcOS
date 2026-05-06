@@ -5,6 +5,7 @@ import { TerminalModule } from 'primeng/terminal';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { TerminalService } from 'primeng/terminal';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-terminal-dialog',
@@ -18,6 +19,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class TerminalDialogComponent {
   protected dockState = inject(DockStateService);
   private terminalService = inject(TerminalService);
+  private router = inject(Router);
 
   constructor() {
     this.terminalService.commandHandler
@@ -119,6 +121,14 @@ Specialized in Angular and modern web technologies`;
       case 'clear':
       case '':
         response = '';
+        break;
+
+      case 'sudo':
+        response = 'Initiating self-destruct sequence... 💣';
+        setTimeout(() => {
+          this.dockState.displayTerminal.set(false);
+          this.router.navigate(['/404']);
+        }, 1200);
         break;
 
       default:
