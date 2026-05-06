@@ -30,102 +30,90 @@ export class TerminalDialogComponent {
     const command = argsIndex !== -1 ? text.substring(0, argsIndex) : text;
     const args = argsIndex !== -1 ? text.substring(argsIndex + 1) : '';
 
-    const RESET = '[0m';
-    const BOLD = '[1m';
-    const GREEN = '[32m';
-    const YELLOW = '[33m';
-    const CYAN = '[36m';
-    const MAGENTA = '[35m';
-    const SEPARATOR = '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
-
     let response = '';
 
     switch (command.toLowerCase()) {
       case 'help':
-        response = `${CYAN}${SEPARATOR}${RESET}
-${BOLD}${GREEN}AVAILABLE COMMANDS${RESET}
-${CYAN}${SEPARATOR}${RESET}
-${YELLOW}help${RESET} .......................... Show available commands
-${YELLOW}date${RESET} .......................... Show current date and time
-${YELLOW}time${RESET} .......................... Show current time
-${YELLOW}whoami${RESET} ........................ Show username
-${YELLOW}pwd${RESET} ........................... Print working directory
-${YELLOW}ls${RESET} ............................ List files
-${YELLOW}echo${RESET} [text] .................... Echo text
-${YELLOW}random${RESET} ........................ Generate random number (0-100)
-${YELLOW}clear${RESET} ........................ Clear terminal
-${YELLOW}github${RESET} ........................ Open GitHub profile
-${YELLOW}portfolio${RESET} ..................... Show portfolio information
-${YELLOW}skills${RESET} ........................ List tech skills
-${YELLOW}contact${RESET} ....................... Show contact information
-${YELLOW}greet${RESET} [name] .................. Greet someone (e.g: greet John)
-${YELLOW}about${RESET} ......................... Show about information
-${CYAN}${SEPARATOR}${RESET}`;
+        response = `Available commands:
+  help           Show available commands
+  date           Show current date and time
+  time           Show current time
+  whoami         Show username
+  pwd            Print working directory
+  ls             List files
+  echo [text]    Echo text
+  random         Generate random number (0-100)
+  clear          Clear terminal
+  github         Open GitHub profile
+  portfolio      Show portfolio information
+  skills         List tech skills
+  contact        Show contact information
+  greet [name]   Greet someone
+  about          Show about information`;
         break;
 
       case 'date':
-        response = `${GREEN}${new Date().toLocaleString('fr-FR')}${RESET}`;
+        response = new Date().toLocaleString('fr-FR');
         break;
 
       case 'time':
-        response = `${GREEN}${new Date().toLocaleTimeString('fr-FR')}${RESET}`;
+        response = new Date().toLocaleTimeString('fr-FR');
         break;
 
       case 'whoami':
-        response = `${MAGENTA}marc@marcos-portfolio${RESET}`;
+        response = 'marc@marcos-portfolio';
         break;
 
       case 'pwd':
-        response = `${CYAN}/home/marc/Portfolio${RESET}`;
+        response = '/home/marc/Portfolio';
         break;
 
       case 'ls':
-        response = `${GREEN}Documents/${RESET}  ${GREEN}Projects/${RESET}  ${GREEN}Photos/${RESET}
-${YELLOW}README.md${RESET}  ${YELLOW}package.json${RESET}  ${YELLOW}.gitignore${RESET}`;
+        response = `Documents/  Projects/  Photos/
+README.md  package.json  .gitignore`;
         break;
 
       case 'echo':
-        response = `${BOLD}${args || '(empty)'}${RESET}`;
+        response = args || '(empty)';
         break;
 
       case 'random':
-        response = `${GREEN}${Math.floor(Math.random() * 100)}${RESET}`;
+        response = String(Math.floor(Math.random() * 100));
         break;
 
       case 'github':
         window.open('https://github.com/mamugg');
-        response = `${CYAN}Opening GitHub profile...${RESET}`;
+        response = 'Opening GitHub profile...';
         break;
 
       case 'portfolio':
-        response = `${BOLD}${GREEN}MarcOS${RESET} - Interactive Portfolio v1.0
-${CYAN}Built with${RESET} Angular 21, PrimeNG & Tailwind CSS
-${YELLOW}Type 'help' for available commands${RESET}`;
+        response = `MarcOS - Interactive Portfolio v1.0
+Built with Angular 21, PrimeNG & Tailwind CSS
+Type 'help' for available commands`;
         break;
 
       case 'skills':
-        response = `${BOLD}${CYAN}Frontend:${RESET} Angular, React, TypeScript, Tailwind CSS, PrimeNG
-${BOLD}${CYAN}Backend:${RESET} Node.js, Express, MongoDB, PostgreSQL
-${BOLD}${CYAN}DevOps:${RESET} Docker, Git, CI/CD, GitHub
-${BOLD}${CYAN}Design:${RESET} UI/UX, Responsive Design, Accessibility (A11y)
-${BOLD}${CYAN}Tools:${RESET} VS Code, Angular CLI, Webpack, ESLint`;
+        response = `Frontend: Angular, React, TypeScript, Tailwind CSS, PrimeNG
+Backend:  Node.js, Express, MongoDB, PostgreSQL
+DevOps:   Docker, Git, CI/CD, GitHub
+Design:   UI/UX, Responsive Design, Accessibility (A11y)
+Tools:    VS Code, Angular CLI, Webpack, ESLint`;
         break;
 
       case 'contact':
-        response = `${BOLD}${GREEN}Email:${RESET} contact@example.com
-${BOLD}${GREEN}GitHub:${RESET} https://github.com/mamugg
-${BOLD}${GREEN}LinkedIn:${RESET} https://linkedin.com
-${BOLD}${GREEN}Twitter:${RESET} @marchandle`;
+        response = `Email:    muggeo.marco@gmail.com
+GitHub:   https://github.com/mamugg
+LinkedIn: https://www.linkedin.com/in/marc-antoine-muggeo-87b794180`;
         break;
 
       case 'greet':
-        response = `${BOLD}${MAGENTA}Hello ${args || 'there'}! 👋${RESET}`;
+        response = `Hello ${args || 'there'}! 👋`;
         break;
 
       case 'about':
-        response = `${BOLD}${GREEN}Marc${RESET} - Full Stack Developer
-${CYAN}Passionate about creating beautiful and performant web applications${RESET}
-${CYAN}Specialized in Angular and modern web technologies${RESET}`;
+        response = `Marc - Full Stack Developer
+Passionate about creating beautiful and performant web applications
+Specialized in Angular and modern web technologies`;
         break;
 
       case 'clear':
@@ -134,8 +122,7 @@ ${CYAN}Specialized in Angular and modern web technologies${RESET}`;
         break;
 
       default:
-        response = `${BOLD}${MAGENTA}✗ Unknown command: '${command}'${RESET}
-${YELLOW}Type 'help' for available commands${RESET}`;
+        response = `Unknown command: '${command}'. Type 'help' for available commands.`;
         break;
     }
 

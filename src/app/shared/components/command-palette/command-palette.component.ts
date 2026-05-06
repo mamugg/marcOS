@@ -64,7 +64,7 @@ export class CommandPaletteComponent {
       label: 'Contact',
       description: "M'envoyer un message",
       icon: '✉️',
-      action: () => this.dockState.toggleContact()
+      action: () => this.dockState.toggleMail()
     },
     {
       id: 'github',
@@ -90,7 +90,7 @@ export class CommandPaletteComponent {
         this.dockState.setTerminal(false);
         this.dockState.setGalleria(false);
         this.dockState.setProjects(false);
-        this.dockState.setContact(false);
+        this.dockState.setMail(false);
       }
     }
   ];

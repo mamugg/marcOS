@@ -16,7 +16,7 @@ interface ContactFormShape {
 }
 
 @Component({
-  selector: 'app-contact-dialog',
+  selector: 'app-mail-dialog',
   standalone: true,
   imports: [
     CommonModule,
@@ -26,11 +26,11 @@ interface ContactFormShape {
     TextareaModule,
     ButtonModule
   ],
-  templateUrl: './contact-dialog.component.html',
-  styleUrl: './contact-dialog.component.css',
+  templateUrl: './mail-dialog.component.html',
+  styleUrl: './mail-dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContactDialogComponent {
+export class MailDialogComponent {
   protected dockState = inject(DockStateService);
   private fb = inject(FormBuilder);
   private errorService = inject(ErrorService);
@@ -72,7 +72,7 @@ export class ContactDialogComponent {
     setTimeout(() => {
       this.isSubmitting.set(false);
       this.isSubmitted.set(true);
-      this.errorService.handleSuccess('Message envoyé avec succès !', 'Contact');
+      this.errorService.handleSuccess('Message envoyé avec succès !', 'Mail');
       this.form.reset();
       setTimeout(() => this.isSubmitted.set(false), 3000);
     }, 1200);

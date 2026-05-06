@@ -6,7 +6,7 @@ import { TerminalDialogComponent } from '../terminal-dialog/terminal-dialog.comp
 import { GalleriaDialogComponent } from '../galleria-dialog/galleria-dialog.component';
 import { ToastNotifierComponent } from '../toast-notifier/toast-notifier.component';
 import { ProjectsDialogComponent } from '@app/features/projects/projects-dialog.component';
-import { ContactDialogComponent } from '@app/features/contact/contact-dialog.component';
+import { MailDialogComponent } from '@app/features/mail/mail-dialog.component';
 
 @Component({
   selector: 'app-dock-window',
@@ -19,7 +19,7 @@ import { ContactDialogComponent } from '@app/features/contact/contact-dialog.com
     GalleriaDialogComponent,
     ToastNotifierComponent,
     ProjectsDialogComponent,
-    ContactDialogComponent
+    MailDialogComponent
   ],
   templateUrl: './dock-window.component.html',
   styleUrl: './dock-window.component.css',
