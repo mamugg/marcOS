@@ -25,7 +25,7 @@ describe('MainScreenComponent', () => {
     expect(component.debugMode).toBe(false);
   });
 
-  it('should have wallpaperImage set to /wallpaper.png', () => {
-    expect(component.wallpaperImage).toBe('/wallpaper.png');
+  it('should expose dockState with default wallpaper /wallpaper.png', () => {
+    expect(component['dockState'].wallpaper()).toBe('/wallpaper.png');
   });
 });

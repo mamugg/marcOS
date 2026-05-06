@@ -1,16 +1,59 @@
-<p-galleria
-  [value]="images()"
-  [showThumbnails]="false"
-  [showThumbnailNavigators]="false"
-  [showItemNavigators]="true"
+<p-dialog
+  header="Photos"
   [(visible)]="dockState.displayGalleria"
-  [circular]="true"
-  [responsiveOptions]="responsiveOptions()"
-  [fullScreen]="true"
-  [containerStyle]="{ width: '400px' }"
+  [modal]="false"
+  [resizable]="true"
+  [draggable]="true"
+  [style]="{ width: '820px', height: '580px' }"
+  [contentStyle]="{ padding: '0', overflow: 'hidden', height: '100%' }"
+  styleClass="photos-dialog"
 >
-  <ng-template #item let-item>
-    <img [src]="item.itemImageSrc" style="width: 100%; display: block;" />
-  </ng-template>
-</p-galleria>
+  @if (isLoading()) {
+    <div class="photos-loading">
+      <i class="pi pi-spin pi-spinner"></i>
+    </div>
+  }
 
+  @if (!isLoading() && selectedIndex() === null) {
+    <div class="photos-grid">
+      @for (image of images(); track $index) {
+        <button
+          class="photo-thumb"
+          (click)="openPhoto($index)"
+          [attr.aria-label]="image.title"
+        >
+          <img [src]="image.thumbnailImageSrc" [alt]="image.alt" loading="lazy" />
+          <span class="photo-thumb-title">{{ image.title }}</span>
+        </button>
+      }
+    </div>
+  }
+
+  @if (selectedIndex() !== null) {
+    <div class="photos-lightbox">
+      <div class="lightbox-toolbar">
+        <button class="lb-btn lb-back" (click)="closePhoto()" pTooltip="Back to grid" tooltipPosition="right">
+          <i class="pi pi-arrow-left"></i>
+        </button>
+        <span class="lb-title">{{ selectedPhoto()?.title }}</span>
+        <button class="lb-btn lb-wallpaper" (click)="setWallpaper()" pTooltip="Set as Wallpaper" tooltipPosition="left">
+          <i class="pi pi-desktop"></i>
+          <span>Set as Wallpaper</span>
+        </button>
+      </div>
+      <div class="lightbox-stage">
+        <button class="lb-nav lb-prev" (click)="prevPhoto()" aria-label="Previous photo">
+          <i class="pi pi-chevron-left"></i>
+        </button>
+        <img
+          [src]="selectedPhoto()?.itemImageSrc"
+          [alt]="selectedPhoto()?.alt"
+          class="lightbox-img"
+        />
+        <button class="lb-nav lb-next" (click)="nextPhoto()" aria-label="Next photo">
+          <i class="pi pi-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  }
+</p-dialog>
