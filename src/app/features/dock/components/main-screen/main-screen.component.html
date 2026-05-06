@@ -1,7 +1,7 @@
 <theme-switcher [hidden]="!debugMode" />
 <div class="main-screen-container">
   <app-topbar />
-  <img [src]="wallpaperImage" alt="Wallpaper" class="wallpaper" />
+  <img [src]="dockState.wallpaper()" alt="Wallpaper" class="wallpaper" />
   <app-dock-window />
 </div>
 <app-command-palette />

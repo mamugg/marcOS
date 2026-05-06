@@ -142,4 +142,19 @@ describe('DockStateService', () => {
     expect(service.displayMail()).toBe(false);
     expect(service.displayAbout()).toBe(false);
   });
+
+  it('should initialize wallpaper to default value', () => {
+    expect(service.wallpaper()).toBe('/wallpaper.png');
+  });
+
+  it('should update wallpaper via setWallpaper', () => {
+    service.setWallpaper('https://example.com/new-wallpaper.jpg');
+    expect(service.wallpaper()).toBe('https://example.com/new-wallpaper.jpg');
+  });
+
+  it('should allow updating wallpaper multiple times', () => {
+    service.setWallpaper('first.jpg');
+    service.setWallpaper('second.jpg');
+    expect(service.wallpaper()).toBe('second.jpg');
+  });
 });
