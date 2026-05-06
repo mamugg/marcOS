@@ -4,6 +4,7 @@ import {
   inject,
   signal,
   computed,
+  effect,
   HostListener,
   ElementRef,
   viewChild
@@ -25,9 +26,19 @@ export class CommandPaletteComponent {
   private dockState = inject(DockStateService);
   private searchInputRef = viewChild<ElementRef<HTMLInputElement>>('searchInput');
 
-  isOpen = signal(false);
+  isOpen = this.dockState.displayCommandPalette;
   searchQuery = signal('');
   activeIndex = signal(0);
+
+  constructor() {
+    effect(() => {
+      if (this.dockState.displayCommandPalette()) {
+        this.searchQuery.set('');
+        this.activeIndex.set(0);
+        setTimeout(() => this.searchInputRef()?.nativeElement.focus(), 50);
+      }
+    });
+  }
 
   private readonly allCommands: PaletteCommand[] = [
     {
@@ -85,13 +96,7 @@ export class CommandPaletteComponent {
       label: 'Fermer toutes les fenêtres',
       description: 'Fermer tous les dialogs ouverts',
       icon: '✕',
-      action: () => {
-        this.dockState.setFinder(false);
-        this.dockState.setTerminal(false);
-        this.dockState.setGalleria(false);
-        this.dockState.setProjects(false);
-        this.dockState.setMail(false);
-      }
+      action: () => this.dockState.closeAll()
     }
   ];
 
@@ -109,15 +114,12 @@ export class CommandPaletteComponent {
   @HostListener('window:keydown.control.k', ['$event'])
   open(event: Event): void {
     event.preventDefault();
-    this.isOpen.set(true);
-    this.searchQuery.set('');
-    this.activeIndex.set(0);
-    setTimeout(() => this.searchInputRef()?.nativeElement.focus(), 50);
+    this.dockState.setCommandPalette(true);
   }
 
   @HostListener('window:keydown.escape')
   close(): void {
-    this.isOpen.set(false);
+    this.dockState.setCommandPalette(false);
   }
 
   @HostListener('window:keydown.arrowDown', ['$event'])

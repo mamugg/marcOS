@@ -5,11 +5,29 @@ import { DockStateService } from './dock-state.service';
 
 describe('DockMenuService', () => {
   let service: DockMenuService;
-  let dockState: { toggleFinder: () => void; toggleTerminal: () => void; toggleGalleria: () => void; toggleAbout: () => void };
-  let messageAddCalls: any[];
+  let dockState: {
+    toggleFinder: () => void;
+    toggleTerminal: () => void;
+    toggleGalleria: () => void;
+    toggleProjects: () => void;
+    toggleMail: () => void;
+    toggleAbout: () => void;
+    toggleCommandPalette: () => void;
+    closeAll: () => void;
+  };
+  let messageAddCalls: unknown[];
 
   beforeEach(() => {
-    dockState = { toggleFinder: () => {}, toggleTerminal: () => {}, toggleGalleria: () => {}, toggleAbout: () => {} };
+    dockState = {
+      toggleFinder: () => {},
+      toggleTerminal: () => {},
+      toggleGalleria: () => {},
+      toggleProjects: () => {},
+      toggleMail: () => {},
+      toggleAbout: () => {},
+      toggleCommandPalette: () => {},
+      closeAll: () => {}
+    };
     messageAddCalls = [];
 
     TestBed.configureTestingModule({
@@ -22,12 +40,14 @@ describe('DockMenuService', () => {
 
     service = TestBed.inject(DockMenuService);
     const messageService = TestBed.inject(MessageService);
-    messageService.add = (msg: any) => { messageAddCalls.push(msg); };
+    messageService.add = (msg: unknown) => { messageAddCalls.push(msg); };
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  // ── Dock items ──────────────────────────────────────────────────────────────
 
   it('should return dock items containing Finder, Terminal, Photos, GitHub, Trash', () => {
     const labels = service.getDockItems().map((i) => i.label);
@@ -38,54 +58,63 @@ describe('DockMenuService', () => {
     expect(labels).toContain('Trash');
   });
 
-  it('should call toggleFinder when Finder command is triggered', () => {
+  it('should call toggleFinder when Finder dock item is triggered', () => {
     let called = false;
     dockState.toggleFinder = () => { called = true; };
     const finder = service.getDockItems().find((i) => i.label === 'Finder');
-    finder?.command?.({} as any);
+    finder?.command?.({} as never);
     expect(called).toBe(true);
   });
 
-  it('should call toggleTerminal when Terminal command is triggered', () => {
+  it('should call toggleTerminal when Terminal dock item is triggered', () => {
     let called = false;
     dockState.toggleTerminal = () => { called = true; };
     const terminal = service.getDockItems().find((i) => i.label === 'Terminal');
-    terminal?.command?.({} as any);
+    terminal?.command?.({} as never);
     expect(called).toBe(true);
   });
 
-  it('should call toggleGalleria when Photos command is triggered', () => {
+  it('should call toggleGalleria when Photos dock item is triggered', () => {
     let called = false;
     dockState.toggleGalleria = () => { called = true; };
     const photos = service.getDockItems().find((i) => i.label === 'Photos');
-    photos?.command?.({} as any);
+    photos?.command?.({} as never);
     expect(called).toBe(true);
   });
 
-  it('should add a toast when Trash command is triggered', () => {
+  it('should add a toast when Trash dock item is triggered', () => {
     const trash = service.getDockItems().find((i) => i.label === 'Trash');
-    trash?.command?.({} as any);
+    trash?.command?.({} as never);
     expect(messageAddCalls.length).toBe(1);
-    expect(messageAddCalls[0].severity).toBe('info');
+    expect((messageAddCalls[0] as { severity: string }).severity).toBe('info');
   });
 
-  it('should return menubar items with About, File, Edit labels', () => {
+  // ── Menubar top-level labels ────────────────────────────────────────────────
+
+  it('should return menubar items with About, File, View, Go, Window, Quit', () => {
     const labels = service.getMenubarItems().map((i) => i.label);
     expect(labels).toContain('About');
     expect(labels).toContain('File');
-    expect(labels).toContain('Edit');
+    expect(labels).toContain('View');
+    expect(labels).toContain('Go');
+    expect(labels).toContain('Window');
+    expect(labels).toContain('Quit');
   });
 
-  it('should return menubar items with nested sub-items under File', () => {
-    const file = service.getMenubarItems().find((i) => i.label === 'File');
-    expect(file?.items?.length).toBeGreaterThan(0);
+  it('should NOT contain legacy placeholder menus (Edit, Users, Events)', () => {
+    const labels = service.getMenubarItems().map((i) => i.label);
+    expect(labels).not.toContain('Edit');
+    expect(labels).not.toContain('Users');
+    expect(labels).not.toContain('Events');
   });
 
-  it('should call toggleAbout when the About top-level item is clicked', () => {
+  // ── About ───────────────────────────────────────────────────────────────────
+
+  it('should call toggleAbout when About is clicked', () => {
     let called = false;
     dockState.toggleAbout = () => { called = true; };
     const about = service.getMenubarItems().find((i) => i.label === 'About');
-    about?.command?.({} as any);
+    about?.command?.({} as never);
     expect(called).toBe(true);
   });
 
@@ -95,14 +124,89 @@ describe('DockMenuService', () => {
     expect(about?.items).toBeFalsy();
   });
 
-  it('should bury 🎶 easter egg deep inside Events > Archive > Manage > Advanced > Options', () => {
-    const events   = service.getMenubarItems().find((i) => i.label === 'Events');
-    const archive  = events?.items?.find((i) => i.label === 'Archive');
-    const manage   = archive?.items?.find((i) => i.label === 'Manage');
-    const advanced = manage?.items?.find((i) => i.label === 'Advanced');
-    const options  = advanced?.items?.find((i) => i.label === 'Options');
-    const egg      = options?.items?.find((i) => i.label === '🎶');
-    expect(egg).toBeTruthy();
-    expect(egg?.url).toContain('youtube.com');
+  // ── File ────────────────────────────────────────────────────────────────────
+
+  it('should have File > New Finder Window that calls toggleFinder', () => {
+    let called = false;
+    dockState.toggleFinder = () => { called = true; };
+    const file = service.getMenubarItems().find((i) => i.label === 'File');
+    const item = file?.items?.find((i) => i.label === 'New Finder Window');
+    item?.command?.({} as never);
+    expect(called).toBe(true);
+  });
+
+  it('should have File > Close All Windows that calls closeAll', () => {
+    let called = false;
+    dockState.closeAll = () => { called = true; };
+    const file = service.getMenubarItems().find((i) => i.label === 'File');
+    const item = file?.items?.find((i) => i.label === 'Close All Windows');
+    item?.command?.({} as never);
+    expect(called).toBe(true);
+  });
+
+  // ── View ────────────────────────────────────────────────────────────────────
+
+  it('should have View > Command Palette that calls toggleCommandPalette', () => {
+    let called = false;
+    dockState.toggleCommandPalette = () => { called = true; };
+    const view = service.getMenubarItems().find((i) => i.label === 'View');
+    const item = view?.items?.find((i) => i.label === 'Command Palette');
+    item?.command?.({} as never);
+    expect(called).toBe(true);
+  });
+
+  // ── Go ──────────────────────────────────────────────────────────────────────
+
+  it('should have Go with Finder, Terminal, Projects, Photos, Contact', () => {
+    const go = service.getMenubarItems().find((i) => i.label === 'Go');
+    const labels = go?.items?.map((i) => i.label) ?? [];
+    expect(labels).toContain('Finder');
+    expect(labels).toContain('Terminal');
+    expect(labels).toContain('Projects');
+    expect(labels).toContain('Photos');
+    expect(labels).toContain('Contact');
+  });
+
+  it('should have Go > Finder that calls toggleFinder', () => {
+    let called = false;
+    dockState.toggleFinder = () => { called = true; };
+    const go = service.getMenubarItems().find((i) => i.label === 'Go');
+    const item = go?.items?.find((i) => i.label === 'Finder');
+    item?.command?.({} as never);
+    expect(called).toBe(true);
+  });
+
+  it('should have Go > GitHub ↗ as external link', () => {
+    const go = service.getMenubarItems().find((i) => i.label === 'Go');
+    const item = go?.items?.find((i) => i.label === 'GitHub ↗');
+    expect(item?.url).toContain('github.com');
+    expect(item?.target).toBe('_blank');
+  });
+
+  it('should have Go > LinkedIn ↗ as external link', () => {
+    const go = service.getMenubarItems().find((i) => i.label === 'Go');
+    const item = go?.items?.find((i) => i.label === 'LinkedIn ↗');
+    expect(item?.url).toContain('linkedin.com');
+    expect(item?.target).toBe('_blank');
+  });
+
+  // ── Window ──────────────────────────────────────────────────────────────────
+
+  it('should have Window > Close All that calls closeAll', () => {
+    let called = false;
+    dockState.closeAll = () => { called = true; };
+    const win = service.getMenubarItems().find((i) => i.label === 'Window');
+    const item = win?.items?.find((i) => i.label === 'Close All');
+    item?.command?.({} as never);
+    expect(called).toBe(true);
+  });
+
+  // ── Quit ────────────────────────────────────────────────────────────────────
+
+  it('should show a toast when Quit is clicked', () => {
+    const quit = service.getMenubarItems().find((i) => i.label === 'Quit');
+    quit?.command?.({} as never);
+    expect(messageAddCalls.length).toBe(1);
+    expect((messageAddCalls[0] as { severity: string }).severity).toBe('warn');
   });
 });
