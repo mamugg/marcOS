@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, inject, signal, OnInit } from '@ang
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { TreeModule } from 'primeng/tree';
+import { TreeNode } from 'primeng/api';
 import { NodeService } from '@app/shared/services/node.service';
 import { ErrorService } from '@app/shared/services/error.service';
 import { DockStateService } from '@features/dock/services/dock-state.service';
@@ -20,7 +21,7 @@ export class FinderDialogComponent implements OnInit {
   private errorService = inject(ErrorService);
   protected dockState = inject(DockStateService);
 
-  nodes = signal<any[]>([]);
+  nodes = signal<TreeNode[]>([]);
   isLoading = signal(true);
 
   ngOnInit() {
