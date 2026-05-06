@@ -1,11 +1,11 @@
 <p-dialog
-  [(visible)]="dockState.displayContact"
+  [(visible)]="dockState.displayMail"
   [modal]="false"
   [resizable]="true"
   [draggable]="true"
   [style]="{ width: '520px' }"
-  header="Contact"
-  styleClass="contact-dialog"
+  header="Nouveau mail"
+  styleClass="mail-dialog"
   (onHide)="onDialogHide()"
 >
   @if (isSubmitted()) {
@@ -79,7 +79,7 @@
           <a href="https://github.com/mamugg" target="_blank" title="GitHub">
             <i class="pi pi-github"></i>
           </a>
-          <a href="https://linkedin.com/in/marc" target="_blank" title="LinkedIn">
+          <a href="https://www.linkedin.com/in/marc-antoine-muggeo-87b794180" target="_blank" title="LinkedIn">
             <i class="pi pi-linkedin"></i>
           </a>
         </div>

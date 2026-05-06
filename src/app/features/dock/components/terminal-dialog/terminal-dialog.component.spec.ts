@@ -56,7 +56,7 @@ describe('TerminalDialogComponent', () => {
   it('should send a response for the help command', () => {
     commandHandlerSubject.next('help');
     expect(sendResponseCalls.length).toBe(1);
-    expect(sendResponseCalls[0]).toContain('AVAILABLE COMMANDS');
+    expect(sendResponseCalls[0]).toContain('Available commands:');
   });
 
   it('should send a response for the date command', () => {
