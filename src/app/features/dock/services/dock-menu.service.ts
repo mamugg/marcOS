@@ -59,8 +59,9 @@ export class DockMenuService {
   getMenubarItems(): MenuItem[] {
     return [
       {
-        label: 'Finder',
-        styleClass: 'menubar-root'
+        label: 'About',
+        styleClass: 'menubar-root',
+        command: () => this.dockState.toggleAbout()
       },
       {
         label: 'File',
@@ -69,61 +70,29 @@ export class DockMenuService {
             label: 'New',
             icon: 'pi pi-fw pi-plus',
             items: [
-              {
-                label: 'Bookmark',
-                icon: 'pi pi-fw pi-bookmark'
-              },
-              {
-                label: 'Video',
-                icon: 'pi pi-fw pi-video'
-              }
+              { label: 'Bookmark', icon: 'pi pi-fw pi-bookmark' },
+              { label: 'Video',    icon: 'pi pi-fw pi-video' }
             ]
           },
-          {
-            label: 'Delete',
-            icon: 'pi pi-fw pi-trash'
-          },
-          {
-            separator: true
-          },
-          {
-            label: 'Export',
-            icon: 'pi pi-fw pi-external-link'
-          }
+          { label: 'Delete',  icon: 'pi pi-fw pi-trash' },
+          { separator: true },
+          { label: 'Export',  icon: 'pi pi-fw pi-external-link' }
         ]
       },
       {
         label: 'Edit',
         items: [
-          {
-            label: 'Left',
-            icon: 'pi pi-fw pi-align-left'
-          },
-          {
-            label: 'Right',
-            icon: 'pi pi-fw pi-align-right'
-          },
-          {
-            label: 'Center',
-            icon: 'pi pi-fw pi-align-center'
-          },
-          {
-            label: 'Justify',
-            icon: 'pi pi-fw pi-align-justify'
-          }
+          { label: 'Left',    icon: 'pi pi-fw pi-align-left' },
+          { label: 'Right',   icon: 'pi pi-fw pi-align-right' },
+          { label: 'Center',  icon: 'pi pi-fw pi-align-center' },
+          { label: 'Justify', icon: 'pi pi-fw pi-align-justify' }
         ]
       },
       {
         label: 'Users',
         items: [
-          {
-            label: 'New',
-            icon: 'pi pi-fw pi-user-plus'
-          },
-          {
-            label: 'Delete',
-            icon: 'pi pi-fw pi-user-minus'
-          },
+          { label: 'New',    icon: 'pi pi-fw pi-user-plus' },
+          { label: 'Delete', icon: 'pi pi-fw pi-user-minus' },
           {
             label: 'Search',
             icon: 'pi pi-fw pi-users',
@@ -132,16 +101,10 @@ export class DockMenuService {
                 label: 'Filter',
                 icon: 'pi pi-fw pi-filter',
                 items: [
-                  {
-                    label: 'Print',
-                    icon: 'pi pi-fw pi-print'
-                  }
+                  { label: 'Print', icon: 'pi pi-fw pi-print' }
                 ]
               },
-              {
-                icon: 'pi pi-fw pi-bars',
-                label: 'List'
-              }
+              { label: 'List', icon: 'pi pi-fw pi-bars' }
             ]
           }
         ]
@@ -153,31 +116,43 @@ export class DockMenuService {
             label: 'Edit',
             icon: 'pi pi-fw pi-pencil',
             items: [
-              {
-                label: 'Save',
-                icon: 'pi pi-fw pi-calendar-plus'
-              },
-              {
-                label: 'Delete',
-                icon: 'pi pi-fw pi-calendar-minus'
-              }
+              { label: 'Save',   icon: 'pi pi-fw pi-calendar-plus' },
+              { label: 'Delete', icon: 'pi pi-fw pi-calendar-minus' }
             ]
           },
           {
-            label: 'Archieve',
+            label: 'Archive',
             icon: 'pi pi-fw pi-calendar-times',
             items: [
               {
-                label: 'Remove',
-                icon: 'pi pi-fw pi-calendar-minus'
-              }
+                label: 'Manage',
+                icon: 'pi pi-fw pi-cog',
+                items: [
+                  {
+                    label: 'Advanced',
+                    icon: 'pi pi-fw pi-sliders-h',
+                    items: [
+                      {
+                        label: 'Options',
+                        icon: 'pi pi-fw pi-ellipsis-h',
+                        items: [
+                          {
+                            label: '🎶',
+                            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                            target: '_blank'
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              { label: 'Remove', icon: 'pi pi-fw pi-calendar-minus' }
             ]
           }
         ]
       },
-      {
-        label: 'Quit'
-      }
+      { label: 'Quit' }
     ];
   }
 }
