@@ -22,7 +22,22 @@
 # TypeScript cache
 *.tsbuildinfo
 
+# IDE specific
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Documentation interne (instructions Claude/Code)
+CLAUDE.md
+PROJECT.md
+SKILLS.md
+TODO.md
+
