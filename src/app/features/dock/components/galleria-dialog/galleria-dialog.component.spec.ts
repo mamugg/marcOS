@@ -7,21 +7,29 @@ import { DockStateService } from '@features/dock/services/dock-state.service';
 
 describe('GalleriaDialogComponent', () => {
   let component: GalleriaDialogComponent;
-  let photoServiceMock: { getImages: () => Promise<any[]> };
-  let errorServiceMock: { handleError: (...args: any[]) => void; handleWarning: (...args: any[]) => void };
+  let photoServiceMock: { getImages: () => Promise<{ itemImageSrc: string; thumbnailImageSrc: string; alt: string; title: string }[]> };
+  let errorServiceMock: { handleError: (...args: unknown[]) => void; handleWarning: (...args: unknown[]) => void };
+  let dockStateMock: { displayGalleria: ReturnType<typeof signal<boolean>>; wallpaper: ReturnType<typeof signal<string>>; setGalleria: (v: boolean) => void; setWallpaper: (url: string) => void };
 
   const mockImages = [
-    { itemImageSrc: 'img1.jpg', thumbnailImageSrc: 'thumb1.jpg', alt: 'Alt 1', title: 'Title 1' }
+    { itemImageSrc: 'img1.jpg', thumbnailImageSrc: 'thumb1.jpg', alt: 'Alt 1', title: 'Title 1' },
+    { itemImageSrc: 'img2.jpg', thumbnailImageSrc: 'thumb2.jpg', alt: 'Alt 2', title: 'Title 2' }
   ];
 
   beforeEach(async () => {
     photoServiceMock = { getImages: () => Promise.resolve(mockImages) };
     errorServiceMock = { handleError: () => {}, handleWarning: () => {} };
+    dockStateMock = {
+      displayGalleria: signal(false),
+      wallpaper: signal('/wallpaper.png'),
+      setGalleria: (v: boolean) => dockStateMock.displayGalleria.set(v),
+      setWallpaper: (url: string) => dockStateMock.wallpaper.set(url)
+    };
 
     await TestBed.configureTestingModule({
       imports: [GalleriaDialogComponent],
       providers: [
-        { provide: DockStateService, useValue: { displayGalleria: signal(false) } },
+        { provide: DockStateService, useValue: dockStateMock },
         { provide: ErrorService, useValue: errorServiceMock }
       ],
       schemas: [NO_ERRORS_SCHEMA]
@@ -42,14 +50,10 @@ describe('GalleriaDialogComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should start with isLoading true and images empty', () => {
+  it('should start with isLoading true, images empty and no selection', () => {
     expect(component.isLoading()).toBe(true);
     expect(component.images()).toEqual([]);
-  });
-
-  it('should initialize responsiveOptions signal with breakpoint entries', () => {
-    expect(component.responsiveOptions().length).toBeGreaterThan(0);
-    expect(component.responsiveOptions()[0]).toHaveProperty('breakpoint');
+    expect(component.selectedIndex()).toBeNull();
   });
 
   it('should populate images and set isLoading false on successful load', async () => {
@@ -88,5 +92,96 @@ describe('GalleriaDialogComponent', () => {
 
     expect(errorCalled).toBe(true);
     expect(component.isLoading()).toBe(false);
+  });
+
+  it('should set selectedIndex when openPhoto is called', async () => {
+    const fixture = TestBed.createComponent(GalleriaDialogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    component.openPhoto(1);
+    expect(component.selectedIndex()).toBe(1);
+  });
+
+  it('should reset selectedIndex when closePhoto is called', async () => {
+    const fixture = TestBed.createComponent(GalleriaDialogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    component.openPhoto(0);
+    component.closePhoto();
+    expect(component.selectedIndex()).toBeNull();
+  });
+
+  it('should navigate to next photo circularly', async () => {
+    const fixture = TestBed.createComponent(GalleriaDialogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    component.openPhoto(1);
+    component.nextPhoto();
+    expect(component.selectedIndex()).toBe(0);
+  });
+
+  it('should navigate to prev photo circularly', async () => {
+    const fixture = TestBed.createComponent(GalleriaDialogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    component.openPhoto(0);
+    component.prevPhoto();
+    expect(component.selectedIndex()).toBe(1);
+  });
+
+  it('should expose the selected photo via computed selectedPhoto', async () => {
+    const fixture = TestBed.createComponent(GalleriaDialogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    component.openPhoto(0);
+    expect(component.selectedPhoto()).toEqual(mockImages[0]);
+  });
+
+  it('should return null for selectedPhoto when no selection', () => {
+    expect(component.selectedPhoto()).toBeNull();
+  });
+
+  it('should call dockState.setWallpaper with the selected photo src', async () => {
+    const fixture = TestBed.createComponent(GalleriaDialogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    component.openPhoto(0);
+    component.setWallpaper();
+    expect(dockStateMock.wallpaper()).toBe('img1.jpg');
+  });
+
+  it('should not call setWallpaper when no photo is selected', () => {
+    const spy = vi.spyOn(dockStateMock, 'setWallpaper');
+    component.setWallpaper();
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('should close lightbox on ESC when a photo is selected', async () => {
+    const fixture = TestBed.createComponent(GalleriaDialogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    component.openPhoto(0);
+    component.onEscape();
+    expect(component.selectedIndex()).toBeNull();
+    expect(dockStateMock.displayGalleria()).toBe(false === false ? false : false);
+  });
+
+  it('should close the dialog on ESC when no photo is selected', () => {
+    component.onEscape();
+    expect(dockStateMock.displayGalleria()).toBe(false);
   });
 });

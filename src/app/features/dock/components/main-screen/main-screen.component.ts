@@ -1,10 +1,11 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeSwitcher } from '@app/shared/components/theme-switcher.component';
 import { TopbarComponent } from '@features/dock/components/topbar/topbar.component';
 import { DockWindowComponent } from '../dock-window/dock-window.component';
 import { CommandPaletteComponent } from '@app/shared/components/command-palette/command-palette.component';
 import { MessageService } from 'primeng/api';
+import { DockStateService } from '@features/dock/services/dock-state.service';
 
 @Component({
   selector: 'app-main-screen',
@@ -17,6 +18,6 @@ import { MessageService } from 'primeng/api';
 })
 export class MainScreenComponent {
   debugMode = false;
-  wallpaperImage = '/wallpaper.png';
+  protected dockState = inject(DockStateService);
 }
 
