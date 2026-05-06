@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { DockStateService } from './dock-state.service';
 
 @Injectable({ providedIn: 'root' })
 export class DockMenuService {
-  constructor(private dockState: DockStateService, private messageService: MessageService) {}
+  private dockState = inject(DockStateService);
+  private messageService = inject(MessageService);
 
   getDockItems(): MenuItem[] {
     return [
