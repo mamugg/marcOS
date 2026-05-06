@@ -5,41 +5,34 @@ import { StorageService } from '@app/shared/services/storage.service';
 export class DockStateService {
   private storageService = inject(StorageService);
 
-  // Initialize all dialogs as CLOSED (false) - don't persist to avoid auto-opening on reload
   displayFinder = signal(false);
   displayTerminal = signal(false);
   displayGalleria = signal(false);
+  displayProjects = signal(false);
+  displayContact = signal(false);
+  displayAbout = signal(false);
 
   constructor() {
-    // Clear all dialog states from localStorage on initialization
-    // This ensures dialogs are always closed on page reload
     this.storageService.remove('displayFinder');
     this.storageService.remove('displayTerminal');
     this.storageService.remove('displayGalleria');
+    this.storageService.remove('displayProjects');
+    this.storageService.remove('displayContact');
+    this.storageService.remove('displayAbout');
   }
 
-  toggleFinder() {
-    this.displayFinder.update(v => !v);
-  }
+  toggleFinder() { this.displayFinder.update(v => !v); }
+  toggleTerminal() { this.displayTerminal.update(v => !v); }
+  toggleGalleria() { this.displayGalleria.update(v => !v); }
+  toggleProjects() { this.displayProjects.update(v => !v); }
+  toggleContact() { this.displayContact.update(v => !v); }
+  toggleAbout() { this.displayAbout.update(v => !v); }
 
-  toggleTerminal() {
-    this.displayTerminal.update(v => !v);
-  }
-
-  toggleGalleria() {
-    this.displayGalleria.update(v => !v);
-  }
-
-  setFinder(value: boolean) {
-    this.displayFinder.set(value);
-  }
-
-  setTerminal(value: boolean) {
-    this.displayTerminal.set(value);
-  }
-
-  setGalleria(value: boolean) {
-    this.displayGalleria.set(value);
-  }
+  setFinder(value: boolean) { this.displayFinder.set(value); }
+  setTerminal(value: boolean) { this.displayTerminal.set(value); }
+  setGalleria(value: boolean) { this.displayGalleria.set(value); }
+  setProjects(value: boolean) { this.displayProjects.set(value); }
+  setContact(value: boolean) { this.displayContact.set(value); }
+  setAbout(value: boolean) { this.displayAbout.set(value); }
 }
 
