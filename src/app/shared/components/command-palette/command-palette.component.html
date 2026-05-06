@@ -1,0 +1,53 @@
+@if (isOpen()) {
+  <div class="palette-overlay" (click)="closeOnOverlay($event)">
+    <div class="palette" role="dialog" aria-label="Command Palette">
+      <div class="palette-search">
+        <span class="search-icon">⌘</span>
+        <input
+          #searchInput
+          type="text"
+          class="search-input"
+          placeholder="Rechercher une commande..."
+          [value]="searchQuery()"
+          (input)="onSearchChange($any($event.target).value)"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <kbd class="esc-hint">ESC</kbd>
+      </div>
+
+      <div class="palette-results">
+        @if (filteredCommands().length === 0) {
+          <div class="no-results">
+            <span>Aucune commande trouvée pour "{{ searchQuery() }}"</span>
+          </div>
+        } @else {
+          @for (cmd of filteredCommands(); track cmd.id; let i = $index) {
+            <button
+              class="palette-item"
+              [class.active]="activeIndex() === i"
+              (click)="execute(cmd)"
+              (mouseenter)="activeIndex.set(i)"
+            >
+              <span class="cmd-icon">{{ cmd.icon }}</span>
+              <div class="cmd-info">
+                <span class="cmd-label">{{ cmd.label }}</span>
+                <span class="cmd-desc">{{ cmd.description }}</span>
+              </div>
+              @if (cmd.shortcut) {
+                <kbd class="cmd-shortcut">{{ cmd.shortcut }}</kbd>
+              }
+            </button>
+          }
+        }
+      </div>
+
+      <div class="palette-footer">
+        <span><kbd>↑</kbd><kbd>↓</kbd> naviguer</span>
+        <span><kbd>↵</kbd> exécuter</span>
+        <span><kbd>ESC</kbd> fermer</span>
+        <span class="shortcut-hint"><kbd>⌘K</kbd> ouvrir</span>
+      </div>
+    </div>
+  </div>
+}
