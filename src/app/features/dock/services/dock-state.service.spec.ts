@@ -21,7 +21,7 @@ describe('DockStateService', () => {
     expect(service.displayTerminal()).toBe(false);
     expect(service.displayGalleria()).toBe(false);
     expect(service.displayProjects()).toBe(false);
-    expect(service.displayContact()).toBe(false);
+    expect(service.displayMail()).toBe(false);
   });
 
   it('should toggle finder', () => {
@@ -57,11 +57,11 @@ describe('DockStateService', () => {
   });
 
   it('should toggle contact', () => {
-    service.toggleContact();
-    expect(service.displayContact()).toBe(true);
+    service.toggleMail();
+    expect(service.displayMail()).toBe(true);
 
-    service.toggleContact();
-    expect(service.displayContact()).toBe(false);
+    service.toggleMail();
+    expect(service.displayMail()).toBe(false);
   });
 
   it('should set finder to explicit value', () => {
@@ -97,11 +97,11 @@ describe('DockStateService', () => {
   });
 
   it('should set contact to explicit value', () => {
-    service.setContact(true);
-    expect(service.displayContact()).toBe(true);
+    service.setMail(true);
+    expect(service.displayMail()).toBe(true);
 
-    service.setContact(false);
-    expect(service.displayContact()).toBe(false);
+    service.setMail(false);
+    expect(service.displayMail()).toBe(false);
   });
 
   it('should maintain independent state for each window', () => {
@@ -113,7 +113,7 @@ describe('DockStateService', () => {
     expect(service.displayTerminal()).toBe(true);
     expect(service.displayGalleria()).toBe(false);
     expect(service.displayProjects()).toBe(false);
-    expect(service.displayContact()).toBe(false);
+    expect(service.displayMail()).toBe(false);
   });
 
   it('should always start closed regardless of any prior localStorage state', () => {
@@ -122,6 +122,6 @@ describe('DockStateService', () => {
     expect(service.displayTerminal()).toBe(false);
     expect(service.displayGalleria()).toBe(false);
     expect(service.displayProjects()).toBe(false);
-    expect(service.displayContact()).toBe(false);
+    expect(service.displayMail()).toBe(false);
   });
 });
