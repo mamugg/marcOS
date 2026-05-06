@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { TreeModule } from 'primeng/tree';
 import { NodeService } from '@app/shared/services/node.service';
+import { ErrorService } from '@app/shared/services/error.service';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 
 @Component({
@@ -16,14 +17,34 @@ import { DockStateService } from '@features/dock/services/dock-state.service';
 })
 export class FinderDialogComponent implements OnInit {
   private nodeService = inject(NodeService);
+  private errorService = inject(ErrorService);
   protected dockState = inject(DockStateService);
 
   nodes = signal<any[]>([]);
+  isLoading = signal(true);
 
   ngOnInit() {
-    this.nodeService.getFiles().then((data) => {
-      this.nodes.set(data);
-    });
+    this.loadFiles();
+  }
+
+  private loadFiles(): void {
+    try {
+      this.nodeService.getFiles().then((data) => {
+        if (data && data.length > 0) {
+          this.nodes.set(data);
+          this.isLoading.set(false);
+        } else {
+          this.errorService.handleWarning('Aucun fichier disponible', 'Finder vide');
+          this.isLoading.set(false);
+        }
+      }).catch((error) => {
+        this.errorService.handleError(error, 'Erreur de chargement Finder');
+        this.isLoading.set(false);
+      });
+    } catch (error) {
+      this.errorService.handleError(error, 'Erreur critique Finder');
+      this.isLoading.set(false);
+    }
   }
 }
 
