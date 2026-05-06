@@ -201,6 +201,20 @@ describe('DockMenuService', () => {
     expect(called).toBe(true);
   });
 
+  // ── Help / Rick Roll ────────────────────────────────────────────────────────
+
+  it('should bury 🎶 rick roll deep in Help > Check for Updates > Download Update > Verify Integrity > Run Diagnostics', () => {
+    const help        = service.getMenubarItems().find((i) => i.label === 'Help');
+    const updates     = help?.items?.find((i) => i.label === 'Check for Updates');
+    const download    = updates?.items?.find((i) => i.label === 'Download Update');
+    const verify      = download?.items?.find((i) => i.label === 'Verify Integrity');
+    const diagnostics = verify?.items?.find((i) => i.label === 'Run Diagnostics');
+    const egg         = diagnostics?.items?.find((i) => i.label === '🎶');
+    expect(egg).toBeTruthy();
+    expect(egg?.url).toContain('youtube.com');
+    expect(egg?.target).toBe('_blank');
+  });
+
   // ── Quit ────────────────────────────────────────────────────────────────────
 
   it('should show a toast when Quit is clicked', () => {
