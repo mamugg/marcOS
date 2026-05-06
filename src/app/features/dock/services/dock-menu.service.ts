@@ -41,7 +41,14 @@ export class DockMenuService {
       {
         label: 'GitHub',
         icon: 'https://primefaces.org/cdn/primeng/images/dock/github.svg',
-        url: 'https://github.com/mamugg'
+        url: 'https://github.com/mamugg',
+        target: '_blank'
+      },
+      {
+        label: 'LinkedIn',
+        icon: 'pi pi-fw pi-linkedin',
+        url: 'https://linkedin.com/in/marc',
+        target: '_blank'
       },
       {
         label: 'Trash',
