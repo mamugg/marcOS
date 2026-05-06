@@ -1,20 +1,25 @@
-import { Component, ChangeDetectionStrategy, inject, signal, OnInit } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  inject,
+  signal,
+  OnInit,
+  HostListener,
+  computed
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GalleriaModule } from 'primeng/galleria';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { TooltipModule } from 'primeng/tooltip';
 import { PhotoService } from '@app/shared/services/photo.service';
 import { ErrorService } from '@app/shared/services/error.service';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { Photo } from '@app/shared/models';
 
-interface GalleriaResponsiveOption {
-  breakpoint: string;
-  numVisible: number;
-}
-
 @Component({
   selector: 'app-galleria-dialog',
   standalone: true,
-  imports: [CommonModule, GalleriaModule],
+  imports: [CommonModule, DialogModule, ButtonModule, TooltipModule],
   templateUrl: './galleria-dialog.component.html',
   styleUrl: './galleria-dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,14 +32,56 @@ export class GalleriaDialogComponent implements OnInit {
 
   images = signal<Photo[]>([]);
   isLoading = signal(true);
-  responsiveOptions = signal<GalleriaResponsiveOption[]>([
-    { breakpoint: '1024px', numVisible: 3 },
-    { breakpoint: '768px', numVisible: 2 },
-    { breakpoint: '560px', numVisible: 1 }
-  ]);
+  selectedIndex = signal<number | null>(null);
+
+  selectedPhoto = computed<Photo | null>(() => {
+    const idx = this.selectedIndex();
+    return idx !== null ? (this.images()[idx] ?? null) : null;
+  });
 
   ngOnInit(): void {
     this.loadImages();
+  }
+
+  /**
+   * ESC: close lightbox first, then close the dialog
+   */
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.selectedIndex() !== null) {
+      this.selectedIndex.set(null);
+    } else {
+      this.dockState.setGalleria(false);
+    }
+  }
+
+  openPhoto(index: number): void {
+    this.selectedIndex.set(index);
+  }
+
+  closePhoto(): void {
+    this.selectedIndex.set(null);
+  }
+
+  prevPhoto(): void {
+    const current = this.selectedIndex();
+    if (current !== null) {
+      this.selectedIndex.set((current - 1 + this.images().length) % this.images().length);
+    }
+  }
+
+  nextPhoto(): void {
+    const current = this.selectedIndex();
+    if (current !== null) {
+      this.selectedIndex.set((current + 1) % this.images().length);
+    }
+  }
+
+  setWallpaper(): void {
+    const photo = this.selectedPhoto();
+    if (photo) {
+      this.dockState.setWallpaper(photo.itemImageSrc);
+    }
   }
 
   private loadImages(): void {
