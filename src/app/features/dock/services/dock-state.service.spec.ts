@@ -4,111 +4,118 @@ import { StorageService } from '@app/shared/services/storage.service';
 
 describe('DockStateService', () => {
   let service: DockStateService;
-  let storageService: StorageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [DockStateService, StorageService]
     });
-    storageService = TestBed.inject(StorageService);
-    // Clear localStorage before each test
-    storageService.clear();
+    localStorage.clear();
+    service = TestBed.inject(DockStateService);
   });
 
   afterEach(() => {
-    storageService.clear();
+    localStorage.clear();
   });
 
   it('should be created', () => {
-    service = TestBed.inject(DockStateService);
     expect(service).toBeTruthy();
   });
 
-  it('should initialize with default false values', () => {
-    service = TestBed.inject(DockStateService);
+  it('should initialize all dialogs as closed', () => {
     expect(service.displayFinder()).toBe(false);
     expect(service.displayTerminal()).toBe(false);
     expect(service.displayGalleria()).toBe(false);
+    expect(service.displayProjects()).toBe(false);
+    expect(service.displayContact()).toBe(false);
   });
 
-  it('should toggle finder and persist to localStorage', () => {
-    service = TestBed.inject(DockStateService);
+  it('should toggle finder', () => {
     service.toggleFinder();
     expect(service.displayFinder()).toBe(true);
-    expect(storageService.get('displayFinder', false)).toBe(true);
 
     service.toggleFinder();
     expect(service.displayFinder()).toBe(false);
-    expect(storageService.get('displayFinder', false)).toBe(false);
   });
 
-  it('should toggle terminal and persist to localStorage', () => {
-    service = TestBed.inject(DockStateService);
+  it('should toggle terminal', () => {
     service.toggleTerminal();
     expect(service.displayTerminal()).toBe(true);
-    expect(storageService.get('displayTerminal', false)).toBe(true);
 
     service.toggleTerminal();
     expect(service.displayTerminal()).toBe(false);
-    expect(storageService.get('displayTerminal', false)).toBe(false);
   });
 
-  it('should toggle galleria and persist to localStorage', () => {
-    service = TestBed.inject(DockStateService);
+  it('should toggle galleria', () => {
     service.toggleGalleria();
     expect(service.displayGalleria()).toBe(true);
-    expect(storageService.get('displayGalleria', false)).toBe(true);
 
     service.toggleGalleria();
     expect(service.displayGalleria()).toBe(false);
-    expect(storageService.get('displayGalleria', false)).toBe(false);
   });
 
-  it('should set finder and persist to localStorage', () => {
-    service = TestBed.inject(DockStateService);
+  it('should toggle projects', () => {
+    service.toggleProjects();
+    expect(service.displayProjects()).toBe(true);
+
+    service.toggleProjects();
+    expect(service.displayProjects()).toBe(false);
+  });
+
+  it('should toggle contact', () => {
+    service.toggleContact();
+    expect(service.displayContact()).toBe(true);
+
+    service.toggleContact();
+    expect(service.displayContact()).toBe(false);
+  });
+
+  it('should set finder to explicit value', () => {
     service.setFinder(true);
     expect(service.displayFinder()).toBe(true);
-    expect(storageService.get('displayFinder', false)).toBe(true);
 
     service.setFinder(false);
     expect(service.displayFinder()).toBe(false);
-    expect(storageService.get('displayFinder', false)).toBe(false);
   });
 
-  it('should set terminal and persist to localStorage', () => {
-    service = TestBed.inject(DockStateService);
+  it('should set terminal to explicit value', () => {
     service.setTerminal(true);
     expect(service.displayTerminal()).toBe(true);
-    expect(storageService.get('displayTerminal', false)).toBe(true);
+
+    service.setTerminal(false);
+    expect(service.displayTerminal()).toBe(false);
   });
 
-  it('should set galleria and persist to localStorage', () => {
-    service = TestBed.inject(DockStateService);
+  it('should set galleria to explicit value', () => {
     service.setGalleria(true);
     expect(service.displayGalleria()).toBe(true);
-    expect(storageService.get('displayGalleria', false)).toBe(true);
+  });
+
+  it('should set projects to explicit value', () => {
+    service.setProjects(true);
+    expect(service.displayProjects()).toBe(true);
+  });
+
+  it('should set contact to explicit value', () => {
+    service.setContact(true);
+    expect(service.displayContact()).toBe(true);
   });
 
   it('should maintain independent state for each window', () => {
-    service = TestBed.inject(DockStateService);
     service.setFinder(true);
     service.setTerminal(false);
-    service.setGalleria(true);
+    service.setProjects(true);
 
     expect(service.displayFinder()).toBe(true);
     expect(service.displayTerminal()).toBe(false);
-    expect(service.displayGalleria()).toBe(true);
+    expect(service.displayProjects()).toBe(true);
   });
 
-  it('should restore state from localStorage on new instance', () => {
-    service = TestBed.inject(DockStateService);
-    service.setFinder(true);
-    service.setTerminal(true);
-    
-    // Verify persisted values
-    expect(storageService.get('displayFinder', false)).toBe(true);
-    expect(storageService.get('displayTerminal', false)).toBe(true);
+  it('should always start closed regardless of any prior localStorage state', () => {
+    localStorage.setItem('marcOS_displayFinder', 'true');
+    localStorage.setItem('marcOS_displayTerminal', 'true');
+
+    const freshService = TestBed.inject(DockStateService);
+    expect(freshService.displayFinder()).toBe(false);
+    expect(freshService.displayTerminal()).toBe(false);
   });
 });
-
-

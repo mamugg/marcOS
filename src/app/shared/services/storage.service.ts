@@ -4,10 +4,9 @@ import { Injectable } from '@angular/core';
 export class StorageService {
   private readonly PREFIX = 'marcOS_';
 
-  set(key: string, value: any): void {
+  set(key: string, value: unknown): void {
     try {
-      const serialized = JSON.stringify(value);
-      localStorage.setItem(this.PREFIX + key, serialized);
+      localStorage.setItem(this.PREFIX + key, JSON.stringify(value));
     } catch (error) {
       console.error(`Erreur lors de la sauvegarde ${key}:`, error);
     }
@@ -18,7 +17,7 @@ export class StorageService {
   get<T>(key: string, defaultValue?: T): T | null {
     try {
       const item = localStorage.getItem(this.PREFIX + key);
-      return item ? JSON.parse(item) : (defaultValue ?? null);
+      return item ? (JSON.parse(item) as T) : (defaultValue ?? null);
     } catch (error) {
       console.error(`Erreur lors de la lecture ${key}:`, error);
       return defaultValue ?? null;
@@ -30,18 +29,14 @@ export class StorageService {
   }
 
   clear(): void {
-    const keys = Object.keys(localStorage);
-    keys.forEach(key => {
-      if (key.startsWith(this.PREFIX)) {
-        localStorage.removeItem(key);
-      }
-    });
+    Object.keys(localStorage)
+      .filter(key => key.startsWith(this.PREFIX))
+      .forEach(key => localStorage.removeItem(key));
   }
 
   getAllKeys(): string[] {
-    const keys = Object.keys(localStorage);
-    return keys.filter(key => key.startsWith(this.PREFIX)).map(key => key.replace(this.PREFIX, ''));
+    return Object.keys(localStorage)
+      .filter(key => key.startsWith(this.PREFIX))
+      .map(key => key.replace(this.PREFIX, ''));
   }
 }
-
-
