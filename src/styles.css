@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import "primeicons/primeicons.css";
 
 :root {
@@ -23,6 +24,8 @@
 
 html {
   font-size: 14px;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -33,7 +36,11 @@ body {
   background-color: var(--body-bg);
   font-weight: normal;
   color: var(--body-text-color);
-  padding: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
 }
 
 .card {
@@ -47,7 +54,6 @@ body {
 .main-screen-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
 
 .dock-window {
