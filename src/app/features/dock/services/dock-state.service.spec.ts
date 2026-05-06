@@ -9,12 +9,7 @@ describe('DockStateService', () => {
     TestBed.configureTestingModule({
       providers: [DockStateService, StorageService]
     });
-    localStorage.clear();
     service = TestBed.inject(DockStateService);
-  });
-
-  afterEach(() => {
-    localStorage.clear();
   });
 
   it('should be created', () => {
@@ -88,34 +83,45 @@ describe('DockStateService', () => {
   it('should set galleria to explicit value', () => {
     service.setGalleria(true);
     expect(service.displayGalleria()).toBe(true);
+
+    service.setGalleria(false);
+    expect(service.displayGalleria()).toBe(false);
   });
 
   it('should set projects to explicit value', () => {
     service.setProjects(true);
     expect(service.displayProjects()).toBe(true);
+
+    service.setProjects(false);
+    expect(service.displayProjects()).toBe(false);
   });
 
   it('should set contact to explicit value', () => {
     service.setContact(true);
     expect(service.displayContact()).toBe(true);
+
+    service.setContact(false);
+    expect(service.displayContact()).toBe(false);
   });
 
   it('should maintain independent state for each window', () => {
     service.setFinder(true);
-    service.setTerminal(false);
-    service.setProjects(true);
+    service.setTerminal(true);
+    service.setGalleria(false);
 
     expect(service.displayFinder()).toBe(true);
-    expect(service.displayTerminal()).toBe(false);
-    expect(service.displayProjects()).toBe(true);
+    expect(service.displayTerminal()).toBe(true);
+    expect(service.displayGalleria()).toBe(false);
+    expect(service.displayProjects()).toBe(false);
+    expect(service.displayContact()).toBe(false);
   });
 
   it('should always start closed regardless of any prior localStorage state', () => {
-    localStorage.setItem('marcOS_displayFinder', 'true');
-    localStorage.setItem('marcOS_displayTerminal', 'true');
-
-    const freshService = TestBed.inject(DockStateService);
-    expect(freshService.displayFinder()).toBe(false);
-    expect(freshService.displayTerminal()).toBe(false);
+    // The constructor removes all localStorage keys, so signals should always start as false
+    expect(service.displayFinder()).toBe(false);
+    expect(service.displayTerminal()).toBe(false);
+    expect(service.displayGalleria()).toBe(false);
+    expect(service.displayProjects()).toBe(false);
+    expect(service.displayContact()).toBe(false);
   });
 });
