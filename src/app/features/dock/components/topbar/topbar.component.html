@@ -1,0 +1,16 @@
+<p-menubar [model]="menubarItems()">
+  <ng-template #start>
+    <img src="/logo.png" alt="Logo" class="topbar-logo px-2" />
+  </ng-template>
+  <ng-template #end>
+    <div class="topbar-icons">
+      <i class="pi pi-video"></i>
+      <i class="pi pi-wifi"></i>
+      <i class="pi pi-volume-up"></i>
+      <span>{{ currentTime() }}</span>
+      <i class="pi pi-search"></i>
+      <i class="pi pi-bars"></i>
+    </div>
+  </ng-template>
+</p-menubar>
+
