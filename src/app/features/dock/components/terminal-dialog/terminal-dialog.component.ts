@@ -1,10 +1,10 @@
-import { Component, ChangeDetectionStrategy, inject, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { TerminalModule } from 'primeng/terminal';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { TerminalService } from 'primeng/terminal';
-import { Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-terminal-dialog',
@@ -15,30 +15,30 @@ import { Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [TerminalService]
 })
-export class TerminalDialogComponent implements OnDestroy {
+export class TerminalDialogComponent {
   protected dockState = inject(DockStateService);
   private terminalService = inject(TerminalService);
-  private subscription: Subscription;
 
   constructor() {
-    this.subscription = this.terminalService.commandHandler.subscribe((command) => this.commandHandler(command));
+    this.terminalService.commandHandler
+      .pipe(takeUntilDestroyed())
+      .subscribe(command => this.commandHandler(command));
   }
 
-  commandHandler(text: any) {
+  private commandHandler(text: string): void {
     const argsIndex = text.indexOf(' ');
     const command = argsIndex !== -1 ? text.substring(0, argsIndex) : text;
     const args = argsIndex !== -1 ? text.substring(argsIndex + 1) : '';
 
-    let response = '';
-
-    // ANSI color codes
-    const RESET = '\u001b[0m';
-    const BOLD = '\u001b[1m';
-    const GREEN = '\u001b[32m';
-    const YELLOW = '\u001b[33m';
-    const CYAN = '\u001b[36m';
-    const MAGENTA = '\u001b[35m';
+    const RESET = '[0m';
+    const BOLD = '[1m';
+    const GREEN = '[32m';
+    const YELLOW = '[33m';
+    const CYAN = '[36m';
+    const MAGENTA = '[35m';
     const SEPARATOR = '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
+
+    let response = '';
 
     switch (command.toLowerCase()) {
       case 'help':
@@ -129,9 +129,6 @@ ${CYAN}Specialized in Angular and modern web technologies${RESET}`;
         break;
 
       case 'clear':
-        response = '';
-        break;
-
       case '':
         response = '';
         break;
@@ -146,11 +143,4 @@ ${YELLOW}Type 'help' for available commands${RESET}`;
       this.terminalService.sendResponse(response);
     }
   }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
 }
-
