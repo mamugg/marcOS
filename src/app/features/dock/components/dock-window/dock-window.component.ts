@@ -11,6 +11,8 @@ import { MailDialogComponent } from '@app/features/mail/mail-dialog.component';
 import { AboutDialogComponent } from '@app/features/about/about-dialog.component';
 import { SettingsDialogComponent } from '@app/features/settings/settings-dialog.component';
 import { MusicDialogComponent } from '@app/features/music/music-dialog.component';
+import { ResumeDialogComponent } from '@app/features/resume/resume-dialog.component';
+import { SkillsDialogComponent } from '@app/features/skills/skills-dialog.component';
 import { RebootOverlayComponent } from '../reboot-overlay/reboot-overlay.component';
 
 @Component({
@@ -28,6 +30,8 @@ import { RebootOverlayComponent } from '../reboot-overlay/reboot-overlay.compone
     AboutDialogComponent,
     SettingsDialogComponent,
     MusicDialogComponent,
+    ResumeDialogComponent,
+    SkillsDialogComponent,
     RebootOverlayComponent
   ],
   templateUrl: './dock-window.component.html',

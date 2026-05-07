@@ -1,0 +1,78 @@
+<p-dialog
+  [(visible)]="dockState.displayResume"
+  [modal]="false"
+  [resizable]="true"
+  [draggable]="true"
+  [style]="{ width: '560px', minWidth: '400px' }"
+  styleClass="resume-dialog"
+>
+  <ng-template #header>
+    <div class="resume-header">
+      <div class="resume-avatar">MA</div>
+      <div class="resume-identity">
+        <h2 class="resume-name">Marc-Antoine Muggeo</h2>
+        <p class="resume-title">{{ 'resume.title' | translate }}</p>
+        <div class="resume-links">
+          <button
+            class="resume-link-btn"
+            (click)="openGithub()"
+            [attr.aria-label]="'resume.github' | translate"
+          >
+            <i class="pi pi-github"></i> GitHub
+          </button>
+          <button
+            class="resume-link-btn"
+            (click)="openLinkedIn()"
+            [attr.aria-label]="'resume.linkedin' | translate"
+          >
+            <i class="pi pi-linkedin"></i> LinkedIn
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <p-tabs [value]="activeTab()">
+    <p-tablist>
+      <p-tab value="experience">{{ 'resume.tab.experience' | translate }}</p-tab>
+      <p-tab value="education">{{ 'resume.tab.education' | translate }}</p-tab>
+    </p-tablist>
+
+    <p-tabpanels>
+      <p-tabpanel value="experience">
+        <div class="timeline">
+          @for (exp of experiences; track exp.role) {
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <span class="timeline-role">{{ exp.role | translate }}</span>
+                  <span class="timeline-period">{{ exp.period | translate }}</span>
+                </div>
+                <span class="timeline-company">{{ exp.company | translate }}</span>
+                <p class="timeline-desc">{{ exp.description | translate }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </p-tabpanel>
+
+      <p-tabpanel value="education">
+        <div class="timeline">
+          @for (edu of educations; track edu.degree) {
+            <div class="timeline-item">
+              <div class="timeline-dot edu-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <span class="timeline-role">{{ edu.degree | translate }}</span>
+                  <span class="timeline-period">{{ edu.period | translate }}</span>
+                </div>
+                <span class="timeline-company">{{ edu.school | translate }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+</p-dialog>
