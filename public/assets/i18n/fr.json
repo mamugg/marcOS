@@ -39,6 +39,12 @@
     "quit.summary": "Bien essayé 😏",
     "quit.detail": "Impossible de quitter l'OS si facilement."
   },
+  "notification": {
+    "message.summary": "Message de Marc-Antoine 💬",
+    "message.detail": "Le projet te plaît ? Envoie-moi un message via l'app Mail ! 📬",
+    "explorer.summary": "T'es toujours là toi 👀",
+    "explorer.detail": "Soit t'es vraiment intéressé, soit t'as oublié de fermer l'onglet. Dans les deux cas, merci."
+  },
   "settings": {
     "title": "Préférences Système",
     "tab.appearance": "Apparence",

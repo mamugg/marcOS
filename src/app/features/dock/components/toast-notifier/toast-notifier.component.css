@@ -1,0 +1,137 @@
+/* ── Positioning & reset ─────────────────────────────────── */
+.p-toast {
+  top: 36px !important;
+  right: 12px !important;
+  width: 360px !important;
+  z-index: 9999;
+}
+
+.p-toast-message {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-bottom: 8px !important;
+  border-radius: 0 !important;
+}
+
+/* ── macOS notification card ─────────────────────────────── */
+.mac-notif {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 36px 12px 12px;
+  border-radius: 14px;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(236, 236, 240, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.10),
+    0 16px 48px rgba(0, 0, 0, 0.08);
+}
+
+.p-dark .mac-notif {
+  background: rgba(38, 38, 40, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.05),
+    0 4px 16px rgba(0, 0, 0, 0.45),
+    0 16px 48px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Icon ───────────────────────────────────────────────── */
+.mac-notif-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 9px;
+  background: linear-gradient(145deg, #1e90ff, #0060d0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 96, 208, 0.35);
+}
+
+/* ── Text body ──────────────────────────────────────────── */
+.mac-notif-body {
+  flex: 1;
+  min-width: 0;
+  padding-top: 1px;
+}
+
+.mac-notif-app {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(60, 60, 67, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.p-dark .mac-notif-app {
+  color: rgba(235, 235, 245, 0.40);
+}
+
+.mac-notif-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1c1c1e;
+  line-height: 1.35;
+}
+
+.p-dark .mac-notif-title {
+  color: #f5f5f7;
+}
+
+.mac-notif-detail {
+  margin: 3px 0 0;
+  font-size: 12px;
+  color: rgba(60, 60, 67, 0.65);
+  line-height: 1.45;
+}
+
+.p-dark .mac-notif-detail {
+  color: rgba(235, 235, 245, 0.55);
+}
+
+/* ── Close button ───────────────────────────────────────── */
+.mac-notif-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(120, 120, 128, 0.16);
+  color: rgba(60, 60, 67, 0.55);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 8px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.mac-notif-close:hover {
+  background: rgba(120, 120, 128, 0.30);
+  color: rgba(60, 60, 67, 0.85);
+}
+
+.p-dark .mac-notif-close {
+  background: rgba(235, 235, 245, 0.10);
+  color: rgba(235, 235, 245, 0.45);
+}
+
+.p-dark .mac-notif-close:hover {
+  background: rgba(235, 235, 245, 0.20);
+  color: rgba(235, 235, 245, 0.80);
+}
