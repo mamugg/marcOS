@@ -52,8 +52,19 @@ describe('NotFoundComponent', () => {
     expect(component['showError']()).toBe(true);
   });
 
-  it('should navigate to home when goHome is called', () => {
+  it('should set restoring to true when goHome is called', () => {
+    vi.useFakeTimers();
     component['goHome']();
+    expect(component['restoring']()).toBe(true);
+    vi.useRealTimers();
+  });
+
+  it('should navigate to home after 3s when goHome is called', () => {
+    vi.useFakeTimers();
+    component['goHome']();
+    expect(mockRouter.navigate).not.toHaveBeenCalled();
+    vi.advanceTimersByTime(3000);
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
+    vi.useRealTimers();
   });
 });
