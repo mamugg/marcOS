@@ -4,6 +4,10 @@
   object-fit: contain;
 }
 
+.topbar-logo.logo-dark {
+  filter: brightness(0) invert(1);
+}
+
 .topbar-icons {
   display: flex;
   gap: 12px;
