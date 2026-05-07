@@ -69,10 +69,16 @@ body {
   font-weight: 600;
 }
 
-/* Dock icon shape — global rule survives Angular encapsulation and reloads.
-   flex-shrink: 0 prevents the flex column container from compressing height. */
-.p-dock img {
+/* Dock icon shape — border-radius must be on the link (overflow:hidden clips
+   children to its own shape). Size override ensures the link matches the
+   chosen dock size so the img is never clipped to a smaller rectangle. */
+.p-dock .p-dock-item-link {
+  width: var(--dock-icon-size) !important;
+  height: var(--dock-icon-size) !important;
   border-radius: 22% !important;
+}
+
+.p-dock img {
   flex-shrink: 0;
 }
 
