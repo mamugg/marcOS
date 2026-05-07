@@ -2,6 +2,7 @@
   height: 32px;
   width: auto;
   object-fit: contain;
+  cursor: pointer;
 }
 
 .topbar-logo.logo-dark {
@@ -10,7 +11,212 @@
 
 .topbar-icons {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   align-items: center;
 }
 
+.topbar-icon {
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.15s ease, opacity 0.15s ease;
+  opacity: 0.85;
+  user-select: none;
+}
+
+.topbar-icon:hover {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  opacity: 1;
+}
+
+.topbar-time {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+/* ── Shared popover panel ──────────────────────────── */
+.topbar-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 220px;
+  padding: 4px 0;
+}
+
+.topbar-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  opacity: 0.75;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  margin-bottom: 4px;
+}
+
+.topbar-panel-section-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.5;
+  padding: 0 8px 4px;
+}
+
+/* ── WiFi panel ──────────────────────────────────── */
+.wifi-network {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  font-size: 0.84rem;
+  transition: background 0.15s ease;
+  text-align: left;
+}
+
+.wifi-network:hover {
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+.wifi-network-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wifi-network-name {
+  font-size: 0.83rem;
+}
+
+.wifi-lock {
+  font-size: 0.65rem;
+  opacity: 0.55;
+}
+
+.wifi-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.wifi-bar {
+  width: 3px;
+  border-radius: 1px;
+  background: color-mix(in srgb, currentColor 25%, transparent);
+  transition: background 0.15s;
+}
+
+.wifi-bar:nth-child(1) { height: 4px; }
+.wifi-bar:nth-child(2) { height: 7px; }
+.wifi-bar:nth-child(3) { height: 10px; }
+.wifi-bar:nth-child(4) { height: 14px; }
+
+.wifi-bar.active {
+  background: currentColor;
+}
+
+/* ── Volume panel ──────────────────────────────── */
+.volume-pct {
+  margin-left: auto;
+  font-size: 0.78rem;
+  opacity: 0.6;
+  font-weight: 400;
+}
+
+.volume-slider-wrap {
+  padding: 8px 12px 4px;
+}
+
+.volume-slider :deep(.p-slider) {
+  width: 100%;
+}
+
+.volume-mute-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px 4px;
+  font-size: 0.83rem;
+  opacity: 0.85;
+}
+
+/* ── Control Center panel ──────────────────────── */
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.84rem;
+  transition: background 0.15s ease;
+}
+
+.control-row:hover {
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+.control-row-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-row-left i {
+  font-size: 0.85rem;
+  width: 16px;
+  text-align: center;
+}
+
+.control-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: color-mix(in srgb, currentColor 15%, transparent);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.control-divider {
+  height: 1px;
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  margin: 4px 0;
+}
+
+.control-settings-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  font-size: 0.84rem;
+  transition: background 0.15s ease;
+  text-align: left;
+}
+
+.control-settings-btn:hover {
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+.control-settings-btn i {
+  font-size: 0.85rem;
+  width: 16px;
+  text-align: center;
+}
