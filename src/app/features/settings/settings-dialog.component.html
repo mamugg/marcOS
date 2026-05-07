@@ -1,0 +1,182 @@
+<p-dialog
+  [(visible)]="dockState.displaySettings"
+  [modal]="false"
+  [resizable]="false"
+  [draggable]="true"
+  [style]="{ width: '520px' }"
+  [header]="'settings.title' | translate"
+  styleClass="settings-dialog"
+>
+  <p-tabs value="appearance">
+    <p-tablist>
+      <p-tab value="appearance"><i class="pi pi-palette"></i> {{ 'settings.tab.appearance' | translate }}</p-tab>
+      <p-tab value="desktop"><i class="pi pi-image"></i> {{ 'settings.tab.desktop' | translate }}</p-tab>
+      <p-tab value="general"><i class="pi pi-sliders-h"></i> {{ 'settings.tab.general' | translate }}</p-tab>
+      <p-tab value="system"><i class="pi pi-cog"></i> {{ 'settings.tab.system' | translate }}</p-tab>
+    </p-tablist>
+
+    <p-tabpanels>
+
+      <!-- ── Apparence ── -->
+      <p-tabpanel value="appearance">
+        <div class="settings-section">
+
+          <p class="settings-label">{{ 'settings.appearance.theme' | translate }}</p>
+          <div class="theme-selector">
+            <button
+              class="theme-option"
+              [class.selected]="!themeService.isDark()"
+              (click)="themeService.setTheme(false)"
+              type="button"
+              aria-label="Light mode"
+            >
+              <div class="theme-preview theme-preview--light">
+                <div class="preview-topbar"></div>
+                <div class="preview-content">
+                  <div class="preview-card"></div>
+                  <div class="preview-card preview-card--short"></div>
+                </div>
+              </div>
+              <span class="theme-name"><i class="pi pi-sun"></i> {{ 'settings.appearance.light' | translate }}</span>
+            </button>
+
+            <button
+              class="theme-option"
+              [class.selected]="themeService.isDark()"
+              (click)="themeService.setTheme(true)"
+              type="button"
+              aria-label="Dark mode"
+            >
+              <div class="theme-preview theme-preview--dark">
+                <div class="preview-topbar"></div>
+                <div class="preview-content">
+                  <div class="preview-card"></div>
+                  <div class="preview-card preview-card--short"></div>
+                </div>
+              </div>
+              <span class="theme-name"><i class="pi pi-moon"></i> {{ 'settings.appearance.dark' | translate }}</span>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="settings-section">
+          <p class="settings-label">{{ 'settings.appearance.accent' | translate }}</p>
+          <div class="accent-grid">
+            @for (color of accentColors; track color.id) {
+              <button
+                class="accent-swatch"
+                [style.background]="color.value"
+                [class.selected]="accentService.accent() === color.value"
+                [attr.aria-label]="color.label"
+                [attr.title]="color.label"
+                (click)="accentService.setAccent(color.value)"
+                type="button"
+              >
+                @if (accentService.accent() === color.value) {
+                  <i class="pi pi-check"></i>
+                }
+              </button>
+            }
+          </div>
+        </div>
+
+      </p-tabpanel>
+
+      <!-- ── Bureau ── -->
+      <p-tabpanel value="desktop">
+        <div class="settings-section">
+          <p class="settings-label">{{ 'settings.desktop.wallpaper' | translate }}</p>
+
+          <div class="wallpaper-grid">
+            @for (wp of wallpapers; track wp.id) {
+              <button
+                class="wallpaper-thumb"
+                [class.selected]="isSelected(wp)"
+                [style.background]="wp.value"
+                [attr.aria-label]="wp.label"
+                [attr.title]="wp.label"
+                (click)="selectWallpaper(wp)"
+                type="button"
+              >
+                @if (isSelected(wp)) {
+                  <i class="pi pi-check-circle selected-check"></i>
+                }
+              </button>
+            }
+          </div>
+
+          <p class="wallpaper-current-label">
+            {{ 'settings.desktop.current' | translate }} : <strong>{{ currentWallpaperName() }}</strong>
+          </p>
+        </div>
+
+        <div class="settings-section">
+          <p class="settings-label">{{ 'settings.desktop.custom' | translate }}</p>
+          <div class="custom-wallpaper-row">
+            <span class="custom-wallpaper-hint">{{ 'settings.desktop.customHint' | translate }}</span>
+            <button class="btn-secondary" (click)="openFilePicker()" type="button">
+              <i class="pi pi-upload"></i> {{ 'settings.desktop.chooseImage' | translate }}
+            </button>
+          </div>
+          <input
+            #fileInput
+            type="file"
+            accept="image/*"
+            style="display:none"
+            (change)="onFileSelected($event)"
+          />
+        </div>
+      </p-tabpanel>
+
+      <!-- ── Général ── -->
+      <p-tabpanel value="general">
+        <div class="settings-section">
+          <p class="settings-label">{{ 'settings.general.language' | translate }}</p>
+          <div class="locale-selector">
+            <button
+              class="locale-option"
+              [class.selected]="localeService.locale() === 'fr'"
+              (click)="setLocale('fr')"
+              type="button"
+            >🇫🇷 Français</button>
+            <button
+              class="locale-option"
+              [class.selected]="localeService.locale() === 'en'"
+              (click)="setLocale('en')"
+              type="button"
+            >🇬🇧 English</button>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <p class="settings-label">{{ 'settings.general.sound' | translate }}</p>
+          <div class="toggle-row">
+            <span class="toggle-label">{{ 'settings.general.systemSounds' | translate }}</span>
+            <p-toggleswitch [(ngModel)]="soundEnabled" />
+          </div>
+        </div>
+      </p-tabpanel>
+
+      <!-- ── Système ── -->
+      <p-tabpanel value="system">
+        <div class="settings-section">
+          <p class="settings-label">{{ 'settings.system.reset' | translate }}</p>
+          <div class="factory-reset-card">
+            <div class="factory-reset-info">
+              <i class="pi pi-refresh factory-reset-icon"></i>
+              <div>
+                <p class="factory-reset-title">{{ 'settings.system.resetTitle' | translate }}</p>
+                <p class="factory-reset-desc">{{ 'settings.system.resetDesc' | translate }}</p>
+              </div>
+            </div>
+            <button class="btn-danger" (click)="confirmReboot()" type="button">
+              <i class="pi pi-power-off"></i> {{ 'settings.system.resetBtn' | translate }}
+            </button>
+          </div>
+        </div>
+      </p-tabpanel>
+
+    </p-tabpanels>
+  </p-tabs>
+</p-dialog>
