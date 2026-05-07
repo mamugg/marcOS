@@ -65,10 +65,8 @@ export class TopbarComponent {
   });
 
   readonly wifiNetworks: WifiNetwork[] = [
-    { name: "Marc's Creative Brain™", bars: 4, secured: true },
+    { name: "Marco's Creative Brain™", bars: 4, secured: true },
     { name: 'Portfolio_5G', bars: 4, secured: false },
-    { name: 'RecruiterDetected_2024', bars: 3, secured: true },
-    { name: 'Angular21_Supremacy', bars: 2, secured: true },
     { name: '🥚 HIDDEN_EASTEREGG', bars: 1, secured: true },
   ];
 
