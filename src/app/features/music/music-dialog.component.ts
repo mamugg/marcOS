@@ -1,9 +1,12 @@
-import { Component, ChangeDetectionStrategy, inject, signal, computed } from '@angular/core';
+import {
+  Component, ChangeDetectionStrategy, inject, signal, computed, effect, ViewChild, ElementRef
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { DialogModule } from 'primeng/dialog';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DockStateService } from '@features/dock/services/dock-state.service';
+import { SoundService } from '@app/shared/services/sound.service';
 
 export interface Track {
   id: string;
@@ -34,19 +37,38 @@ export const PLAYLIST: Track[] = [
 export class MusicDialogComponent {
   protected readonly dockState = inject(DockStateService);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly soundService = inject(SoundService);
+
+  @ViewChild('ytIframe') private ytIframe?: ElementRef<HTMLIFrameElement>;
 
   readonly playlist = PLAYLIST;
   readonly currentTrack = signal<Track | null>(null);
 
+  /** True once the current iframe has finished loading and accepts postMessage commands. */
+  private readonly iframeLoaded = signal(false);
+
   readonly embedUrl = computed<SafeResourceUrl | null>(() => {
     const track = this.currentTrack();
     if (!track) return null;
-    const url = `https://www.youtube.com/embed/${track.youtubeId}?autoplay=1&rel=0&modestbranding=1`;
+    const url = `https://www.youtube.com/embed/${track.youtubeId}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   });
 
+  constructor() {
+    // Sync SoundService volume/mute to the YouTube iframe via postMessage.
+    // Reads all three signals so the effect re-runs on any of their changes.
+    effect(() => {
+      const volume = this.soundService.volume();
+      const enabled = this.soundService.soundEnabled();
+      if (this.iframeLoaded()) {
+        this.applyVolumeToIframe(volume, enabled);
+      }
+    });
+  }
+
   /** Select a track and start playback. */
   selectTrack(track: Track): void {
+    this.iframeLoaded.set(false); // reset before new iframe loads
     this.currentTrack.set(track);
   }
 
@@ -61,8 +83,30 @@ export class MusicDialogComponent {
     return track ? `https://www.youtube.com/watch?v=${track.youtubeId}` : null;
   }
 
+  /** Called when the YouTube iframe fires its load event. */
+  onIframeLoad(): void {
+    this.iframeLoaded.set(true);
+  }
+
   /** Clear current track on dialog hide. */
   onHide(): void {
     this.currentTrack.set(null);
+    this.iframeLoaded.set(false);
+  }
+
+  /**
+   * Send volume/mute commands to the YouTube IFrame player via postMessage.
+   * Requires enablejsapi=1 in the embed URL.
+   */
+  private applyVolumeToIframe(volume: number, enabled: boolean): void {
+    const win = this.ytIframe?.nativeElement?.contentWindow;
+    if (!win) return;
+
+    if (!enabled) {
+      win.postMessage(JSON.stringify({ event: 'command', func: 'mute', args: [] }), '*');
+    } else {
+      win.postMessage(JSON.stringify({ event: 'command', func: 'unMute', args: [] }), '*');
+      win.postMessage(JSON.stringify({ event: 'command', func: 'setVolume', args: [volume] }), '*');
+    }
   }
 }
