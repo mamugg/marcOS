@@ -123,6 +123,39 @@
   "finder": {
     "header": "Finder"
   },
+  "desktop": {
+    "icons.label": "Icônes du bureau",
+    "resume.label": "Resume.pdf",
+    "skills.label": "Skills.txt"
+  },
+  "resume": {
+    "title": "Développeur Full-Stack Angular",
+    "tab.experience": "Expérience",
+    "tab.education": "Formation",
+    "github": "Profil GitHub",
+    "linkedin": "Profil LinkedIn",
+    "exp1.role": "Développeur Full-Stack Angular",
+    "exp1.company": "Freelance / Projets personnels",
+    "exp1.period": "2023 — Présent",
+    "exp1.desc": "Conception et développement d'applications web Angular 21 avec PrimeNG, Tailwind CSS et intégrations API REST. Architecture signals, standalone components et tests Vitest.",
+    "exp2.role": "Développeur Frontend Angular",
+    "exp2.company": "Agence digitale",
+    "exp2.period": "2021 — 2023",
+    "exp2.desc": "Développement de dashboards analytiques, composants réutilisables et optimisation des performances. Migration de projets AngularJS vers Angular moderne.",
+    "exp3.role": "Développeur Web Junior",
+    "exp3.company": "Startup SaaS",
+    "exp3.period": "2020 — 2021",
+    "exp3.desc": "Intégration d'interfaces HTML/SCSS, maintenance d'APIs Node.js/Express et mise en place de pipelines CI/CD.",
+    "edu1.degree": "Baccalauréat en génie logiciel",
+    "edu1.school": "École de technologie supérieure (ÉTS)",
+    "edu1.period": "2017 — 2020"
+  },
+  "skills": {
+    "header": "Compétences techniques",
+    "cat.frontend": "Frontend",
+    "cat.backend": "Backend",
+    "cat.tools": "Outils & DevOps"
+  },
   "topbar": {
     "wifi.title": "Wi-Fi",
     "wifi.available": "Réseaux disponibles",

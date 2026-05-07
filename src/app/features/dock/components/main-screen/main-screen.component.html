@@ -2,6 +2,18 @@
 <div class="main-screen-container">
   <app-topbar />
   <div class="wallpaper" [style.background]="dockState.wallpaper()"></div>
+  <div class="desktop-icons" role="region" [attr.aria-label]="'desktop.icons.label' | translate">
+    <app-desktop-icon
+      [label]="'desktop.resume.label' | translate"
+      docType="pdf"
+      (opened)="dockState.setResume(true)"
+    />
+    <app-desktop-icon
+      [label]="'desktop.skills.label' | translate"
+      docType="txt"
+      (opened)="dockState.setSkills(true)"
+    />
+  </div>
   <app-dock-window />
 </div>
 <app-command-palette />
