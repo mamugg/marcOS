@@ -39,6 +39,12 @@
     "quit.summary": "Nice try 😏",
     "quit.detail": "You can't quit the OS that easily."
   },
+  "notification": {
+    "message.summary": "Message from Marc-Antoine 💬",
+    "message.detail": "Enjoying the project? Drop me a message via the Mail app! 📬",
+    "explorer.summary": "Still here? 👀",
+    "explorer.detail": "Either you're genuinely interested, or you forgot to close the tab. Either way, thanks."
+  },
   "settings": {
     "title": "System Preferences",
     "tab.appearance": "Appearance",

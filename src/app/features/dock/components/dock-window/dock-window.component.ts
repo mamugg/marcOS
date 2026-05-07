@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NotificationService } from '@app/shared/services/notification.service';
 import { DockComponent } from '../dock/dock.component';
 import { FinderDialogComponent } from '../finder-dialog/finder-dialog.component';
 import { TerminalDialogComponent } from '../terminal-dialog/terminal-dialog.component';
@@ -31,5 +32,11 @@ import { RebootOverlayComponent } from '../reboot-overlay/reboot-overlay.compone
   styleUrl: './dock-window.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DockWindowComponent {}
+export class DockWindowComponent implements OnInit {
+  private readonly notifications = inject(NotificationService);
+
+  ngOnInit(): void {
+    this.notifications.init();
+  }
+}
 
