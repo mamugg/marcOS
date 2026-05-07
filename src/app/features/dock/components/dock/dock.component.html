@@ -1,7 +1,11 @@
 <p-dock [model]="dockItems()" position="bottom">
   <ng-template #item let-item>
     <a [pTooltip]="item.label" tooltipPosition="top" class="p-dock-item-link">
-      <img [alt]="item.label" [src]="item.icon" style="width: 100%" />
+      <img [alt]="item.label" [src]="item.icon"
+           [style.width.px]="dockSize.size()"
+           [style.height.px]="dockSize.size()"
+           [style.border-radius.%]="22"
+           [style.transform]="item.data?.['scale'] ? 'scale(' + item.data['scale'] + ')' : null" />
     </a>
   </ng-template>
 </p-dock>

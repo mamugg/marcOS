@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { TerminalModule } from 'primeng/terminal';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { TerminalService } from 'primeng/terminal';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-terminal-dialog',
   standalone: true,
-  imports: [CommonModule, DialogModule, TerminalModule],
+  imports: [CommonModule, DialogModule, TerminalModule, TranslatePipe],
   templateUrl: './terminal-dialog.component.html',
   styleUrl: './terminal-dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,6 +21,7 @@ export class TerminalDialogComponent {
   protected dockState = inject(DockStateService);
   private terminalService = inject(TerminalService);
   private router = inject(Router);
+  private translate = inject(TranslateService);
 
   constructor() {
     this.terminalService.commandHandler
