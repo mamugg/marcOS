@@ -1,6 +1,6 @@
 <p-menubar [model]="menubarItems()">
   <ng-template #start>
-    <img src="/logo.png" alt="Logo" class="topbar-logo px-2" (click)="onLogoClick()" />
+    <img src="/logo.png" alt="Logo" class="topbar-logo px-2" [class.logo-dark]="themeService.isDark()" (click)="onLogoClick()" />
   </ng-template>
   <ng-template #end>
     <div class="topbar-icons">
