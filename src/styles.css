@@ -69,10 +69,14 @@ body {
   font-weight: 600;
 }
 
-/* Dock icon shape — enforced globally so the rule survives Angular
-   encapsulation boundaries, PrimeNG updates, and full-page reloads */
+/* Dock icon shape and dimensions — enforced globally to survive Angular
+   encapsulation, PrimeNG flex constraints, and full-page reloads.
+   flex-shrink: 0 prevents the flex column container from compressing height. */
 .p-dock img {
   border-radius: 22% !important;
-  overflow: hidden;
+  width: var(--dock-icon-size) !important;
+  height: var(--dock-icon-size) !important;
+  flex-shrink: 0;
+  object-fit: cover;
 }
 
