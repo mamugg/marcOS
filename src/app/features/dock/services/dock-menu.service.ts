@@ -54,7 +54,7 @@ export class DockMenuService {
       },
       {
         label: this.t('dock.settings'),
-        icon: '/icons/settings.svg',
+        icon: 'https://primefaces.org/cdn/primeng/images/dock/settings.png',
         command: () => this.dockState.toggleSettings()
       },
       {
