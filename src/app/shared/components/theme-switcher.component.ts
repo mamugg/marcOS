@@ -588,7 +588,7 @@ export class ThemeSwitcher {
       .preset(preset)
       .preset(this.getPresetExt())
       .surfacePalette(surfacePalette)
-      .use({ useDefaultOptions: true });
+      .use({ useDefaultOptions: true, darkModeSelector: '.p-dark' });
   }
 
   loadthemeState(): ThemeState {

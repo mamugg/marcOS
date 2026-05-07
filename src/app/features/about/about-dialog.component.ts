@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
+import { TranslatePipe } from '@ngx-translate/core';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 
 interface TechEntry {
@@ -12,7 +13,7 @@ interface TechEntry {
 @Component({
   selector: 'app-about-dialog',
   standalone: true,
-  imports: [CommonModule, DialogModule],
+  imports: [CommonModule, DialogModule, TranslatePipe],
   templateUrl: './about-dialog.component.html',
   styleUrl: './about-dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush

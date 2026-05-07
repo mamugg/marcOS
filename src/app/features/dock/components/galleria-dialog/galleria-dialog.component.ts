@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
+import { TranslatePipe } from '@ngx-translate/core';
 import { PhotoService } from '@app/shared/services/photo.service';
 import { ErrorService } from '@app/shared/services/error.service';
 import { DockStateService } from '@features/dock/services/dock-state.service';
@@ -19,7 +20,7 @@ import { Photo } from '@app/shared/models';
 @Component({
   selector: 'app-galleria-dialog',
   standalone: true,
-  imports: [CommonModule, DialogModule, ButtonModule, TooltipModule],
+  imports: [CommonModule, DialogModule, ButtonModule, TooltipModule, TranslatePipe],
   templateUrl: './galleria-dialog.component.html',
   styleUrl: './galleria-dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

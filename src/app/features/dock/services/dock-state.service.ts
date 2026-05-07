@@ -1,6 +1,8 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { StorageService } from '@app/shared/services/storage.service';
 
+const DEFAULT_WALLPAPER = "url('/wallpaper.png') center/cover no-repeat";
+
 @Injectable({ providedIn: 'root' })
 export class DockStateService {
   private storageService = inject(StorageService);
@@ -11,9 +13,11 @@ export class DockStateService {
   displayProjects = signal(false);
   displayMail = signal(false);
   displayAbout = signal(false);
+  displaySettings = signal(false);
   displayCommandPalette = signal(false);
+  rebooting = signal(false);
 
-  wallpaper = signal(this.storageService.get<string>('wallpaper') ?? '/wallpaper.png');
+  wallpaper = signal(this._resolveWallpaper());
 
   constructor() {
     this.storageService.remove('displayFinder');
@@ -29,6 +33,7 @@ export class DockStateService {
   toggleProjects(): void { this.displayProjects.update(v => !v); }
   toggleMail(): void { this.displayMail.update(v => !v); }
   toggleAbout(): void { this.displayAbout.update(v => !v); }
+  toggleSettings(): void { this.displaySettings.update(v => !v); }
   toggleCommandPalette(): void { this.displayCommandPalette.update(v => !v); }
 
   setFinder(value: boolean): void { this.displayFinder.set(value); }
@@ -37,6 +42,7 @@ export class DockStateService {
   setProjects(value: boolean): void { this.displayProjects.set(value); }
   setMail(value: boolean): void { this.displayMail.set(value); }
   setAbout(value: boolean): void { this.displayAbout.set(value); }
+  setSettings(value: boolean): void { this.displaySettings.set(value); }
   setCommandPalette(value: boolean): void { this.displayCommandPalette.set(value); }
 
   /** Close all open application windows. */
@@ -46,11 +52,27 @@ export class DockStateService {
     this.setGalleria(false);
     this.setProjects(false);
     this.setMail(false);
+    this.setSettings(false);
   }
 
-  setWallpaper(url: string): void {
-    this.wallpaper.set(url);
-    this.storageService.set('wallpaper', url);
+  /** Clear all persisted settings and trigger the reboot animation. */
+  reboot(): void {
+    this.storageService.clear();
+    this.closeAll();
+    this.rebooting.set(true);
+  }
+
+  setWallpaper(value: string): void {
+    this.wallpaper.set(value);
+    this.storageService.set('wallpaper', value);
+  }
+
+  /** Migrate old URL-only format to full CSS background value. */
+  private _resolveWallpaper(): string {
+    const stored = this.storageService.get<string>('wallpaper');
+    if (!stored) return DEFAULT_WALLPAPER;
+    const isRaw = !stored.startsWith('url(') && !stored.includes('gradient');
+    return isRaw ? DEFAULT_WALLPAPER : stored;
   }
 }
 

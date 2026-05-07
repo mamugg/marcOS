@@ -9,12 +9,12 @@
   <div class="about-content">
     <img src="/logo.png" alt="marcOS logo" class="about-logo" />
     <h1 class="about-title">marcOS</h1>
-    <p class="about-version">Version 1.0 &mdash; 2025</p>
-    <p class="about-subtitle">Portfolio de Marc-Antoine Muggeo</p>
+    <p class="about-version">{{ 'about.version' | translate }}</p>
+    <p class="about-subtitle">{{ 'about.subtitle' | translate }}</p>
 
     <hr class="about-divider" />
 
-    <p class="about-stack-label">Construit avec</p>
+    <p class="about-stack-label">{{ 'about.builtWith' | translate }}</p>
     <div class="about-stack">
       @for (tech of techStack; track tech.name) {
         <div class="tech-badge">
@@ -28,9 +28,9 @@
     <hr class="about-divider" />
 
     <p class="about-footer">
-      <a href="https://github.com/mamugg/marcOS" target="_blank">Code source</a>
+      <a href="https://github.com/mamugg/marcOS" target="_blank">{{ 'about.source' | translate }}</a>
       &nbsp;&middot;&nbsp;
-      <a href="https://github.com/mamugg" target="_blank">GitHub</a>
+      <a href="https://github.com/mamugg" target="_blank">{{ 'about.github' | translate }}</a>
     </p>
   </div>
 </p-dialog>
