@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
   }
 
   .main-screen-container p-menubar {
@@ -19,4 +20,15 @@
     z-index: -1;
     background-size: cover;
     background-position: center;
+}
+
+.desktop-icons {
+  position: absolute;
+  top: 48px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+  pointer-events: auto;
 }
