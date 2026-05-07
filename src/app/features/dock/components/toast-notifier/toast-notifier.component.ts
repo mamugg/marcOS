@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
 
@@ -8,7 +8,7 @@ import { ToastModule } from 'primeng/toast';
   imports: [CommonModule, ToastModule],
   templateUrl: './toast-notifier.component.html',
   styleUrl: './toast-notifier.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class ToastNotifierComponent {}
-

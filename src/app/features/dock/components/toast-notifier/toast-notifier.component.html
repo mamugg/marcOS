@@ -1,2 +1,24 @@
-<p-toast position="top-center" key="tc" />
+<p-toast
+  position="top-right"
+  key="tc"
+  showTransformOptions="translateX(110%)"
+  hideTransformOptions="translateX(110%)"
+  showTransitionOptions="320ms cubic-bezier(0.34, 1.56, 0.64, 1)"
+  hideTransitionOptions="200ms ease-in">
 
+  <ng-template #headless let-message let-closeFn="closeFn">
+    <div class="mac-notif">
+      <div class="mac-notif-icon">
+        <span>{{ message?.severity === 'success' ? '🎉' : '💬' }}</span>
+      </div>
+      <div class="mac-notif-body">
+        <span class="mac-notif-app">marcOS</span>
+        <p class="mac-notif-title">{{ message?.summary }}</p>
+        <p class="mac-notif-detail" *ngIf="message?.detail">{{ message?.detail }}</p>
+      </div>
+      <button class="mac-notif-close" (click)="closeFn($event)" aria-label="Fermer">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+  </ng-template>
+</p-toast>
