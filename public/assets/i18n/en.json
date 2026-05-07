@@ -114,6 +114,18 @@
   "finder": {
     "header": "Finder"
   },
+  "topbar": {
+    "wifi.title": "Wi-Fi",
+    "wifi.available": "Available Networks",
+    "wifi.joined": "Connected to",
+    "volume.title": "Volume",
+    "volume.mute": "Mute",
+    "search.title": "Search (⌘K)",
+    "control.title": "Control Center",
+    "control.language": "Language",
+    "control.sound": "Sound",
+    "control.settings": "System Preferences"
+  },
   "welcome": {
     "title": "Welcome to marcOS",
     "subtitle": "Marc-Antoine Muggeo's Portfolio",
