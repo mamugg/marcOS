@@ -55,12 +55,14 @@
 
           <div class="embed-wrapper">
             <iframe
+              #ytIframe
               [src]="embedUrl()"
               [title]="track.title"
               allow="autoplay; encrypted-media"
               allowfullscreen
               frameborder="0"
               class="youtube-embed"
+              (load)="onIframeLoad()"
             ></iframe>
           </div>
 
