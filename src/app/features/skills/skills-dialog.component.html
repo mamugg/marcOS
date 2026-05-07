@@ -1,0 +1,40 @@
+<p-dialog
+  [(visible)]="dockState.displaySkills"
+  [modal]="false"
+  [resizable]="true"
+  [draggable]="true"
+  [style]="{ width: '480px', minWidth: '360px' }"
+  [header]="'skills.header' | translate"
+  styleClass="skills-dialog"
+>
+  <div class="skills-content">
+    @for (cat of categories; track cat.labelKey) {
+      <div class="skill-category">
+        <h3 class="category-title">
+          <span class="category-icon">{{ cat.icon }}</span>
+          {{ cat.labelKey | translate }}
+        </h3>
+        <div class="skill-list">
+          @for (skill of cat.skills; track skill.name) {
+            <div class="skill-item">
+              <div class="skill-meta">
+                <span class="skill-name">{{ skill.name }}</span>
+                <span class="skill-level">{{ skill.level }}%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div
+                  class="skill-bar-fill"
+                  [style.width.%]="skill.level"
+                  [attr.aria-valuenow]="skill.level"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  role="progressbar"
+                ></div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</p-dialog>
