@@ -4,13 +4,116 @@
   </ng-template>
   <ng-template #end>
     <div class="topbar-icons">
-      <i class="pi pi-video"></i>
-      <i class="pi pi-wifi"></i>
-      <i class="pi pi-volume-up"></i>
-      <span>{{ currentTime() }}</span>
-      <i class="pi pi-search"></i>
-      <i class="pi pi-bars"></i>
+
+      <!-- WiFi Easter Egg -->
+      <i class="pi pi-wifi topbar-icon" (click)="onWifiClick($event)" [title]="'topbar.wifi.title' | translate"></i>
+
+      <!-- Volume -->
+      <i [class]="volumeIcon()" class="topbar-icon" (click)="onVolumeClick($event)" [title]="'topbar.volume.title' | translate"></i>
+
+      <!-- Clock -->
+      <span class="topbar-time">{{ currentTime() }}</span>
+
+      <!-- Search → Command Palette -->
+      <i class="pi pi-search topbar-icon" (click)="onSearchClick()" [title]="'topbar.search.title' | translate"></i>
+
+      <!-- Control Center -->
+      <i class="pi pi-sliders-h topbar-icon" (click)="onControlClick($event)" [title]="'topbar.control.title' | translate"></i>
     </div>
   </ng-template>
 </p-menubar>
 
+<!-- WiFi Popover -->
+<p-popover #wifiPanel styleClass="topbar-popover">
+  <div class="topbar-panel">
+    <div class="topbar-panel-header">
+      <i class="pi pi-wifi"></i>
+      <span>{{ 'topbar.wifi.title' | translate }}</span>
+    </div>
+    <div class="topbar-panel-section-label">{{ 'topbar.wifi.available' | translate }}</div>
+    @for (net of wifiNetworks; track net.name) {
+      <button class="wifi-network" (click)="joinNetwork(net)">
+        <div class="wifi-network-info">
+          <span class="wifi-network-name">{{ net.name }}</span>
+          @if (net.secured) {
+            <i class="pi pi-lock wifi-lock"></i>
+          }
+        </div>
+        <div class="wifi-bars">
+          @for (b of [1, 2, 3, 4]; track b) {
+            <span class="wifi-bar" [class.active]="b <= net.bars"></span>
+          }
+        </div>
+      </button>
+    }
+  </div>
+</p-popover>
+
+<!-- Volume Popover -->
+<p-popover #volumePanel styleClass="topbar-popover">
+  <div class="topbar-panel">
+    <div class="topbar-panel-header">
+      <i [class]="volumeIcon()"></i>
+      <span>{{ 'topbar.volume.title' | translate }}</span>
+      <span class="volume-pct">{{ soundService.volume() }}%</span>
+    </div>
+    <div class="volume-slider-wrap">
+      <p-slider
+        [ngModel]="sliderVolume()"
+        (ngModelChange)="onVolumeChange($event)"
+        [min]="0"
+        [max]="100"
+        [step]="1"
+        styleClass="volume-slider"
+      />
+    </div>
+    <div class="volume-mute-row">
+      <span>{{ 'topbar.volume.mute' | translate }}</span>
+      <p-toggleswitch
+        [ngModel]="!soundService.soundEnabled()"
+        (ngModelChange)="onMuteToggle()"
+      />
+    </div>
+  </div>
+</p-popover>
+
+<!-- Control Center Popover -->
+<p-popover #controlPanel styleClass="topbar-popover">
+  <div class="topbar-panel">
+    <div class="topbar-panel-header">
+      <i class="pi pi-sliders-h"></i>
+      <span>{{ 'topbar.control.title' | translate }}</span>
+    </div>
+
+    <div class="control-row" (click)="themeService.toggleTheme()">
+      <div class="control-row-left">
+        <i [class]="themeService.isDark() ? 'pi pi-moon' : 'pi pi-sun'"></i>
+        <span>{{ (themeService.isDark() ? 'settings.appearance.dark' : 'settings.appearance.light') | translate }}</span>
+      </div>
+      <p-toggleswitch [ngModel]="themeService.isDark()" (ngModelChange)="themeService.toggleTheme()" (click)="$event.stopPropagation()" />
+    </div>
+
+    <div class="control-row" (click)="toggleLanguage()">
+      <div class="control-row-left">
+        <i class="pi pi-globe"></i>
+        <span>{{ 'topbar.control.language' | translate }}</span>
+      </div>
+      <span class="control-badge">{{ localeService.locale() | uppercase }}</span>
+    </div>
+
+    <div class="control-row" (click)="onMuteToggle()">
+      <div class="control-row-left">
+        <i [class]="soundService.soundEnabled() ? 'pi pi-volume-up' : 'pi pi-volume-off'"></i>
+        <span>{{ 'topbar.control.sound' | translate }}</span>
+      </div>
+      <p-toggleswitch [ngModel]="soundService.soundEnabled()" (ngModelChange)="onMuteToggle()" (click)="$event.stopPropagation()" />
+    </div>
+
+    <div class="control-divider"></div>
+
+    <button class="control-settings-btn" (click)="openSettings()">
+      <i class="pi pi-cog"></i>
+      <span>{{ 'topbar.control.settings' | translate }}</span>
+    </button>
+  </div>
+</p-popover>
