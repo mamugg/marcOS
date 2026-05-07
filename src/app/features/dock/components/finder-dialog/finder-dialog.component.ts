@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { TreeModule } from 'primeng/tree';
 import { TreeNode } from 'primeng/api';
+import { TranslatePipe } from '@ngx-translate/core';
 import { NodeService } from '@app/shared/services/node.service';
 import { ErrorService } from '@app/shared/services/error.service';
 import { DockStateService } from '@features/dock/services/dock-state.service';
@@ -10,7 +11,7 @@ import { DockStateService } from '@features/dock/services/dock-state.service';
 @Component({
   selector: 'app-finder-dialog',
   standalone: true,
-  imports: [CommonModule, DialogModule, TreeModule],
+  imports: [CommonModule, DialogModule, TreeModule, TranslatePipe],
   templateUrl: './finder-dialog.component.html',
   styleUrl: './finder-dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

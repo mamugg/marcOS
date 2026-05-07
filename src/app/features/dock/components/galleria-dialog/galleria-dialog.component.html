@@ -1,5 +1,5 @@
 <p-dialog
-  header="Photos"
+  [header]="'galleria.header' | translate"
   [(visible)]="dockState.displayGalleria"
   [modal]="false"
   [resizable]="true"
@@ -31,13 +31,13 @@
   @if (selectedIndex() !== null) {
     <div class="photos-lightbox">
       <div class="lightbox-toolbar">
-        <button class="lb-btn lb-back" (click)="closePhoto()" pTooltip="Back to grid" tooltipPosition="right">
+        <button class="lb-btn lb-back" (click)="closePhoto()" [pTooltip]="'galleria.back' | translate" tooltipPosition="right">
           <i class="pi pi-arrow-left"></i>
         </button>
         <span class="lb-title">{{ selectedPhoto()?.title }}</span>
-        <button class="lb-btn lb-wallpaper" (click)="setWallpaper()" pTooltip="Set as Wallpaper" tooltipPosition="left">
+        <button class="lb-btn lb-wallpaper" (click)="setWallpaper()" [pTooltip]="'galleria.setWallpaper' | translate" tooltipPosition="left">
           <i class="pi pi-desktop"></i>
-          <span>Set as Wallpaper</span>
+          <span>{{ 'galleria.setWallpaper' | translate }}</span>
         </button>
       </div>
       <div class="lightbox-stage">

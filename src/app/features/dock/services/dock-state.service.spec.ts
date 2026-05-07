@@ -23,6 +23,7 @@ describe('DockStateService', () => {
     expect(service.displayProjects()).toBe(false);
     expect(service.displayMail()).toBe(false);
     expect(service.displayAbout()).toBe(false);
+    expect(service.displaySettings()).toBe(false);
     expect(service.displayCommandPalette()).toBe(false);
   });
 
@@ -156,6 +157,7 @@ describe('DockStateService', () => {
     service.setGalleria(true);
     service.setProjects(true);
     service.setMail(true);
+    service.setSettings(true);
 
     service.closeAll();
 
@@ -164,6 +166,7 @@ describe('DockStateService', () => {
     expect(service.displayGalleria()).toBe(false);
     expect(service.displayProjects()).toBe(false);
     expect(service.displayMail()).toBe(false);
+    expect(service.displaySettings()).toBe(false);
   });
 
   it('should not affect About or CommandPalette with closeAll()', () => {
@@ -186,34 +189,47 @@ describe('DockStateService', () => {
     expect(service.displayAbout()).toBe(false);
   });
 
-  it('should initialize wallpaper to default value when nothing is stored', () => {
-    expect(service.wallpaper()).toBe('/wallpaper.png');
+  it('should initialize wallpaper to default CSS background when nothing is stored', () => {
+    expect(service.wallpaper()).toBe("url('/wallpaper.png') center/cover no-repeat");
   });
 
   it('should update wallpaper signal via setWallpaper', () => {
-    service.setWallpaper('https://example.com/new-wallpaper.jpg');
-    expect(service.wallpaper()).toBe('https://example.com/new-wallpaper.jpg');
+    const gradient = 'linear-gradient(135deg, #000 0%, #fff 100%)';
+    service.setWallpaper(gradient);
+    expect(service.wallpaper()).toBe(gradient);
   });
 
   it('should persist wallpaper to localStorage via setWallpaper', () => {
     const storageService = TestBed.inject(StorageService);
-    service.setWallpaper('https://example.com/bg.jpg');
-    expect(storageService.get<string>('wallpaper')).toBe('https://example.com/bg.jpg');
+    const gradient = 'linear-gradient(135deg, #000 0%, #fff 100%)';
+    service.setWallpaper(gradient);
+    expect(storageService.get<string>('wallpaper')).toBe(gradient);
   });
 
-  it('should restore wallpaper from localStorage on init', () => {
+  it('should restore a valid CSS wallpaper from localStorage on init', () => {
     const storageService = TestBed.inject(StorageService);
-    storageService.set('wallpaper', 'https://example.com/saved.jpg');
+    const gradient = 'linear-gradient(135deg, #0f0c29, #24243e)';
+    storageService.set('wallpaper', gradient);
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({ providers: [DockStateService, StorageService] });
     const freshService = TestBed.inject(DockStateService);
-    expect(freshService.wallpaper()).toBe('https://example.com/saved.jpg');
+    expect(freshService.wallpaper()).toBe(gradient);
+  });
+
+  it('should migrate raw URL wallpaper from localStorage to default', () => {
+    const storageService = TestBed.inject(StorageService);
+    storageService.set('wallpaper', '/wallpaper.png');
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({ providers: [DockStateService, StorageService] });
+    const freshService = TestBed.inject(DockStateService);
+    expect(freshService.wallpaper()).toBe("url('/wallpaper.png') center/cover no-repeat");
   });
 
   it('should allow updating wallpaper multiple times', () => {
-    service.setWallpaper('first.jpg');
-    service.setWallpaper('second.jpg');
-    expect(service.wallpaper()).toBe('second.jpg');
+    service.setWallpaper('linear-gradient(135deg, #000 0%, #111 100%)');
+    service.setWallpaper('linear-gradient(135deg, #fff 0%, #eee 100%)');
+    expect(service.wallpaper()).toBe('linear-gradient(135deg, #fff 0%, #eee 100%)');
   });
 });
