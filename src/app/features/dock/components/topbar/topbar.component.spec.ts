@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { ComponentFixture } from '@angular/core/testing';
+import { EMPTY } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { TopbarComponent } from './topbar.component';
 import { DockMenuService } from '@features/dock/services/dock-menu.service';
 
@@ -22,7 +24,8 @@ describe('TopbarComponent', () => {
       imports: [TopbarComponent],
       providers: [
         { provide: DockMenuService, useValue: { getMenubarItems: () => mockMenubarItems } },
-        { provide: Router, useValue: { navigate: navigateSpy } }
+        { provide: Router, useValue: { navigate: navigateSpy } },
+        { provide: TranslateService, useValue: { instant: (k: string) => k, onLangChange: EMPTY, use: vi.fn() } }
       ]
     })
       .overrideComponent(TopbarComponent, { set: { imports: [], template: '' } })

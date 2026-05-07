@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
+import { EMPTY } from 'rxjs';
 import { vi } from 'vitest';
+import { TranslateService } from '@ngx-translate/core';
 import { SettingsDialogComponent, WALLPAPER_OPTIONS } from './settings-dialog.component';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { ThemeService } from '@app/shared/services/theme.service';
@@ -31,7 +33,8 @@ describe('SettingsDialogComponent', () => {
       imports: [SettingsDialogComponent],
       providers: [
         { provide: DockStateService, useValue: dockStateMock },
-        { provide: ThemeService, useValue: themeMock }
+        { provide: ThemeService, useValue: themeMock },
+        { provide: TranslateService, useValue: { instant: (k: string) => k, onLangChange: EMPTY, use: vi.fn() } }
       ]
     })
       .overrideComponent(SettingsDialogComponent, { set: { imports: [], template: '' } })
