@@ -8,6 +8,8 @@ import { ToastNotifierComponent } from '../toast-notifier/toast-notifier.compone
 import { ProjectsDialogComponent } from '@app/features/projects/projects-dialog.component';
 import { MailDialogComponent } from '@app/features/mail/mail-dialog.component';
 import { AboutDialogComponent } from '@app/features/about/about-dialog.component';
+import { SettingsDialogComponent } from '@app/features/settings/settings-dialog.component';
+import { RebootOverlayComponent } from '../reboot-overlay/reboot-overlay.component';
 
 @Component({
   selector: 'app-dock-window',
@@ -21,7 +23,9 @@ import { AboutDialogComponent } from '@app/features/about/about-dialog.component
     ToastNotifierComponent,
     ProjectsDialogComponent,
     MailDialogComponent,
-    AboutDialogComponent
+    AboutDialogComponent,
+    SettingsDialogComponent,
+    RebootOverlayComponent
   ],
   templateUrl: './dock-window.component.html',
   styleUrl: './dock-window.component.css',

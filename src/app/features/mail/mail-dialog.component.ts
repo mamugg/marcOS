@@ -5,6 +5,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
 import { ButtonModule } from 'primeng/button';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { ErrorService } from '@app/shared/services/error.service';
 
@@ -24,7 +25,8 @@ interface ContactFormShape {
     DialogModule,
     InputTextModule,
     TextareaModule,
-    ButtonModule
+    ButtonModule,
+    TranslatePipe
   ],
   templateUrl: './mail-dialog.component.html',
   styleUrl: './mail-dialog.component.css',
@@ -34,6 +36,7 @@ export class MailDialogComponent {
   protected dockState = inject(DockStateService);
   private fb = inject(FormBuilder);
   private errorService = inject(ErrorService);
+  private translate = inject(TranslateService);
 
   isSubmitting = signal(false);
   isSubmitted = signal(false);
@@ -72,7 +75,7 @@ export class MailDialogComponent {
     setTimeout(() => {
       this.isSubmitting.set(false);
       this.isSubmitted.set(true);
-      this.errorService.handleSuccess('Message envoyé avec succès !', 'Mail');
+      this.errorService.handleSuccess(this.translate.instant('mail.success.title'), 'Mail');
       this.form.reset();
       setTimeout(() => this.isSubmitted.set(false), 3000);
     }, 1200);
