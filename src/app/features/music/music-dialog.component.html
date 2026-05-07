@@ -1,0 +1,87 @@
+<p-dialog
+  [(visible)]="dockState.displayMusic"
+  [modal]="false"
+  [resizable]="false"
+  [draggable]="true"
+  [style]="{ width: '680px' }"
+  [header]="'music.title' | translate"
+  styleClass="music-dialog"
+  (onHide)="onHide()"
+>
+  <div class="music-layout">
+
+    <!-- ── Sidebar: Playlist ── -->
+    <aside class="music-sidebar">
+      <p class="music-sidebar-title">{{ 'music.playlist' | translate }}</p>
+      <ul class="track-list" role="listbox" [attr.aria-label]="'music.playlist' | translate">
+        @for (track of playlist; track track.id) {
+          <li
+            class="track-item"
+            [class.active]="isActive(track)"
+            (click)="selectTrack(track)"
+            (keydown.enter)="selectTrack(track)"
+            (keydown.space)="selectTrack(track)"
+            role="option"
+            [attr.aria-selected]="isActive(track)"
+            tabindex="0"
+          >
+            <span class="track-index">
+              @if (isActive(track)) {
+                <i class="pi pi-volume-up track-playing-icon"></i>
+              } @else {
+                {{ $index + 1 }}
+              }
+            </span>
+            <span class="track-info">
+              <span class="track-title">{{ track.title }}</span>
+              <span class="track-artist">{{ track.artist }}</span>
+            </span>
+            <span class="track-duration">{{ track.duration }}</span>
+          </li>
+        }
+      </ul>
+    </aside>
+
+    <!-- ── Main: Now Playing ── -->
+    <main class="music-main">
+      @if (currentTrack(); as track) {
+        <div class="now-playing">
+          <div class="now-playing-meta">
+            <p class="now-playing-label">{{ 'music.nowPlaying' | translate }}</p>
+            <p class="now-playing-title">{{ track.title }}</p>
+            <p class="now-playing-artist">{{ track.artist }}</p>
+            <p class="now-playing-album">{{ track.album }}</p>
+          </div>
+
+          <div class="embed-wrapper">
+            <iframe
+              [src]="embedUrl()"
+              [title]="track.title"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+              frameborder="0"
+              class="youtube-embed"
+            ></iframe>
+          </div>
+
+          <a
+            [href]="youtubeWatchUrl()"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-link"
+            [attr.aria-label]="'music.openYoutube' | translate"
+          >
+            <i class="pi pi-external-link"></i>
+            {{ 'music.openYoutube' | translate }}
+          </a>
+        </div>
+      } @else {
+        <div class="music-empty">
+          <i class="pi pi-music music-empty-icon"></i>
+          <p class="music-empty-text">{{ 'music.selectPrompt' | translate }}</p>
+        </div>
+      }
+    </main>
+
+  </div>
+</p-dialog>
