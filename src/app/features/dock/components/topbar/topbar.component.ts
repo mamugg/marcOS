@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { DockMenuService } from '@features/dock/services/dock-menu.service';
 import { LocaleService } from '@app/shared/services/locale.service';
+import { ThemeService } from '@app/shared/services/theme.service';
 import { interval } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -25,6 +26,7 @@ export class TopbarComponent {
   private router = inject(Router);
   private translate = inject(TranslateService);
   readonly localeService = inject(LocaleService);
+  readonly themeService = inject(ThemeService);
 
   menubarItems = signal<MenuItem[]>(this.dockMenuService.getMenubarItems());
   currentTime = signal<string>('');
