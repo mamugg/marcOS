@@ -69,3 +69,10 @@ body {
   font-weight: 600;
 }
 
+/* Dock icon shape — enforced globally so the rule survives Angular
+   encapsulation boundaries, PrimeNG updates, and full-page reloads */
+.p-dock img {
+  border-radius: 22% !important;
+  overflow: hidden;
+}
+
