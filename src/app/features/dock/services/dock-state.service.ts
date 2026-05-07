@@ -58,6 +58,9 @@ export class DockStateService {
   /** Clear all persisted settings and trigger the reboot animation. */
   reboot(): void {
     this.storageService.clear();
+    // Clear the legacy ThemeSwitcher key (no marcOS_ prefix) so the
+    // dark theme doesn't survive the factory reset via the migration fallback.
+    try { localStorage.removeItem('themeSwitcherState'); } catch { /* ignore */ }
     this.closeAll();
     this.rebooting.set(true);
   }

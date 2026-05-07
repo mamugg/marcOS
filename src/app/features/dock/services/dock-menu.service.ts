@@ -117,84 +117,6 @@ export class DockMenuService {
         ]
       },
       {
-        label: this.t('menu.go'),
-        items: [
-          {
-            label: this.t('dock.finder'),
-            icon: 'pi pi-fw pi-folder',
-            command: () => this.dockState.toggleFinder()
-          },
-          {
-            label: this.t('dock.terminal'),
-            icon: 'pi pi-fw pi-code',
-            command: () => this.dockState.toggleTerminal()
-          },
-          {
-            label: this.t('dock.projects'),
-            icon: 'pi pi-fw pi-briefcase',
-            command: () => this.dockState.toggleProjects()
-          },
-          {
-            label: this.t('dock.photos'),
-            icon: 'pi pi-fw pi-images',
-            command: () => this.dockState.toggleGalleria()
-          },
-          {
-            label: this.t('menu.go.contact'),
-            icon: 'pi pi-fw pi-envelope',
-            command: () => this.dockState.toggleMail()
-          },
-          { separator: true },
-          {
-            label: 'GitHub ↗',
-            icon: 'pi pi-fw pi-github',
-            url: 'https://github.com/mamugg',
-            target: '_blank'
-          },
-          {
-            label: 'LinkedIn ↗',
-            icon: 'pi pi-fw pi-linkedin',
-            url: 'https://www.linkedin.com/in/marc-antoine-muggeo-87b794180',
-            target: '_blank'
-          }
-        ]
-      },
-      {
-        label: this.t('menu.window'),
-        items: [
-          {
-            label: this.t('dock.finder'),
-            command: () => this.dockState.toggleFinder()
-          },
-          {
-            label: this.t('dock.terminal'),
-            command: () => this.dockState.toggleTerminal()
-          },
-          {
-            label: this.t('dock.projects'),
-            command: () => this.dockState.toggleProjects()
-          },
-          {
-            label: this.t('dock.photos'),
-            command: () => this.dockState.toggleGalleria()
-          },
-          {
-            label: this.t('menu.window.contact'),
-            command: () => this.dockState.toggleMail()
-          },
-          {
-            label: this.t('menu.window.preferences'),
-            command: () => this.dockState.toggleSettings()
-          },
-          { separator: true },
-          {
-            label: this.t('menu.window.closeAll'),
-            icon: 'pi pi-fw pi-times-circle',
-            command: () => this.dockState.closeAll()
-          }
-        ]
-      },
-      {
         label: this.t('menu.help'),
         items: [
           {
@@ -243,17 +165,6 @@ export class DockMenuService {
             ]
           }
         ]
-      },
-      {
-        label: this.t('menu.quit'),
-        command: () => {
-          this.messageService.add({
-            severity: 'warn',
-            summary: this.t('toast.quit.summary'),
-            detail: this.t('toast.quit.detail'),
-            key: 'tc'
-          });
-        }
       }
     ];
   }
