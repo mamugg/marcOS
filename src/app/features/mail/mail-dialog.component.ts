@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { ErrorService } from '@app/shared/services/error.service';
+import { EmailService } from '@app/shared/services/email.service';
 
 interface ContactFormShape {
   name: FormControl<string | null>;
@@ -37,6 +38,7 @@ export class MailDialogComponent {
   private fb = inject(FormBuilder);
   private errorService = inject(ErrorService);
   private translate = inject(TranslateService);
+  private emailService = inject(EmailService);
 
   isSubmitting = signal(false);
   isSubmitted = signal(false);
@@ -71,14 +73,26 @@ export class MailDialogComponent {
 
     this.isSubmitting.set(true);
 
-    // Simulation d'envoi — remplacer par un appel HTTP réel (ex: Formspree, EmailJS)
-    setTimeout(() => {
-      this.isSubmitting.set(false);
-      this.isSubmitted.set(true);
-      this.errorService.handleSuccess(this.translate.instant('mail.success.title'), 'Mail');
-      this.form.reset();
-      setTimeout(() => this.isSubmitted.set(false), 3000);
-    }, 1200);
+    const { name, email, subject, message } = this.form.getRawValue();
+
+    this.emailService
+      .send({
+        from_name: name ?? '',
+        from_email: email ?? '',
+        subject: subject ?? '',
+        message: message ?? '',
+      })
+      .then(() => {
+        this.isSubmitting.set(false);
+        this.isSubmitted.set(true);
+        this.errorService.handleSuccess(this.translate.instant('mail.success.title'), 'Mail');
+        this.form.reset();
+        setTimeout(() => this.isSubmitted.set(false), 3000);
+      })
+      .catch((err: unknown) => {
+        this.isSubmitting.set(false);
+        this.errorService.handleError(err, 'Mail');
+      });
   }
 
   onDialogHide(): void {
