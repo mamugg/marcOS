@@ -22,10 +22,10 @@ export class AboutDialogComponent {
   protected dockState = inject(DockStateService);
 
   readonly techStack: TechEntry[] = [
-    { name: 'Angular',    version: '19',  icon: 'https://cdn.simpleicons.org/angular/DD0031' },
-    { name: 'TypeScript', version: '5.7', icon: 'https://cdn.simpleicons.org/typescript/3178C6' },
-    { name: 'PrimeNG',   version: '19',  icon: 'https://primefaces.org/cdn/primeng/images/primeng-logo-dark.svg' },
-    { name: 'Tailwind',  version: '4',   icon: 'https://cdn.simpleicons.org/tailwindcss/06B6D4' },
-    { name: 'Vitest',    version: '3',   icon: 'https://cdn.simpleicons.org/vitest/6E9F18' }
+    { name: 'Angular',    version: '21',  icon: 'https://cdn.simpleicons.org/angular/DD0031' },
+    { name: 'TypeScript', version: '5.9', icon: 'https://cdn.simpleicons.org/typescript/3178C6' },
+    { name: 'PrimeNG',   version: '21',  icon: 'https://primefaces.org/cdn/primeng/images/primeng-logo-dark.svg' },
+    { name: 'Tailwind',  version: '3',   icon: 'https://cdn.simpleicons.org/tailwindcss/06B6D4' },
+    { name: 'Vitest',    version: '4',   icon: 'https://cdn.simpleicons.org/vitest/6E9F18' }
   ];
 }

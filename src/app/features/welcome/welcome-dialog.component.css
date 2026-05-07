@@ -1,0 +1,91 @@
+:host ::ng-deep .welcome-dialog {
+  .p-dialog-header {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--p-content-border-color);
+  }
+
+  .p-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1rem;
+    border-top: 1px solid var(--p-content-border-color);
+  }
+}
+
+.welcome-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.welcome-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.welcome-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.125rem;
+  color: var(--p-text-color);
+}
+
+.welcome-subtitle {
+  font-size: 0.8125rem;
+  color: var(--p-text-muted-color);
+  margin: 0;
+}
+
+.welcome-body {
+  padding-top: 0.25rem;
+}
+
+.welcome-intro {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--p-text-color);
+  margin-bottom: 1.25rem;
+}
+
+.welcome-tips {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.welcome-tip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--p-content-background);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+}
+
+.tip-icon {
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.tip-text {
+  font-size: 0.875rem;
+  color: var(--p-text-color);
+}
+
+.welcome-hint {
+  font-size: 0.75rem;
+  color: var(--p-text-muted-color);
+  text-align: center;
+  margin: 0;
+  font-style: italic;
+}
+
+:host ::ng-deep .welcome-cta-btn {
+  width: 100%;
+}
