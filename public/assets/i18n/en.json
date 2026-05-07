@@ -107,5 +107,15 @@
   },
   "finder": {
     "header": "Finder"
+  },
+  "welcome": {
+    "title": "Welcome to marcOS",
+    "subtitle": "Marc-Antoine Muggeo's Portfolio",
+    "intro": "You're exploring an interactive portfolio that mimics the experience of a macOS operating system. Each application holds content about my background, projects, and how to get in touch.",
+    "tip.dock": "The Dock at the bottom — click icons to open apps",
+    "tip.topbar": "The top bar — system menus and shortcuts",
+    "tip.palette": "Command palette — quick access with ⌘K",
+    "cta": "Start exploring",
+    "hint": "This window only appears once."
   }
 }

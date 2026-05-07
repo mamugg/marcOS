@@ -1,7 +1,46 @@
 import { TestBed } from '@angular/core/testing';
+import { EMPTY } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { DockMenuService } from './dock-menu.service';
 import { DockStateService } from './dock-state.service';
+
+const EN: Record<string, string> = {
+  'dock.finder':            'Finder',
+  'dock.terminal':          'Terminal',
+  'dock.projects':          'Projects',
+  'dock.photos':            'Photos',
+  'dock.mail':              'Mail',
+  'dock.github':            'GitHub',
+  'dock.linkedin':          'LinkedIn',
+  'dock.settings':          'Settings',
+  'dock.trash':             'Trash',
+  'menu.about':             'About',
+  'menu.file':              'File',
+  'menu.file.newFinder':    'New Finder Window',
+  'menu.file.closeAll':     'Close All Windows',
+  'menu.view':              'View',
+  'menu.view.commandPalette': 'Command Palette',
+  'menu.view.preferences':  'System Preferences',
+  'menu.view.reload':       'Reload',
+  'menu.go':                'Go',
+  'menu.go.contact':        'Contact',
+  'menu.window':            'Window',
+  'menu.window.closeAll':   'Close All',
+  'menu.help':              'Help',
+  'menu.help.shortcuts':    'Keyboard Shortcuts',
+  'menu.help.navigation':   'Navigation',
+  'menu.help.updates':      'Check for Updates',
+  'menu.help.download':     'Download Update',
+  'menu.help.verify':       'Verify Integrity',
+  'menu.help.diagnostics':  'Run Diagnostics',
+  'menu.quit':              'Quit',
+  'toast.trash.summary':    'Trash is empty',
+  'toast.quit.summary':     'Nice try 😏',
+  'toast.quit.detail':      "You can't quit the OS that easily.",
+};
+
+const translateMock = { instant: (k: string) => EN[k] ?? k, onLangChange: EMPTY };
 
 describe('DockMenuService', () => {
   let service: DockMenuService;
@@ -34,6 +73,7 @@ describe('DockMenuService', () => {
       providers: [
         DockMenuService,
         { provide: DockStateService, useValue: dockState },
+        { provide: TranslateService, useValue: translateMock },
         MessageService
       ]
     });

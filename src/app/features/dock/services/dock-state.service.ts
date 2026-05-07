@@ -15,6 +15,7 @@ export class DockStateService {
   displayAbout = signal(false);
   displaySettings = signal(false);
   displayCommandPalette = signal(false);
+  displayWelcome = signal(!this.storageService.get<boolean>('welcomeSeen'));
   rebooting = signal(false);
 
   wallpaper = signal(this._resolveWallpaper());
@@ -25,6 +26,11 @@ export class DockStateService {
     this.storageService.remove('displayGalleria');
     this.storageService.remove('displayProjects');
     this.storageService.remove('displayMail');
+  }
+
+  dismissWelcome(): void {
+    this.displayWelcome.set(false);
+    this.storageService.set('welcomeSeen', true);
   }
 
   toggleFinder(): void { this.displayFinder.update(v => !v); }

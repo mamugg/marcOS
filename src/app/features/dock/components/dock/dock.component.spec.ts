@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { EMPTY } from 'rxjs';
 import { MenuItem } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 import { DockComponent } from './dock.component';
 import { DockMenuService } from '@features/dock/services/dock-menu.service';
 
@@ -14,7 +16,10 @@ describe('DockComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DockComponent],
-      providers: [{ provide: DockMenuService, useValue: { getDockItems: () => mockItems } }],
+      providers: [
+        { provide: DockMenuService, useValue: { getDockItems: () => mockItems } },
+        { provide: TranslateService, useValue: { instant: (k: string) => k, onLangChange: EMPTY } }
+      ],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .overrideComponent(DockComponent, { set: { template: '', imports: [] } })
