@@ -10,6 +10,7 @@ import { ProjectsDialogComponent } from '@app/features/projects/projects-dialog.
 import { MailDialogComponent } from '@app/features/mail/mail-dialog.component';
 import { AboutDialogComponent } from '@app/features/about/about-dialog.component';
 import { SettingsDialogComponent } from '@app/features/settings/settings-dialog.component';
+import { MusicDialogComponent } from '@app/features/music/music-dialog.component';
 import { RebootOverlayComponent } from '../reboot-overlay/reboot-overlay.component';
 
 @Component({
@@ -26,6 +27,7 @@ import { RebootOverlayComponent } from '../reboot-overlay/reboot-overlay.compone
     MailDialogComponent,
     AboutDialogComponent,
     SettingsDialogComponent,
+    MusicDialogComponent,
     RebootOverlayComponent
   ],
   templateUrl: './dock-window.component.html',

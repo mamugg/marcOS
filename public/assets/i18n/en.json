@@ -5,6 +5,7 @@
     "projects": "Projects",
     "photos": "Photos",
     "mail": "Mail",
+    "music": "Music",
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "settings": "Settings",
@@ -110,6 +111,14 @@
     "header": "Photos",
     "back": "Back to grid",
     "setWallpaper": "Set as Wallpaper"
+  },
+  "music": {
+    "title": "Music",
+    "playlist": "Playlist",
+    "nowPlaying": "Now Playing",
+    "selectPrompt": "Select a track to listen",
+    "openYoutube": "Open on YouTube",
+    "track.duration": "Duration"
   },
   "finder": {
     "header": "Finder"

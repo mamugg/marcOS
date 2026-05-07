@@ -41,6 +41,11 @@ export class DockMenuService {
         command: () => this.dockState.toggleMail()
       },
       {
+        label: this.t('dock.music'),
+        icon: 'icons/music.svg',
+        command: () => this.dockState.toggleMusic()
+      },
+      {
         label: this.t('dock.github'),
         icon: 'https://primefaces.org/cdn/primeng/images/dock/github.svg',
         url: 'https://github.com/mamugg',

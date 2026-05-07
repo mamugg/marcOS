@@ -12,6 +12,7 @@ export class DockStateService {
   displayGalleria = signal(false);
   displayProjects = signal(false);
   displayMail = signal(false);
+  displayMusic = signal(false);
   displayAbout = signal(false);
   displaySettings = signal(false);
   displayCommandPalette = signal(false);
@@ -38,6 +39,7 @@ export class DockStateService {
   toggleGalleria(): void { this.displayGalleria.update(v => !v); }
   toggleProjects(): void { this.displayProjects.update(v => !v); }
   toggleMail(): void { this.displayMail.update(v => !v); }
+  toggleMusic(): void { this.displayMusic.update(v => !v); }
   toggleAbout(): void { this.displayAbout.update(v => !v); }
   toggleSettings(): void { this.displaySettings.update(v => !v); }
   toggleCommandPalette(): void { this.displayCommandPalette.update(v => !v); }
@@ -47,6 +49,7 @@ export class DockStateService {
   setGalleria(value: boolean): void { this.displayGalleria.set(value); }
   setProjects(value: boolean): void { this.displayProjects.set(value); }
   setMail(value: boolean): void { this.displayMail.set(value); }
+  setMusic(value: boolean): void { this.displayMusic.set(value); }
   setAbout(value: boolean): void { this.displayAbout.set(value); }
   setSettings(value: boolean): void { this.displaySettings.set(value); }
   setCommandPalette(value: boolean): void { this.displayCommandPalette.set(value); }
@@ -58,6 +61,7 @@ export class DockStateService {
     this.setGalleria(false);
     this.setProjects(false);
     this.setMail(false);
+    this.setMusic(false);
     this.setSettings(false);
   }
 
