@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class NotFoundComponent implements OnInit {
   protected deletionLines = signal<string[]>([]);
   protected showError = signal(false);
+  protected restoring = signal(false);
 
   private router = inject(Router);
 
@@ -49,6 +50,7 @@ export class NotFoundComponent implements OnInit {
   }
 
   protected goHome(): void {
-    this.router.navigate(['/']);
+    this.restoring.set(true);
+    setTimeout(() => this.router.navigate(['/']), 3000);
   }
 }
