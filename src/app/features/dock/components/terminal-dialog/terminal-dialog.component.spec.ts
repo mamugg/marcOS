@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, EMPTY } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 import { TerminalDialogComponent } from './terminal-dialog.component';
 import { TerminalService } from 'primeng/terminal';
 import { DockStateService } from '@features/dock/services/dock-state.service';
@@ -22,7 +23,8 @@ describe('TerminalDialogComponent', () => {
       imports: [TerminalDialogComponent],
       providers: [
         { provide: DockStateService, useValue: { displayTerminal: signal(false) } },
-        { provide: Router, useValue: mockRouter }
+        { provide: Router, useValue: mockRouter },
+        { provide: TranslateService, useValue: { instant: (k: string) => k, onLangChange: EMPTY } }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
