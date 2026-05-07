@@ -13,7 +13,8 @@ import { routes } from './app.routes';
 function initTranslate(translate: TranslateService): () => Promise<unknown> {
   return () => {
     translate.setDefaultLang('fr');
-    const saved = localStorage.getItem('marcOS_locale') as 'fr' | 'en' | null;
+    const raw = localStorage.getItem('marcOS_locale');
+    const saved = raw ? (JSON.parse(raw) as 'fr' | 'en') : null;
     return translate.use(saved ?? 'fr').toPromise().catch(() => {
       console.error('[i18n] Failed to load translations, falling back to default lang');
     });
