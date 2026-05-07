@@ -4,7 +4,7 @@
   [resizable]="true"
   [draggable]="true"
   [style]="{ width: '820px', height: '600px' }"
-  header="Projects"
+  [header]="'projects.header' | translate"
   styleClass="projects-dialog"
 >
   <div class="projects-layout">
@@ -15,7 +15,7 @@
           [class.active]="selectedFilter() === tech"
           (click)="setFilter(tech)"
         >
-          {{ tech }}
+          {{ tech === 'all' ? ('projects.all' | translate) : tech }}
         </button>
       }
     </div>
@@ -24,7 +24,7 @@
       @for (project of filteredProjects(); track project.id) {
         <div class="project-card" [class.featured]="project.featured">
           @if (project.featured) {
-            <span class="featured-badge">⭐ Featured</span>
+            <span class="featured-badge">{{ 'projects.featured' | translate }}</span>
           }
           <div class="project-header">
             <div class="project-icon">{{ project.title[0] }}</div>
@@ -33,7 +33,7 @@
               <span class="project-date">{{ project.date | date: 'yyyy' }}</span>
             </div>
           </div>
-          <p class="project-description">{{ project.description }}</p>
+          <p class="project-description">{{ 'projects.' + project.id + '.description' | translate }}</p>
           <div class="project-tags">
             @for (tech of project.technologies; track tech) {
               <span class="tech-tag">{{ tech }}</span>
@@ -57,7 +57,7 @@
       @if (filteredProjects().length === 0) {
         <div class="empty-state">
           <i class="pi pi-folder-open" style="font-size: 2rem; opacity: 0.4"></i>
-          <p>No projects found for "{{ selectedFilter() }}"</p>
+          <p>{{ 'projects.noResults' | translate }} "{{ selectedFilter() }}"</p>
         </div>
       }
     </div>

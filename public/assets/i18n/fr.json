@@ -1,0 +1,111 @@
+{
+  "dock": {
+    "finder": "Finder",
+    "terminal": "Terminal",
+    "projects": "Projets",
+    "photos": "Photos",
+    "mail": "Mail",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "settings": "Réglages",
+    "trash": "Corbeille"
+  },
+  "menu": {
+    "about": "À propos",
+    "file": "Fichier",
+    "file.newFinder": "Nouvelle fenêtre Finder",
+    "file.closeAll": "Fermer toutes les fenêtres",
+    "view": "Affichage",
+    "view.commandPalette": "Palette de commandes",
+    "view.preferences": "Préférences Système",
+    "view.reload": "Recharger",
+    "go": "Aller",
+    "go.contact": "Contact",
+    "window": "Fenêtre",
+    "window.contact": "Contact",
+    "window.preferences": "Préférences Système",
+    "window.closeAll": "Tout fermer",
+    "help": "Aide",
+    "help.shortcuts": "Raccourcis clavier",
+    "help.navigation": "Navigation",
+    "help.updates": "Vérifier les mises à jour",
+    "help.download": "Télécharger la mise à jour",
+    "help.verify": "Vérifier l'intégrité",
+    "help.diagnostics": "Lancer les diagnostics",
+    "quit": "Quitter"
+  },
+  "toast": {
+    "trash.summary": "La corbeille est vide",
+    "quit.summary": "Bien essayé 😏",
+    "quit.detail": "Impossible de quitter l'OS si facilement."
+  },
+  "settings": {
+    "title": "Préférences Système",
+    "tab.appearance": "Apparence",
+    "tab.desktop": "Bureau",
+    "tab.general": "Général",
+    "tab.system": "Système",
+    "appearance.theme": "Thème",
+    "appearance.light": "Clair",
+    "appearance.dark": "Sombre",
+    "appearance.accent": "Couleur d'accentuation",
+    "desktop.wallpaper": "Fond d'écran",
+    "desktop.custom": "Fond personnalisé",
+    "desktop.customHint": "Choisissez une image depuis votre appareil.",
+    "desktop.chooseImage": "Choisir une image",
+    "desktop.current": "Actuel",
+    "general.language": "Langue",
+    "general.sound": "Son",
+    "general.systemSounds": "Sons système",
+    "system.reset": "Réinitialisation",
+    "system.resetTitle": "Réglages d'usine",
+    "system.resetDesc": "Efface toutes les préférences et redémarre l'OS comme à la première visite.",
+    "system.resetBtn": "Réinitialiser"
+  },
+  "about": {
+    "version": "Version 1.0 — 2025",
+    "subtitle": "Portfolio de Marc-Antoine Muggeo",
+    "builtWith": "Construit avec",
+    "source": "Code source",
+    "github": "GitHub"
+  },
+  "mail": {
+    "header": "Nouveau mail",
+    "name.label": "Nom",
+    "name.placeholder": "Votre nom",
+    "name.error": "Le nom est requis (min. 2 caractères)",
+    "email.label": "Email",
+    "email.placeholder": "votre@email.com",
+    "email.error": "Email invalide",
+    "subject.label": "Sujet",
+    "subject.placeholder": "Objet de votre message",
+    "message.label": "Message",
+    "message.placeholder": "Décrivez votre projet ou votre demande...",
+    "message.error": "Le message est requis (min. 10 caractères)",
+    "submit": "Envoyer",
+    "submitting": "Envoi en cours...",
+    "success.title": "Message envoyé !",
+    "success.message": "Je vous répondrai dans les plus brefs délais."
+  },
+  "projects": {
+    "header": "Projets",
+    "all": "Tout",
+    "featured": "⭐ En vedette",
+    "noResults": "Aucun projet trouvé pour",
+    "marcos.description": "Portfolio interactif style macOS construit avec Angular 21, PrimeNG et Tailwind CSS. Dock animé, terminal fonctionnel, finder et galerie photo.",
+    "project2.description": "Dashboard analytique avec charts temps réel, data tables paginées et gestion d'état réactive via Angular Signals.",
+    "project3.description": "API RESTful scalable avec Express, MongoDB, authentification JWT et documentation Swagger automatisée."
+  },
+  "terminal": {
+    "header": "Terminal",
+    "welcome": "Bienvenue sur le Terminal MarcOS — tapez 'help' pour afficher les commandes"
+  },
+  "galleria": {
+    "header": "Photos",
+    "back": "Retour à la galerie",
+    "setWallpaper": "Définir comme fond d'écran"
+  },
+  "finder": {
+    "header": "Finder"
+  }
+}

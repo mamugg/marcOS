@@ -1,56 +1,72 @@
 import { Injectable, inject } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 import { DockStateService } from './dock-state.service';
 
 @Injectable({ providedIn: 'root' })
 export class DockMenuService {
   private dockState = inject(DockStateService);
   private messageService = inject(MessageService);
+  private translate = inject(TranslateService);
+
+  private t(key: string): string {
+    return this.translate.instant(key);
+  }
 
   getDockItems(): MenuItem[] {
     return [
       {
-        label: 'Finder',
+        label: this.t('dock.finder'),
         icon: 'https://primefaces.org/cdn/primeng/images/dock/finder.svg',
         command: () => this.dockState.toggleFinder()
       },
       {
-        label: 'Terminal',
+        label: this.t('dock.terminal'),
         icon: 'https://primefaces.org/cdn/primeng/images/dock/terminal.svg',
         command: () => this.dockState.toggleTerminal()
       },
       {
-        label: 'Projects',
+        label: this.t('dock.projects'),
         icon: 'https://primefaces.org/cdn/primeng/images/dock/appstore.svg',
         command: () => this.dockState.toggleProjects()
       },
       {
-        label: 'Photos',
+        label: this.t('dock.photos'),
         icon: 'https://primefaces.org/cdn/primeng/images/dock/photos.svg',
         command: () => this.dockState.toggleGalleria()
       },
       {
-        label: 'Mail',
+        label: this.t('dock.mail'),
         icon: 'icons/mail.svg',
         command: () => this.dockState.toggleMail()
       },
       {
-        label: 'GitHub',
+        label: this.t('dock.github'),
         icon: 'https://primefaces.org/cdn/primeng/images/dock/github.svg',
         url: 'https://github.com/mamugg',
         target: '_blank'
       },
       {
-        label: 'LinkedIn',
+        label: this.t('dock.linkedin'),
         icon: 'icons/linkedin.svg',
         url: 'https://www.linkedin.com/in/marc-antoine-muggeo-87b794180',
         target: '_blank'
       },
       {
-        label: 'Trash',
+        label: this.t('dock.settings'),
+        icon: 'https://primefaces.org/cdn/primeng/images/dock/settings.png',
+        data: { scale: 1.2 },
+        command: () => this.dockState.toggleSettings()
+      },
+      {
+        label: this.t('dock.trash'),
         icon: 'https://primefaces.org/cdn/primeng/images/dock/trash.png',
         command: () => {
-          this.messageService.add({ severity: 'info', summary: 'Trash is empty', key: 'tc' });
+          this.messageService.add({
+            severity: 'info',
+            summary: this.t('toast.trash.summary'),
+            key: 'tc'
+          });
         }
       }
     ];
@@ -59,67 +75,72 @@ export class DockMenuService {
   getMenubarItems(): MenuItem[] {
     return [
       {
-        label: 'About',
+        label: this.t('menu.about'),
         styleClass: 'menubar-root',
         command: () => this.dockState.toggleAbout()
       },
       {
-        label: 'File',
+        label: this.t('menu.file'),
         items: [
           {
-            label: 'New Finder Window',
+            label: this.t('menu.file.newFinder'),
             icon: 'pi pi-fw pi-folder-open',
             command: () => this.dockState.toggleFinder()
           },
           { separator: true },
           {
-            label: 'Close All Windows',
+            label: this.t('menu.file.closeAll'),
             icon: 'pi pi-fw pi-times',
             command: () => this.dockState.closeAll()
           }
         ]
       },
       {
-        label: 'View',
+        label: this.t('menu.view'),
         items: [
           {
-            label: 'Command Palette',
+            label: this.t('menu.view.commandPalette'),
             icon: 'pi pi-fw pi-search',
             command: () => this.dockState.toggleCommandPalette()
           },
+          {
+            label: this.t('menu.view.preferences'),
+            icon: 'pi pi-fw pi-cog',
+            command: () => this.dockState.toggleSettings()
+          },
           { separator: true },
           {
-            label: 'Reload',
+            label: this.t('menu.view.reload'),
             icon: 'pi pi-fw pi-refresh',
             command: () => window.location.reload()
           }
         ]
       },
       {
-        label: 'Go',
+        label: this.t('menu.go'),
         items: [
           {
-            label: 'Finder',
+            label: this.t('dock.finder'),
             icon: 'pi pi-fw pi-folder',
             command: () => this.dockState.toggleFinder()
           },
           {
-            label: 'Terminal',
+            label: this.t('dock.terminal'),
             icon: 'pi pi-fw pi-code',
             command: () => this.dockState.toggleTerminal()
           },
           {
-            label: 'Projects',
+            label: this.t('dock.projects'),
             icon: 'pi pi-fw pi-briefcase',
             command: () => this.dockState.toggleProjects()
           },
           {
-            label: 'Photos',
+            label: this.t('dock.photos'),
             icon: 'pi pi-fw pi-images',
             command: () => this.dockState.toggleGalleria()
           },
           {
-            label: 'Contact',
+            label: this.t('menu.go.contact'),
             icon: 'pi pi-fw pi-envelope',
             command: () => this.dockState.toggleMail()
           },
@@ -139,45 +160,49 @@ export class DockMenuService {
         ]
       },
       {
-        label: 'Window',
+        label: this.t('menu.window'),
         items: [
           {
-            label: 'Finder',
+            label: this.t('dock.finder'),
             command: () => this.dockState.toggleFinder()
           },
           {
-            label: 'Terminal',
+            label: this.t('dock.terminal'),
             command: () => this.dockState.toggleTerminal()
           },
           {
-            label: 'Projects',
+            label: this.t('dock.projects'),
             command: () => this.dockState.toggleProjects()
           },
           {
-            label: 'Photos',
+            label: this.t('dock.photos'),
             command: () => this.dockState.toggleGalleria()
           },
           {
-            label: 'Contact',
+            label: this.t('menu.window.contact'),
             command: () => this.dockState.toggleMail()
+          },
+          {
+            label: this.t('menu.window.preferences'),
+            command: () => this.dockState.toggleSettings()
           },
           { separator: true },
           {
-            label: 'Close All',
+            label: this.t('menu.window.closeAll'),
             icon: 'pi pi-fw pi-times-circle',
             command: () => this.dockState.closeAll()
           }
         ]
       },
       {
-        label: 'Help',
+        label: this.t('menu.help'),
         items: [
           {
-            label: 'Keyboard Shortcuts',
+            label: this.t('menu.help.shortcuts'),
             icon: 'pi pi-fw pi-key',
             items: [
               {
-                label: 'Navigation',
+                label: this.t('menu.help.navigation'),
                 icon: 'pi pi-fw pi-compass',
                 items: [
                   { label: '⌘K — Command Palette' },
@@ -189,19 +214,19 @@ export class DockMenuService {
           },
           { separator: true },
           {
-            label: 'Check for Updates',
+            label: this.t('menu.help.updates'),
             icon: 'pi pi-fw pi-sync',
             items: [
               {
-                label: 'Download Update',
+                label: this.t('menu.help.download'),
                 icon: 'pi pi-fw pi-download',
                 items: [
                   {
-                    label: 'Verify Integrity',
+                    label: this.t('menu.help.verify'),
                     icon: 'pi pi-fw pi-shield',
                     items: [
                       {
-                        label: 'Run Diagnostics',
+                        label: this.t('menu.help.diagnostics'),
                         icon: 'pi pi-fw pi-cog',
                         items: [
                           {
@@ -220,12 +245,12 @@ export class DockMenuService {
         ]
       },
       {
-        label: 'Quit',
+        label: this.t('menu.quit'),
         command: () => {
           this.messageService.add({
             severity: 'warn',
-            summary: 'Nice try 😏',
-            detail: "You can't quit the OS that easily.",
+            summary: this.t('toast.quit.summary'),
+            detail: this.t('toast.quit.detail'),
             key: 'tc'
           });
         }
@@ -233,4 +258,3 @@ export class DockMenuService {
     ];
   }
 }
-
