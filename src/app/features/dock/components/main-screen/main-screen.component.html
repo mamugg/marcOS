@@ -1,5 +1,5 @@
 <theme-switcher [hidden]="!debugMode" />
-<div class="main-screen-container">
+<div class="main-screen-container" (contextmenu)="onContextMenu()">
   <app-topbar />
   <div class="wallpaper" [style.background]="dockState.wallpaper()"></div>
   <div class="desktop-icons" role="region" [attr.aria-label]="'desktop.icons.label' | translate">
@@ -7,11 +7,13 @@
       [label]="'desktop.resume.label' | translate"
       docType="pdf"
       (opened)="dockState.setResume(true)"
+      (clicked)="sound.playDocumentClick()"
     />
     <app-desktop-icon
       [label]="'desktop.skills.label' | translate"
       docType="txt"
       (opened)="dockState.setSkills(true)"
+      (clicked)="sound.playDocumentClick()"
     />
   </div>
   <app-dock-window />

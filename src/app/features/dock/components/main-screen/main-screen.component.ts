@@ -7,6 +7,8 @@ import { DesktopIconComponent } from '../desktop-icon/desktop-icon.component';
 import { CommandPaletteComponent } from '@app/shared/components/command-palette/command-palette.component';
 import { WelcomeDialogComponent } from '@features/welcome/welcome-dialog.component';
 import { DockStateService } from '@features/dock/services/dock-state.service';
+import { SoundService } from '@app/shared/services/sound.service';
+import { SoundEffectsService } from '@app/shared/services/sound-effects.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -20,5 +22,13 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class MainScreenComponent {
   debugMode = false;
   protected dockState = inject(DockStateService);
+  protected sound = inject(SoundService);
+
+  // Bootstraps the effects that watch dialog signals for sounds.
+  private readonly _soundEffects = inject(SoundEffectsService);
+
+  onContextMenu(): void {
+    this.sound.playContextMenu();
+  }
 }
 
