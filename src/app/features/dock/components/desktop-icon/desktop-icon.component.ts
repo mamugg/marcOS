@@ -17,6 +17,8 @@ export class DesktopIconComponent {
 
   /** Emitted on double-click or Enter/Space key press. */
   readonly opened = output<void>();
+  /** Emitted on the first single click (selection). */
+  readonly clicked = output<void>();
 
   protected readonly selected = signal(false);
   private lastClickTime = 0;
@@ -29,6 +31,7 @@ export class DesktopIconComponent {
       this.selected.set(false);
     } else {
       this.selected.set(true);
+      this.clicked.emit();
     }
     this.lastClickTime = now;
   }
