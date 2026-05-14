@@ -41,6 +41,34 @@ describe('DesktopIconComponent', () => {
     expect(component['selected']()).toBe(true);
   });
 
+  it('should emit clicked on first single click', () => {
+    const fixture = TestBed.createComponent(DesktopIconComponent);
+    const component = fixture.componentInstance;
+    const clickedSpy = vi.fn();
+    const sub = component.clicked.subscribe(clickedSpy);
+    fixture.detectChanges();
+
+    component.onClick();
+
+    expect(clickedSpy).toHaveBeenCalledTimes(1);
+    sub.unsubscribe();
+  });
+
+  it('should not emit clicked on double click (opens instead)', () => {
+    const fixture = TestBed.createComponent(DesktopIconComponent);
+    const component = fixture.componentInstance;
+    const clickedSpy = vi.fn();
+    const sub = component.clicked.subscribe(clickedSpy);
+    fixture.detectChanges();
+
+    component.onClick();
+    component.onClick(); // rapid second click = double
+
+    // clicked fires once on first click; second click triggers opened, not clicked
+    expect(clickedSpy).toHaveBeenCalledTimes(1);
+    sub.unsubscribe();
+  });
+
   it('should emit opened on two rapid clicks', () => {
     const fixture = TestBed.createComponent(DesktopIconComponent);
     const component = fixture.componentInstance;

@@ -68,4 +68,149 @@ export class SoundService {
       osc.stop(ctx.currentTime + 0.3);
     } catch { /* ignore */ }
   }
+
+  /**
+   * Play the macOS-style startup chord — ascending C major arpeggio.
+   * Should be called after a user gesture to satisfy browser autoplay policy.
+   */
+  playBoot(): void {
+    if (!isPlatformBrowser(this.platformId) || !this.soundEnabled()) return;
+    const gain = this.gainFactor();
+    if (gain === 0) return;
+    try {
+      const ctx = new AudioContext();
+      const notes: Array<{ freq: number; delay: number; duration: number }> = [
+        { freq: 261.63, delay: 0,    duration: 1.4 }, // C4
+        { freq: 329.63, delay: 0.06, duration: 1.3 }, // E4
+        { freq: 392.00, delay: 0.12, duration: 1.2 }, // G4
+        { freq: 523.25, delay: 0.18, duration: 1.1 }, // C5
+      ];
+      notes.forEach(({ freq, delay, duration }) => {
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.connect(g);
+        g.connect(ctx.destination);
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        g.gain.setValueAtTime(0, ctx.currentTime + delay);
+        g.gain.linearRampToValueAtTime(0.07 * gain, ctx.currentTime + delay + 0.08);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + duration);
+        osc.start(ctx.currentTime + delay);
+        osc.stop(ctx.currentTime + delay + duration);
+      });
+    } catch { /* ignore */ }
+  }
+
+  /**
+   * Play a descending shutdown chord — mirrors playBoot() in reverse.
+   * Indicates the system is shutting down or rebooting.
+   */
+  playShutdown(): void {
+    if (!isPlatformBrowser(this.platformId) || !this.soundEnabled()) return;
+    const gain = this.gainFactor();
+    if (gain === 0) return;
+    try {
+      const ctx = new AudioContext();
+      const notes: Array<{ freq: number; delay: number }> = [
+        { freq: 523.25, delay: 0    }, // C5
+        { freq: 392.00, delay: 0.1  }, // G4
+        { freq: 261.63, delay: 0.2  }, // C4
+      ];
+      notes.forEach(({ freq, delay }) => {
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.connect(g);
+        g.connect(ctx.destination);
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        g.gain.setValueAtTime(0.08 * gain, ctx.currentTime + delay);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + 0.4);
+        osc.start(ctx.currentTime + delay);
+        osc.stop(ctx.currentTime + delay + 0.4);
+      });
+    } catch { /* ignore */ }
+  }
+
+  /** Play a soft ascending chirp when a dialog window opens. */
+  playAppOpen(): void {
+    if (!isPlatformBrowser(this.platformId) || !this.soundEnabled()) return;
+    const gain = this.gainFactor();
+    if (gain === 0) return;
+    try {
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.connect(g);
+      g.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(400, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(760, ctx.currentTime + 0.1);
+      g.gain.setValueAtTime(0.055 * gain, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.18);
+    } catch { /* ignore */ }
+  }
+
+  /** Play a soft descending swish when a dialog window closes. */
+  playAppClose(): void {
+    if (!isPlatformBrowser(this.platformId) || !this.soundEnabled()) return;
+    const gain = this.gainFactor();
+    if (gain === 0) return;
+    try {
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.connect(g);
+      g.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(760, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.1);
+      g.gain.setValueAtTime(0.045 * gain, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.14);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.14);
+    } catch { /* ignore */ }
+  }
+
+  /** Play a short tap when a desktop document icon is single-clicked. */
+  playDocumentClick(): void {
+    if (!isPlatformBrowser(this.platformId) || !this.soundEnabled()) return;
+    const gain = this.gainFactor();
+    if (gain === 0) return;
+    try {
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.connect(g);
+      g.connect(ctx.destination);
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(900, ctx.currentTime);
+      g.gain.setValueAtTime(0.05 * gain, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.07);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.07);
+    } catch { /* ignore */ }
+  }
+
+  /** Play a subtle pop when a context menu or popover opens. */
+  playContextMenu(): void {
+    if (!isPlatformBrowser(this.platformId) || !this.soundEnabled()) return;
+    const gain = this.gainFactor();
+    if (gain === 0) return;
+    try {
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.connect(g);
+      g.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(220, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(380, ctx.currentTime + 0.04);
+      g.gain.setValueAtTime(0.04 * gain, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.07);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.07);
+    } catch { /* ignore */ }
+  }
 }
