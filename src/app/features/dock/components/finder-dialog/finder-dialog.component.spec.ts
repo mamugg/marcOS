@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { FinderDialogComponent } from './finder-dialog.component';
 import { NodeService } from '@app/shared/services/node.service';
 import { ErrorService } from '@app/shared/services/error.service';
@@ -20,7 +21,8 @@ describe('FinderDialogComponent', () => {
       imports: [FinderDialogComponent],
       providers: [
         { provide: DockStateService, useValue: { displayFinder: signal(false) } },
-        { provide: ErrorService, useValue: errorServiceMock }
+        { provide: ErrorService, useValue: errorServiceMock },
+        { provide: TranslateService, useValue: { instant: (k: string) => k } }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

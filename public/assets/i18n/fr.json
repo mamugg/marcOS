@@ -110,7 +110,10 @@
   "galleria": {
     "header": "Photos",
     "back": "Retour à la galerie",
-    "setWallpaper": "Définir comme fond d'écran"
+    "setWallpaper": "Définir comme fond d'écran",
+    "error.empty": "Aucune image disponible",
+    "error.emptyTitle": "Galerie vide",
+    "error.load": "Erreur de chargement images"
   },
   "music": {
     "title": "Musique",
@@ -121,7 +124,10 @@
     "track.duration": "Durée"
   },
   "finder": {
-    "header": "Finder"
+    "header": "Finder",
+    "error.empty": "Aucun fichier disponible",
+    "error.emptyTitle": "Finder vide",
+    "error.load": "Erreur de chargement Finder"
   },
   "desktop": {
     "icons.label": "Icônes du bureau",
@@ -167,6 +173,27 @@
     "control.language": "Langue",
     "control.sound": "Son",
     "control.settings": "Préférences Système"
+  },
+  "reboot": {
+    "label": "Réinitialisation…"
+  },
+  "palette": {
+    "finder.label": "Finder",
+    "finder.desc": "Ouvrir le Finder",
+    "terminal.label": "Terminal",
+    "terminal.desc": "Ouvrir le Terminal",
+    "projects.label": "Projets",
+    "projects.desc": "Voir mes projets",
+    "photos.label": "Photos",
+    "photos.desc": "Ouvrir la galerie photos",
+    "contact.label": "Contact",
+    "contact.desc": "M'envoyer un message",
+    "github.label": "GitHub",
+    "github.desc": "Voir mon profil GitHub",
+    "linkedin.label": "LinkedIn",
+    "linkedin.desc": "Mon profil LinkedIn",
+    "closeAll.label": "Fermer toutes les fenêtres",
+    "closeAll.desc": "Fermer tous les dialogs ouverts"
   },
   "welcome": {
     "title": "Bienvenue sur marcOS",

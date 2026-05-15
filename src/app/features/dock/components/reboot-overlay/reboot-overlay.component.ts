@@ -1,9 +1,11 @@
 import { Component, ChangeDetectionStrategy, inject, effect } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 
 @Component({
   selector: 'app-reboot-overlay',
   standalone: true,
+  imports: [TranslatePipe],
   template: `
     @if (dockState.rebooting()) {
       <div class="reboot-overlay">
@@ -11,7 +13,7 @@ import { DockStateService } from '@features/dock/services/dock-state.service';
         <div class="reboot-bar-track">
           <div class="reboot-bar-fill"></div>
         </div>
-        <p class="reboot-label">Réinitialisation…</p>
+        <p class="reboot-label">{{ 'reboot.label' | translate }}</p>
       </div>
     }
   `,
