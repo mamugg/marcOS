@@ -7,7 +7,7 @@
           #searchInput
           type="text"
           class="search-input"
-          placeholder="Rechercher une commande..."
+          [placeholder]="'palette.placeholder' | translate"
           [value]="searchQuery()"
           (input)="onSearchChange($any($event.target).value)"
           autocomplete="off"
@@ -19,7 +19,7 @@
       <div class="palette-results">
         @if (filteredCommands().length === 0) {
           <div class="no-results">
-            <span>Aucune commande trouvée pour "{{ searchQuery() }}"</span>
+            <span>{{ 'palette.noResults' | translate }} "{{ searchQuery() }}"</span>
           </div>
         } @else {
           @for (cmd of filteredCommands(); track cmd.id; let i = $index) {
@@ -43,10 +43,10 @@
       </div>
 
       <div class="palette-footer">
-        <span><kbd>↑</kbd><kbd>↓</kbd> naviguer</span>
-        <span><kbd>↵</kbd> exécuter</span>
-        <span><kbd>ESC</kbd> fermer</span>
-        <span class="shortcut-hint"><kbd>⌘K</kbd> ouvrir</span>
+        <span><kbd>↑</kbd><kbd>↓</kbd> {{ 'palette.footer.navigate' | translate }}</span>
+        <span><kbd>↵</kbd> {{ 'palette.footer.execute' | translate }}</span>
+        <span><kbd>ESC</kbd> {{ 'palette.footer.close' | translate }}</span>
+        <span class="shortcut-hint"><kbd>⌘K</kbd> {{ 'palette.footer.open' | translate }}</span>
       </div>
     </div>
   </div>

@@ -1,10 +1,15 @@
-import { Component, ChangeDetectionStrategy, OnInit, signal, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, DestroyRef, OnInit, signal, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+
+const LINE_INTERVAL_MS = 120;
+const ERROR_DELAY_MS = 300;
+const RESTORE_REDIRECT_MS = 3000;
 
 @Component({
   selector: 'app-not-found',
   standalone: true,
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './not-found.component.html',
   styleUrl: './not-found.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -14,7 +19,8 @@ export class NotFoundComponent implements OnInit {
   protected showError = signal(false);
   protected restoring = signal(false);
 
-  private router = inject(Router);
+  private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
 
   private readonly filesToDelete = [
     'rm: /System/Library/CoreServices/Finder.app: Permission denied',
@@ -44,13 +50,16 @@ export class NotFoundComponent implements OnInit {
         index++;
       } else {
         clearInterval(interval);
-        setTimeout(() => this.showError.set(true), 300);
+        const errorTimeout = setTimeout(() => this.showError.set(true), ERROR_DELAY_MS);
+        this.destroyRef.onDestroy(() => clearTimeout(errorTimeout));
       }
-    }, 120);
+    }, LINE_INTERVAL_MS);
+    this.destroyRef.onDestroy(() => clearInterval(interval));
   }
 
   protected goHome(): void {
     this.restoring.set(true);
-    setTimeout(() => this.router.navigate(['/']), 3000);
+    const redirect = setTimeout(() => this.router.navigate(['/']), RESTORE_REDIRECT_MS);
+    this.destroyRef.onDestroy(() => clearTimeout(redirect));
   }
 }

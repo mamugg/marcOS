@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ElementRef, inject, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
@@ -35,9 +35,10 @@ export const WALLPAPER_OPTIONS: WallpaperOption[] = [
   imports: [CommonModule, FormsModule, DialogModule, TabsModule, ToggleSwitchModule, TranslatePipe],
   templateUrl: './settings-dialog.component.html',
   styleUrl: './settings-dialog.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsDialogComponent {
-  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  private readonly fileInput = viewChild<ElementRef<HTMLInputElement>>('fileInput');
 
   protected readonly dockState = inject(DockStateService);
   protected readonly themeService = inject(ThemeService);
@@ -71,7 +72,7 @@ export class SettingsDialogComponent {
 
   /** Open the hidden file picker. */
   openFilePicker(): void {
-    this.fileInput.nativeElement.click();
+    this.fileInput()?.nativeElement.click();
   }
 
   /** Read the selected image file as a base64 data URL and apply it as wallpaper. */
