@@ -178,6 +178,12 @@
     "label": "Resetting…"
   },
   "palette": {
+    "placeholder": "Search a command...",
+    "noResults": "No command found for",
+    "footer.navigate": "navigate",
+    "footer.execute": "execute",
+    "footer.close": "close",
+    "footer.open": "open",
     "finder.label": "Finder",
     "finder.desc": "Open Finder",
     "terminal.label": "Terminal",
@@ -194,6 +200,9 @@
     "linkedin.desc": "My LinkedIn profile",
     "closeAll.label": "Close all windows",
     "closeAll.desc": "Close all open dialogs"
+  },
+  "notFound": {
+    "restoring": "Restoring…"
   },
   "welcome": {
     "title": "Welcome to marcOS",
