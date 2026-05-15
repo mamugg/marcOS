@@ -10,11 +10,12 @@ import { DockStateService } from '@features/dock/services/dock-state.service';
 import { SoundService } from '@app/shared/services/sound.service';
 import { SoundEffectsService } from '@app/shared/services/sound-effects.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { SplashScreenComponent } from '@features/splash/splash-screen.component';
 
 @Component({
   selector: 'app-main-screen',
   standalone: true,
-  imports: [CommonModule, ThemeSwitcher, TopbarComponent, DockWindowComponent, DesktopIconComponent, CommandPaletteComponent, WelcomeDialogComponent, TranslatePipe],
+  imports: [CommonModule, ThemeSwitcher, TopbarComponent, DockWindowComponent, DesktopIconComponent, CommandPaletteComponent, WelcomeDialogComponent, TranslatePipe, SplashScreenComponent],
   templateUrl: './main-screen.component.html',
   styleUrl: './main-screen.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
