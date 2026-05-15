@@ -178,6 +178,12 @@
     "label": "Réinitialisation…"
   },
   "palette": {
+    "placeholder": "Rechercher une commande...",
+    "noResults": "Aucune commande trouvée pour",
+    "footer.navigate": "naviguer",
+    "footer.execute": "exécuter",
+    "footer.close": "fermer",
+    "footer.open": "ouvrir",
     "finder.label": "Finder",
     "finder.desc": "Ouvrir le Finder",
     "terminal.label": "Terminal",
@@ -194,6 +200,9 @@
     "linkedin.desc": "Mon profil LinkedIn",
     "closeAll.label": "Fermer toutes les fenêtres",
     "closeAll.desc": "Fermer tous les dialogs ouverts"
+  },
+  "notFound": {
+    "restoring": "Réinitialisation…"
   },
   "welcome": {
     "title": "Bienvenue sur marcOS",

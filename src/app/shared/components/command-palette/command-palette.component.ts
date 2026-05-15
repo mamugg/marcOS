@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { PaletteCommand } from '@app/shared/models';
@@ -19,7 +19,7 @@ import { PaletteCommand } from '@app/shared/models';
 @Component({
   selector: 'app-command-palette',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './command-palette.component.html',
   styleUrl: './command-palette.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
