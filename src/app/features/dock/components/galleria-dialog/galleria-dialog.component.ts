@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { PhotoService } from '@app/shared/services/photo.service';
 import { ErrorService } from '@app/shared/services/error.service';
 import { DockStateService } from '@features/dock/services/dock-state.service';
@@ -27,9 +27,10 @@ import { Photo } from '@app/shared/models';
   providers: [PhotoService]
 })
 export class GalleriaDialogComponent implements OnInit {
-  private photoService = inject(PhotoService);
-  private errorService = inject(ErrorService);
-  protected dockState = inject(DockStateService);
+  private readonly photoService = inject(PhotoService);
+  private readonly errorService = inject(ErrorService);
+  private readonly translate = inject(TranslateService);
+  protected readonly dockState = inject(DockStateService);
 
   images = signal<Photo[]>([]);
   isLoading = signal(true);
@@ -41,7 +42,7 @@ export class GalleriaDialogComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.loadImages();
+    void this.loadImages();
   }
 
   /**
@@ -85,20 +86,21 @@ export class GalleriaDialogComponent implements OnInit {
     }
   }
 
-  private loadImages(): void {
-    this.photoService
-      .getImages()
-      .then(data => {
-        if (data.length > 0) {
-          this.images.set(data);
-        } else {
-          this.errorService.handleWarning('Aucune image disponible', 'Galerie vide');
-        }
-        this.isLoading.set(false);
-      })
-      .catch((error: unknown) => {
-        this.errorService.handleError(error, 'Erreur de chargement images');
-        this.isLoading.set(false);
-      });
+  private async loadImages(): Promise<void> {
+    try {
+      const data = await this.photoService.getImages();
+      if (data.length > 0) {
+        this.images.set(data);
+      } else {
+        this.errorService.handleWarning(
+          this.translate.instant('galleria.error.empty'),
+          this.translate.instant('galleria.error.emptyTitle')
+        );
+      }
+    } catch (error) {
+      this.errorService.handleError(error, this.translate.instant('galleria.error.load'));
+    } finally {
+      this.isLoading.set(false);
+    }
   }
 }
