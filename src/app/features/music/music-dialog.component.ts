@@ -1,5 +1,5 @@
 import {
-  Component, ChangeDetectionStrategy, inject, signal, computed, effect, ViewChild, ElementRef
+  Component, ChangeDetectionStrategy, inject, signal, computed, effect, viewChild, ElementRef
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -7,15 +7,7 @@ import { DialogModule } from 'primeng/dialog';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { SoundService } from '@app/shared/services/sound.service';
-
-export interface Track {
-  id: string;
-  title: string;
-  artist: string;
-  album: string;
-  youtubeId: string;
-  duration: string;
-}
+import { Track } from '@app/shared/models';
 
 export const PLAYLIST: Track[] = [
   { id: '1', title: 'Get Lucky',       artist: 'Daft Punk ft. Pharrell Williams', album: 'Random Access Memories',        youtubeId: '5NV6Rdv1h3Q', duration: '6:09' },
@@ -39,7 +31,7 @@ export class MusicDialogComponent {
   private readonly sanitizer = inject(DomSanitizer);
   private readonly soundService = inject(SoundService);
 
-  @ViewChild('ytIframe') private ytIframe?: ElementRef<HTMLIFrameElement>;
+  private readonly ytIframe = viewChild<ElementRef<HTMLIFrameElement>>('ytIframe');
 
   readonly playlist = PLAYLIST;
   readonly currentTrack = signal<Track | null>(null);
@@ -99,7 +91,7 @@ export class MusicDialogComponent {
    * Requires enablejsapi=1 in the embed URL.
    */
   private applyVolumeToIframe(volume: number, enabled: boolean): void {
-    const win = this.ytIframe?.nativeElement?.contentWindow;
+    const win = this.ytIframe()?.nativeElement?.contentWindow;
     if (!win) return;
 
     if (!enabled) {
