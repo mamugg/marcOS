@@ -11,20 +11,26 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { PaletteCommand } from '@app/shared/models';
 
 @Component({
   selector: 'app-command-palette',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './command-palette.component.html',
   styleUrl: './command-palette.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CommandPaletteComponent {
-  private dockState = inject(DockStateService);
-  private searchInputRef = viewChild<ElementRef<HTMLInputElement>>('searchInput');
+  private readonly dockState = inject(DockStateService);
+  private readonly translate = inject(TranslateService);
+  private readonly searchInputRef = viewChild<ElementRef<HTMLInputElement>>('searchInput');
+
+  /** Reactive signal that fires on each language change — drives command label recomputation. */
+  private readonly langChanged = toSignal(this.translate.onLangChange);
 
   isOpen = this.dockState.displayCommandPalette;
   searchQuery = signal('');
@@ -40,70 +46,74 @@ export class CommandPaletteComponent {
     });
   }
 
-  private readonly allCommands: PaletteCommand[] = [
-    {
-      id: 'finder',
-      label: 'Finder',
-      description: 'Ouvrir le Finder',
-      icon: '🗂',
-      action: () => this.dockState.toggleFinder()
-    },
-    {
-      id: 'terminal',
-      label: 'Terminal',
-      description: 'Ouvrir le Terminal',
-      icon: '💻',
-      shortcut: '⌃T',
-      action: () => this.dockState.toggleTerminal()
-    },
-    {
-      id: 'projects',
-      label: 'Projects',
-      description: 'Voir mes projets',
-      icon: '🚀',
-      action: () => this.dockState.toggleProjects()
-    },
-    {
-      id: 'photos',
-      label: 'Photos',
-      description: 'Ouvrir la galerie photos',
-      icon: '📷',
-      action: () => this.dockState.toggleGalleria()
-    },
-    {
-      id: 'contact',
-      label: 'Contact',
-      description: "M'envoyer un message",
-      icon: '✉️',
-      action: () => this.dockState.toggleMail()
-    },
-    {
-      id: 'github',
-      label: 'GitHub',
-      description: 'Voir mon profil GitHub',
-      icon: '🐙',
-      action: () => window.open('https://github.com/mamugg', '_blank')
-    },
-    {
-      id: 'linkedin',
-      label: 'LinkedIn',
-      description: 'Mon profil LinkedIn',
-      icon: '💼',
-      action: () => window.open('https://linkedin.com/in/marc', '_blank')
-    },
-    {
-      id: 'close-all',
-      label: 'Fermer toutes les fenêtres',
-      description: 'Fermer tous les dialogs ouverts',
-      icon: '✕',
-      action: () => this.dockState.closeAll()
-    }
-  ];
+  private readonly allCommands = computed<PaletteCommand[]>(() => {
+    this.langChanged(); // reactive dependency — recompute on language switch
+    const t = (key: string) => this.translate.instant(key);
+    return [
+      {
+        id: 'finder',
+        label: t('palette.finder.label'),
+        description: t('palette.finder.desc'),
+        icon: '🗂',
+        action: () => this.dockState.toggleFinder()
+      },
+      {
+        id: 'terminal',
+        label: t('palette.terminal.label'),
+        description: t('palette.terminal.desc'),
+        icon: '💻',
+        shortcut: '⌃T',
+        action: () => this.dockState.toggleTerminal()
+      },
+      {
+        id: 'projects',
+        label: t('palette.projects.label'),
+        description: t('palette.projects.desc'),
+        icon: '🚀',
+        action: () => this.dockState.toggleProjects()
+      },
+      {
+        id: 'photos',
+        label: t('palette.photos.label'),
+        description: t('palette.photos.desc'),
+        icon: '📷',
+        action: () => this.dockState.toggleGalleria()
+      },
+      {
+        id: 'contact',
+        label: t('palette.contact.label'),
+        description: t('palette.contact.desc'),
+        icon: '✉️',
+        action: () => this.dockState.toggleMail()
+      },
+      {
+        id: 'github',
+        label: t('palette.github.label'),
+        description: t('palette.github.desc'),
+        icon: '🐙',
+        action: () => window.open('https://github.com/mamugg', '_blank')
+      },
+      {
+        id: 'linkedin',
+        label: t('palette.linkedin.label'),
+        description: t('palette.linkedin.desc'),
+        icon: '💼',
+        action: () => window.open('https://linkedin.com/in/marc-antoine-muggeo-87b794180', '_blank')
+      },
+      {
+        id: 'close-all',
+        label: t('palette.closeAll.label'),
+        description: t('palette.closeAll.desc'),
+        icon: '✕',
+        action: () => this.dockState.closeAll()
+      }
+    ];
+  });
 
   readonly filteredCommands = computed(() => {
     const q = this.searchQuery().toLowerCase().trim();
-    if (!q) return this.allCommands;
-    return this.allCommands.filter(
+    if (!q) return this.allCommands();
+    return this.allCommands().filter(
       cmd =>
         cmd.label.toLowerCase().includes(q) ||
         cmd.description.toLowerCase().includes(q)

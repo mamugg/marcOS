@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, DestroyRef, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
@@ -34,11 +34,12 @@ interface ContactFormShape {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MailDialogComponent {
-  protected dockState = inject(DockStateService);
-  private fb = inject(FormBuilder);
-  private errorService = inject(ErrorService);
-  private translate = inject(TranslateService);
-  private emailService = inject(EmailService);
+  protected readonly dockState = inject(DockStateService);
+  private readonly fb = inject(FormBuilder);
+  private readonly errorService = inject(ErrorService);
+  private readonly translate = inject(TranslateService);
+  private readonly emailService = inject(EmailService);
+  private readonly destroyRef = inject(DestroyRef);
 
   isSubmitting = signal(false);
   isSubmitted = signal(false);
@@ -65,34 +66,33 @@ export class MailDialogComponent {
     return !!(c?.invalid && c?.touched);
   }
 
-  submit(): void {
+  async submit(): Promise<void> {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
     this.isSubmitting.set(true);
-
     const { name, email, subject, message } = this.form.getRawValue();
+    const mailContext = this.translate.instant('dock.mail');
 
-    this.emailService
-      .send({
+    try {
+      await this.emailService.send({
         from_name: name ?? '',
         from_email: email ?? '',
         subject: subject ?? '',
         message: message ?? '',
-      })
-      .then(() => {
-        this.isSubmitting.set(false);
-        this.isSubmitted.set(true);
-        this.errorService.handleSuccess(this.translate.instant('mail.success.title'), 'Mail');
-        this.form.reset();
-        setTimeout(() => this.isSubmitted.set(false), 3000);
-      })
-      .catch((err: unknown) => {
-        this.isSubmitting.set(false);
-        this.errorService.handleError(err, 'Mail');
       });
+      this.isSubmitted.set(true);
+      this.errorService.handleSuccess(this.translate.instant('mail.success.title'), mailContext);
+      this.form.reset();
+      const resetTimer = setTimeout(() => this.isSubmitted.set(false), 3000);
+      this.destroyRef.onDestroy(() => clearTimeout(resetTimer));
+    } catch (err) {
+      this.errorService.handleError(err, mailContext);
+    } finally {
+      this.isSubmitting.set(false);
+    }
   }
 
   onDialogHide(): void {

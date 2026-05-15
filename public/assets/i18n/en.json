@@ -110,7 +110,10 @@
   "galleria": {
     "header": "Photos",
     "back": "Back to grid",
-    "setWallpaper": "Set as Wallpaper"
+    "setWallpaper": "Set as Wallpaper",
+    "error.empty": "No images available",
+    "error.emptyTitle": "Empty gallery",
+    "error.load": "Image load error"
   },
   "music": {
     "title": "Music",
@@ -121,7 +124,10 @@
     "track.duration": "Duration"
   },
   "finder": {
-    "header": "Finder"
+    "header": "Finder",
+    "error.empty": "No files available",
+    "error.emptyTitle": "Empty Finder",
+    "error.load": "Finder load error"
   },
   "desktop": {
     "icons.label": "Desktop icons",
@@ -167,6 +173,36 @@
     "control.language": "Language",
     "control.sound": "Sound",
     "control.settings": "System Preferences"
+  },
+  "reboot": {
+    "label": "Resetting…"
+  },
+  "palette": {
+    "placeholder": "Search a command...",
+    "noResults": "No command found for",
+    "footer.navigate": "navigate",
+    "footer.execute": "execute",
+    "footer.close": "close",
+    "footer.open": "open",
+    "finder.label": "Finder",
+    "finder.desc": "Open Finder",
+    "terminal.label": "Terminal",
+    "terminal.desc": "Open Terminal",
+    "projects.label": "Projects",
+    "projects.desc": "View my projects",
+    "photos.label": "Photos",
+    "photos.desc": "Open photo gallery",
+    "contact.label": "Contact",
+    "contact.desc": "Send me a message",
+    "github.label": "GitHub",
+    "github.desc": "View my GitHub profile",
+    "linkedin.label": "LinkedIn",
+    "linkedin.desc": "My LinkedIn profile",
+    "closeAll.label": "Close all windows",
+    "closeAll.desc": "Close all open dialogs"
+  },
+  "notFound": {
+    "restoring": "Restoring…"
   },
   "welcome": {
     "title": "Welcome to marcOS",

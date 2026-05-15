@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { TreeModule } from 'primeng/tree';
 import { TreeNode } from 'primeng/api';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { NodeService } from '@app/shared/services/node.service';
 import { ErrorService } from '@app/shared/services/error.service';
 import { DockStateService } from '@features/dock/services/dock-state.service';
@@ -18,33 +18,32 @@ import { DockStateService } from '@features/dock/services/dock-state.service';
   providers: [NodeService]
 })
 export class FinderDialogComponent implements OnInit {
-  private nodeService = inject(NodeService);
-  private errorService = inject(ErrorService);
-  protected dockState = inject(DockStateService);
+  private readonly nodeService = inject(NodeService);
+  private readonly errorService = inject(ErrorService);
+  private readonly translate = inject(TranslateService);
+  protected readonly dockState = inject(DockStateService);
 
   nodes = signal<TreeNode[]>([]);
   isLoading = signal(true);
 
-  ngOnInit() {
-    this.loadFiles();
+  ngOnInit(): void {
+    void this.loadFiles();
   }
 
-  private loadFiles(): void {
+  private async loadFiles(): Promise<void> {
     try {
-      this.nodeService.getFiles().then((data) => {
-        if (data && data.length > 0) {
-          this.nodes.set(data);
-          this.isLoading.set(false);
-        } else {
-          this.errorService.handleWarning('Aucun fichier disponible', 'Finder vide');
-          this.isLoading.set(false);
-        }
-      }).catch((error) => {
-        this.errorService.handleError(error, 'Erreur de chargement Finder');
-        this.isLoading.set(false);
-      });
+      const data = await this.nodeService.getFiles();
+      if (data.length > 0) {
+        this.nodes.set(data);
+      } else {
+        this.errorService.handleWarning(
+          this.translate.instant('finder.error.empty'),
+          this.translate.instant('finder.error.emptyTitle')
+        );
+      }
     } catch (error) {
-      this.errorService.handleError(error, 'Erreur critique Finder');
+      this.errorService.handleError(error, this.translate.instant('finder.error.load'));
+    } finally {
       this.isLoading.set(false);
     }
   }

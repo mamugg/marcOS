@@ -1,6 +1,5 @@
 import {
-  Component, ChangeDetectionStrategy, inject, signal, computed,
-  ViewChild, ElementRef
+  Component, ChangeDetectionStrategy, inject, signal, computed, viewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenubarModule } from 'primeng/menubar';
@@ -48,9 +47,9 @@ export class TopbarComponent {
   readonly themeService = inject(ThemeService);
   readonly soundService = inject(SoundService);
 
-  @ViewChild('wifiPanel') wifiPanel!: Popover;
-  @ViewChild('volumePanel') volumePanel!: Popover;
-  @ViewChild('controlPanel') controlPanel!: Popover;
+  private readonly wifiPanel = viewChild<Popover>('wifiPanel');
+  private readonly volumePanel = viewChild<Popover>('volumePanel');
+  private readonly controlPanel = viewChild<Popover>('controlPanel');
 
   menubarItems = signal<MenuItem[]>(this.dockMenuService.getMenubarItems());
   currentTime = signal<string>('');
@@ -96,12 +95,12 @@ export class TopbarComponent {
   }
 
   onWifiClick(event: MouseEvent): void {
-    this.wifiPanel.toggle(event);
+    this.wifiPanel()?.toggle(event);
   }
 
   onVolumeClick(event: MouseEvent): void {
     this.sliderVolume.set(this.soundService.volume());
-    this.volumePanel.toggle(event);
+    this.volumePanel()?.toggle(event);
   }
 
   onSearchClick(): void {
@@ -109,7 +108,7 @@ export class TopbarComponent {
   }
 
   onControlClick(event: MouseEvent): void {
-    this.controlPanel.toggle(event);
+    this.controlPanel()?.toggle(event);
   }
 
   onVolumeChange(value: number | number[]): void {
@@ -123,7 +122,7 @@ export class TopbarComponent {
   }
 
   joinNetwork(network: WifiNetwork): void {
-    this.wifiPanel?.hide();
+    this.wifiPanel()?.hide();
     this.messageService.add({
       severity: 'success',
       summary: this.translate.instant('topbar.wifi.joined'),
@@ -139,7 +138,7 @@ export class TopbarComponent {
   }
 
   openSettings(): void {
-    this.controlPanel?.hide();
+    this.controlPanel()?.hide();
     this.dockStateService.setSettings(true);
   }
 

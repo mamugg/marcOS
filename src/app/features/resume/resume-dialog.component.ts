@@ -5,19 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { TabsModule } from 'primeng/tabs';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DockStateService } from '@features/dock/services/dock-state.service';
-
-export interface Experience {
-  role: string;
-  company: string;
-  period: string;
-  description: string;
-}
-
-export interface Education {
-  degree: string;
-  school: string;
-  period: string;
-}
+import { Experience, Education } from '@app/shared/models';
 
 @Component({
   selector: 'app-resume-dialog',
