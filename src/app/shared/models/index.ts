@@ -47,3 +47,36 @@ export interface PaletteCommand {
   shortcut?: string;
   action: () => void;
 }
+
+export interface Track {
+  id: string;
+  title: string;
+  artist: string;
+  album: string;
+  youtubeId: string;
+  duration: string;
+}
+
+export interface Experience {
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+}
+
+export interface Education {
+  degree: string;
+  school: string;
+  period: string;
+}
+
+export interface Skill {
+  name: string;
+  level: number;
+}
+
+export interface SkillCategory {
+  labelKey: string;
+  icon: string;
+  skills: Skill[];
+}

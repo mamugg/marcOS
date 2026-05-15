@@ -3,17 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DockStateService } from '@features/dock/services/dock-state.service';
-
-export interface Skill {
-  name: string;
-  level: number;
-}
-
-export interface SkillCategory {
-  labelKey: string;
-  icon: string;
-  skills: Skill[];
-}
+import { Skill, SkillCategory } from '@app/shared/models';
 
 @Component({
   selector: 'app-skills-dialog',

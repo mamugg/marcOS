@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { GalleriaDialogComponent } from './galleria-dialog.component';
 import { PhotoService } from '@app/shared/services/photo.service';
 import { ErrorService } from '@app/shared/services/error.service';
@@ -30,7 +31,8 @@ describe('GalleriaDialogComponent', () => {
       imports: [GalleriaDialogComponent],
       providers: [
         { provide: DockStateService, useValue: dockStateMock },
-        { provide: ErrorService, useValue: errorServiceMock }
+        { provide: ErrorService, useValue: errorServiceMock },
+        { provide: TranslateService, useValue: { instant: (k: string) => k } }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

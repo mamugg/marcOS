@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
@@ -35,6 +35,7 @@ export const WALLPAPER_OPTIONS: WallpaperOption[] = [
   imports: [CommonModule, FormsModule, DialogModule, TabsModule, ToggleSwitchModule, TranslatePipe],
   templateUrl: './settings-dialog.component.html',
   styleUrl: './settings-dialog.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsDialogComponent {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
