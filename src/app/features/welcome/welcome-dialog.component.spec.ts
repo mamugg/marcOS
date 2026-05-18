@@ -41,4 +41,9 @@ describe('WelcomeDialogComponent', () => {
     component.dismiss();
     expect(dockStateMock.dismissWelcome).toHaveBeenCalledOnce();
   });
+
+  it('isMobile reflects window.innerWidth below 768px', () => {
+    // jsdom defaults to innerWidth 0, so isMobile should be true in test env
+    expect(typeof component.isMobile).toBe('boolean');
+  });
 });

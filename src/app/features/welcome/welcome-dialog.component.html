@@ -30,6 +30,13 @@
       }
     </ul>
 
+    @if (isMobile) {
+      <div class="welcome-mobile-notice">
+        <span class="welcome-mobile-icon">🖥️</span>
+        <p class="welcome-mobile-text">{{ 'welcome.mobile.notice' | translate }}</p>
+      </div>
+    }
+
     <p class="welcome-hint">{{ 'welcome.hint' | translate }}</p>
   </div>
 
