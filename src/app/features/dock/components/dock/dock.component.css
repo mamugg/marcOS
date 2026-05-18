@@ -56,3 +56,24 @@
   border-radius: 22%;
   pointer-events: none;
 }
+
+@media (max-width: 767px) {
+  /* 5-column grid: dock width = 5×44 + 4×6 + 28px padding = 272 px — no empty space */
+  .dock-list {
+    display: grid;
+    grid-template-columns: repeat(5, 44px);
+    justify-items: center;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .dock-icon {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  /* Disable magnification on mobile — inline transform is overridden */
+  .dock-item {
+    transform: none !important;
+  }
+}
