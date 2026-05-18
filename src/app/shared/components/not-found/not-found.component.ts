@@ -59,6 +59,7 @@ export class NotFoundComponent implements OnInit {
 
   protected goHome(): void {
     this.restoring.set(true);
+    sessionStorage.setItem('marcOS_skipSplash', '1');
     const redirect = setTimeout(() => this.router.navigate(['/']), RESTORE_REDIRECT_MS);
     this.destroyRef.onDestroy(() => clearTimeout(redirect));
   }

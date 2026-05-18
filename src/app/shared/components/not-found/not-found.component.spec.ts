@@ -67,4 +67,11 @@ describe('NotFoundComponent', () => {
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
     vi.useRealTimers();
   });
+
+  it('should set marcOS_skipSplash in sessionStorage when goHome is called', () => {
+    vi.useFakeTimers();
+    component['goHome']();
+    expect(sessionStorage.getItem('marcOS_skipSplash')).toBe('1');
+    vi.useRealTimers();
+  });
 });
