@@ -213,6 +213,9 @@
     "tip.topbar": "La barre du haut — menus et raccourcis système",
     "tip.palette": "Palette de commandes — accès rapide avec ⌘K",
     "cta": "Commencer l'exploration",
-    "hint": "Cette fenêtre ne s'affiche qu'une seule fois."
+    "hint": "Cette fenêtre ne s'affiche qu'une seule fois.",
+    "mobile": {
+      "notice": "L'expérience est pensée pour desktop — mais tu peux explorer depuis mobile sans problème !"
+    }
   }
 }
