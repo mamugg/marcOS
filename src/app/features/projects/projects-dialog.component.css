@@ -42,6 +42,12 @@
   padding-right: 4px;
 }
 
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .project-card {
   border: 1px solid var(--p-surface-200);
   border-radius: 12px;

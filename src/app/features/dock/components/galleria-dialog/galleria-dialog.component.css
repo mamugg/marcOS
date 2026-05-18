@@ -20,6 +20,22 @@
   background: #1c1c1e;
 }
 
+@media (max-width: 640px) {
+  .photos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-auto-rows: 90px;
+  }
+
+  .lightbox-img {
+    max-width: calc(100% - 40px);
+  }
+
+  .lb-nav {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 .photo-thumb {
   position: relative;
   background: none;

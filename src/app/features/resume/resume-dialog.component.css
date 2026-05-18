@@ -3,6 +3,7 @@
   align-items: center;
   gap: 16px;
   padding: 4px 0;
+  flex-wrap: wrap;
 }
 
 .resume-avatar {
