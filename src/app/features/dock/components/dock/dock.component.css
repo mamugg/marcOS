@@ -59,13 +59,21 @@
 
 @media (max-width: 767px) {
   .dock-bar {
-    max-width: calc(100vw - 20px);
+    width: calc(100vw - 20px);
   }
 
   .dock-list {
+    width: 100%;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    align-content: center;
+  }
+
+  /* Scale icons down to 44 px so ~7 fit per row → max 2 rows for 10 icons */
+  .dock-icon {
+    width: 44px !important;
+    height: 44px !important;
   }
 
   /* Disable magnification on mobile — inline transform is overridden */
