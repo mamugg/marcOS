@@ -161,7 +161,7 @@ describe('GalleriaDialogComponent', () => {
 
     component.openPhoto(0);
     component.setWallpaper();
-    expect(dockStateMock.wallpaper()).toBe('img1.jpg');
+    expect(dockStateMock.wallpaper()).toBe("url('img1.jpg') center/cover no-repeat");
   });
 
   it('should not call setWallpaper when no photo is selected', () => {
