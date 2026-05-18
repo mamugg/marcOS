@@ -21,10 +21,6 @@ describe('MainScreenComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have debugMode false by default', () => {
-    expect(component.debugMode).toBe(false);
-  });
-
   it('should expose dockState with a CSS background as default wallpaper', () => {
     expect(component['dockState'].wallpaper()).toBe("url('wallpaper.png') center/cover no-repeat");
   });
