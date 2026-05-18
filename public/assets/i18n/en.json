@@ -213,6 +213,9 @@
     "tip.topbar": "The top bar — system menus and shortcuts",
     "tip.palette": "Command palette — quick access with ⌘K",
     "cta": "Start exploring",
-    "hint": "This window only appears once."
+    "hint": "This window only appears once.",
+    "mobile": {
+      "notice": "This experience is designed for desktop — but feel free to explore on mobile too!"
+    }
   }
 }

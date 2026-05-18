@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
@@ -17,6 +18,10 @@ import { SoundService } from '@app/shared/services/sound.service';
 export class WelcomeDialogComponent {
   protected dockState = inject(DockStateService);
   private sound = inject(SoundService);
+
+  /** True when opened on a narrow touch device (< 768 px). */
+  readonly isMobile: boolean =
+    isPlatformBrowser(inject(PLATFORM_ID)) && window.innerWidth < 768;
 
   readonly tips = [
     { icon: '🖥️', key: 'welcome.tip.dock' },

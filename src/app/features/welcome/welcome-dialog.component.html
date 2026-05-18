@@ -5,6 +5,7 @@
   [resizable]="false"
   [draggable]="false"
   [style]="{ width: '440px' }"
+  [breakpoints]="{ '640px': '95vw' }"
   styleClass="welcome-dialog"
 >
   <ng-template pTemplate="header">
@@ -28,6 +29,13 @@
         </li>
       }
     </ul>
+
+    @if (isMobile) {
+      <div class="welcome-mobile-notice">
+        <span class="welcome-mobile-icon">🖥️</span>
+        <p class="welcome-mobile-text">{{ 'welcome.mobile.notice' | translate }}</p>
+      </div>
+    }
 
     <p class="welcome-hint">{{ 'welcome.hint' | translate }}</p>
   </div>
