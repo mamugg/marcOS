@@ -8,7 +8,7 @@ import { AccentColorService } from '@app/shared/services/accent-color.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /** Scale applied at each distance from the hovered item (index = distance) */
-const SCALE_AT_DISTANCE: readonly number[] = [1.8, 1.4, 1.2];
+const SCALE_AT_DISTANCE: readonly number[] = [1.35, 1.18, 1.08];
 
 @Component({
   selector: 'app-dock',

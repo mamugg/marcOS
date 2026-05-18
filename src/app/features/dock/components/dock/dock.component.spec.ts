@@ -78,27 +78,27 @@ describe('DockComponent', () => {
       transforms.forEach(t => expect(t).toContain('scale(1)'));
     });
 
-    it('should scale the hovered item to 1.8', () => {
+    it('should scale the hovered item to 1.35', () => {
       const fixture = TestBed.createComponent(DockComponent);
       fixture.componentInstance.setHovered(1);
       const transforms = fixture.componentInstance.itemTransforms();
-      expect(transforms[1]).toContain('scale(1.8)');
+      expect(transforms[1]).toContain('scale(1.35)');
     });
 
-    it('should scale items at distance 1 to 1.4', () => {
+    it('should scale items at distance 1 to 1.18', () => {
       const fixture = TestBed.createComponent(DockComponent);
       fixture.componentInstance.setHovered(2);
       const transforms = fixture.componentInstance.itemTransforms();
-      expect(transforms[1]).toContain('scale(1.4)');
-      expect(transforms[3]).toContain('scale(1.4)');
+      expect(transforms[1]).toContain('scale(1.18)');
+      expect(transforms[3]).toContain('scale(1.18)');
     });
 
-    it('should scale items at distance 2 to 1.2', () => {
+    it('should scale items at distance 2 to 1.08', () => {
       const fixture = TestBed.createComponent(DockComponent);
       fixture.componentInstance.setHovered(2);
       const transforms = fixture.componentInstance.itemTransforms();
-      expect(transforms[0]).toContain('scale(1.2)');
-      expect(transforms[4]).toContain('scale(1.2)');
+      expect(transforms[0]).toContain('scale(1.08)');
+      expect(transforms[4]).toContain('scale(1.08)');
     });
 
     it('should apply scale(1) to items beyond distance 2', () => {
@@ -121,9 +121,9 @@ describe('DockComponent', () => {
     it('should recompute when hoveredIndex changes', () => {
       const fixture = TestBed.createComponent(DockComponent);
       fixture.componentInstance.setHovered(0);
-      expect(fixture.componentInstance.itemTransforms()[0]).toContain('scale(1.8)');
+      expect(fixture.componentInstance.itemTransforms()[0]).toContain('scale(1.35)');
       fixture.componentInstance.setHovered(1);
-      expect(fixture.componentInstance.itemTransforms()[0]).toContain('scale(1.4)');
+      expect(fixture.componentInstance.itemTransforms()[0]).toContain('scale(1.18)');
       fixture.componentInstance.clearHovered();
       expect(fixture.componentInstance.itemTransforms()[0]).toContain('scale(1)');
     });
