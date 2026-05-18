@@ -82,7 +82,7 @@ export class GalleriaDialogComponent implements OnInit {
   setWallpaper(): void {
     const photo = this.selectedPhoto();
     if (photo) {
-      this.dockState.setWallpaper(photo.itemImageSrc);
+      this.dockState.setWallpaper(`url('${photo.itemImageSrc}') center/cover no-repeat`);
     }
   }
 
