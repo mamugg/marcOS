@@ -88,7 +88,11 @@ export class RebootOverlayComponent {
   constructor() {
     effect(() => {
       if (this.dockState.rebooting()) {
-        setTimeout(() => window.location.reload(), 3000);
+        setTimeout(() => {
+          // Signal to SplashScreenComponent that the reload is post-reboot so it skips its animation.
+          sessionStorage.setItem('marcOS_skipSplash', '1');
+          window.location.reload();
+        }, 3000);
       }
     });
   }
