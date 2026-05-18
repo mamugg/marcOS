@@ -50,15 +50,6 @@ export class ThemeService {
   }
 
   private _persist(dark: boolean): void {
-    // Own storage (primary)
     this._storage.set('theme', dark);
-
-    // Keep ThemeSwitcher's key in sync so it restores correctly on reload
-    if (!isPlatformBrowser(this._platformId)) return;
-    try {
-      const raw = localStorage.getItem('themeSwitcherState');
-      const state: Record<string, unknown> = raw ? (JSON.parse(raw) as Record<string, unknown>) : {};
-      localStorage.setItem('themeSwitcherState', JSON.stringify({ ...state, darkTheme: dark }));
-    } catch { /* ignore */ }
   }
 }
