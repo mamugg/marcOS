@@ -64,6 +64,12 @@ export default defineConfig({
         'src/test.ts',
         '**/*.spec.ts',
       ],
+      thresholds: {
+        statements: 80,
+        branches: 80,
+        functions: 80,
+        lines: 80,
+      },
     },
   },
   resolve: {
