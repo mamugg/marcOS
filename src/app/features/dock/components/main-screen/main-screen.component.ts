@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThemeSwitcher } from '@app/shared/components/theme-switcher.component';
 import { TopbarComponent } from '@features/dock/components/topbar/topbar.component';
 import { DockWindowComponent } from '../dock-window/dock-window.component';
 import { DesktopIconComponent } from '../desktop-icon/desktop-icon.component';
@@ -15,13 +14,12 @@ import { SplashScreenComponent } from '@features/splash/splash-screen.component'
 @Component({
   selector: 'app-main-screen',
   standalone: true,
-  imports: [CommonModule, ThemeSwitcher, TopbarComponent, DockWindowComponent, DesktopIconComponent, CommandPaletteComponent, WelcomeDialogComponent, TranslatePipe, SplashScreenComponent],
+  imports: [CommonModule, TopbarComponent, DockWindowComponent, DesktopIconComponent, CommandPaletteComponent, WelcomeDialogComponent, TranslatePipe, SplashScreenComponent],
   templateUrl: './main-screen.component.html',
   styleUrl: './main-screen.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainScreenComponent {
-  debugMode = false;
   protected dockState = inject(DockStateService);
   protected sound = inject(SoundService);
 
