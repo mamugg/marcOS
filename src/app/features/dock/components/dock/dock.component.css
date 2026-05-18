@@ -58,19 +58,15 @@
 }
 
 @media (max-width: 767px) {
-  .dock-bar {
-    width: calc(100vw - 20px);
-  }
-
+  /* 5-column grid: dock width = 5×44 + 4×6 + 28px padding = 272 px — no empty space */
   .dock-list {
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(5, 44px);
+    justify-items: center;
     align-items: center;
-    align-content: center;
+    gap: 6px;
   }
 
-  /* Scale icons down to 44 px so ~7 fit per row → max 2 rows for 10 icons */
   .dock-icon {
     width: 44px !important;
     height: 44px !important;
