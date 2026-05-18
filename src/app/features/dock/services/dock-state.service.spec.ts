@@ -242,4 +242,80 @@ describe('DockStateService', () => {
     service.setWallpaper('linear-gradient(135deg, #fff 0%, #eee 100%)');
     expect(service.wallpaper()).toBe('linear-gradient(135deg, #fff 0%, #eee 100%)');
   });
+
+  it('should toggle music', () => {
+    service.toggleMusic();
+    expect(service.displayMusic()).toBe(true);
+    service.toggleMusic();
+    expect(service.displayMusic()).toBe(false);
+  });
+
+  it('should set music to explicit value', () => {
+    service.setMusic(true);
+    expect(service.displayMusic()).toBe(true);
+    service.setMusic(false);
+    expect(service.displayMusic()).toBe(false);
+  });
+
+  it('should toggle resume', () => {
+    service.toggleResume();
+    expect(service.displayResume()).toBe(true);
+    service.toggleResume();
+    expect(service.displayResume()).toBe(false);
+  });
+
+  it('should set resume to explicit value', () => {
+    service.setResume(true);
+    expect(service.displayResume()).toBe(true);
+    service.setResume(false);
+    expect(service.displayResume()).toBe(false);
+  });
+
+  it('should toggle skills', () => {
+    service.toggleSkills();
+    expect(service.displaySkills()).toBe(true);
+    service.toggleSkills();
+    expect(service.displaySkills()).toBe(false);
+  });
+
+  it('should set skills to explicit value', () => {
+    service.setSkills(true);
+    expect(service.displaySkills()).toBe(true);
+    service.setSkills(false);
+    expect(service.displaySkills()).toBe(false);
+  });
+
+  it('should toggle settings', () => {
+    service.toggleSettings();
+    expect(service.displaySettings()).toBe(true);
+    service.toggleSettings();
+    expect(service.displaySettings()).toBe(false);
+  });
+
+  it('closeAll() also closes music', () => {
+    service.setMusic(true);
+    service.closeAll();
+    expect(service.displayMusic()).toBe(false);
+  });
+
+  it('dismissWelcome() sets displayWelcome to false and persists', () => {
+    service.displayWelcome.set(true);
+    service.dismissWelcome();
+    expect(service.displayWelcome()).toBe(false);
+    const storage = TestBed.inject(StorageService);
+    expect(storage.get<boolean>('welcomeSeen')).toBe(true);
+  });
+
+  it('reboot() sets rebooting to true', () => {
+    service.reboot();
+    expect(service.rebooting()).toBe(true);
+  });
+
+  it('reboot() closes all windows', () => {
+    service.setFinder(true);
+    service.setTerminal(true);
+    service.reboot();
+    expect(service.displayFinder()).toBe(false);
+    expect(service.displayTerminal()).toBe(false);
+  });
 });

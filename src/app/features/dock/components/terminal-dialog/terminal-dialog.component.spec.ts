@@ -126,4 +126,63 @@ describe('TerminalDialogComponent', () => {
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/404']);
     vi.useRealTimers();
   });
+
+  it('should return current time for the time command', () => {
+    commandHandlerSubject.next('time');
+    expect(sendResponseCalls.length).toBe(1);
+    expect(typeof sendResponseCalls[0]).toBe('string');
+  });
+
+  it('should return working directory for pwd command', () => {
+    commandHandlerSubject.next('pwd');
+    expect(sendResponseCalls[0]).toContain('/home/marc');
+  });
+
+  it('should list files for ls command', () => {
+    commandHandlerSubject.next('ls');
+    expect(sendResponseCalls[0]).toContain('Documents');
+  });
+
+  it('should return a number for random command', () => {
+    commandHandlerSubject.next('random');
+    const n = Number(sendResponseCalls[0]);
+    expect(n).toBeGreaterThanOrEqual(0);
+    expect(n).toBeLessThan(100);
+  });
+
+  it('should respond when github command is called', () => {
+    vi.spyOn(window, 'open').mockImplementation(() => null);
+    commandHandlerSubject.next('github');
+    expect(sendResponseCalls[0]).toContain('GitHub');
+  });
+
+  it('should show portfolio info for portfolio command', () => {
+    commandHandlerSubject.next('portfolio');
+    expect(sendResponseCalls[0]).toContain('MarcOS');
+  });
+
+  it('should list skills for skills command', () => {
+    commandHandlerSubject.next('skills');
+    expect(sendResponseCalls[0]).toContain('Angular');
+  });
+
+  it('should show contact info for contact command', () => {
+    commandHandlerSubject.next('contact');
+    expect(sendResponseCalls[0]).toContain('github.com');
+  });
+
+  it('should greet "there" when no name is given', () => {
+    commandHandlerSubject.next('greet');
+    expect(sendResponseCalls[0]).toContain('there');
+  });
+
+  it('should show about info for about command', () => {
+    commandHandlerSubject.next('about');
+    expect(sendResponseCalls[0]).toContain('Marc');
+  });
+
+  it('should return empty response and not call sendResponse for empty string', () => {
+    commandHandlerSubject.next('');
+    expect(sendResponseCalls.length).toBe(0);
+  });
 });
