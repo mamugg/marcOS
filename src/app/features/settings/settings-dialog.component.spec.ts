@@ -6,6 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { SettingsDialogComponent, WALLPAPER_OPTIONS } from './settings-dialog.component';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { ThemeService } from '@app/shared/services/theme.service';
+import { SoundService } from '@app/shared/services/sound.service';
+import { LocaleService } from '@app/shared/services/locale.service';
 
 describe('SettingsDialogComponent', () => {
   let component: SettingsDialogComponent;
@@ -13,11 +15,13 @@ describe('SettingsDialogComponent', () => {
   const mockWallpaper = signal(WALLPAPER_OPTIONS[0].value);
   const mockDisplaySettings = signal(false);
   const mockIsDark = signal(false);
+  const mockSoundEnabled = signal(true);
 
   const dockStateMock = {
     wallpaper: mockWallpaper,
     displaySettings: mockDisplaySettings,
-    setWallpaper: vi.fn()
+    setWallpaper: vi.fn(),
+    reboot: vi.fn()
   };
 
   const themeMock = {
@@ -26,14 +30,30 @@ describe('SettingsDialogComponent', () => {
     toggleTheme: vi.fn()
   };
 
+  const soundServiceMock = {
+    soundEnabled: mockSoundEnabled,
+    setSoundEnabled: vi.fn((v: boolean) => mockSoundEnabled.set(v)),
+    volume: signal(80),
+    gainFactor: signal(0.8),
+    setVolume: vi.fn()
+  };
+
+  const localeServiceMock = {
+    locale: signal('fr'),
+    setLocale: vi.fn()
+  };
+
   beforeEach(async () => {
     vi.clearAllMocks();
+    mockSoundEnabled.set(true);
 
     await TestBed.configureTestingModule({
       imports: [SettingsDialogComponent],
       providers: [
         { provide: DockStateService, useValue: dockStateMock },
         { provide: ThemeService, useValue: themeMock },
+        { provide: SoundService, useValue: soundServiceMock },
+        { provide: LocaleService, useValue: localeServiceMock },
         { provide: TranslateService, useValue: { instant: (k: string) => k, onLangChange: EMPTY, use: vi.fn() } }
       ]
     })
@@ -90,5 +110,46 @@ describe('SettingsDialogComponent', () => {
 
     component.isDark = false;
     expect(themeMock.setTheme).toHaveBeenCalledWith(false);
+  });
+
+  it('soundEnabled getter reflects soundService.soundEnabled signal', () => {
+    mockSoundEnabled.set(true);
+    expect(component.soundEnabled).toBe(true);
+
+    mockSoundEnabled.set(false);
+    expect(component.soundEnabled).toBe(false);
+  });
+
+  it('soundEnabled setter calls soundService.setSoundEnabled', () => {
+    component.soundEnabled = false;
+    expect(soundServiceMock.setSoundEnabled).toHaveBeenCalledWith(false);
+  });
+
+  it('setLocale() delegates to localeService.setLocale', () => {
+    component.setLocale('en');
+    expect(localeServiceMock.setLocale).toHaveBeenCalledWith('en');
+  });
+
+  it('confirmReboot() calls dockState.reboot', () => {
+    component.confirmReboot();
+    expect(dockStateMock.reboot).toHaveBeenCalled();
+  });
+
+  it('onFileSelected() does nothing when no file is selected', () => {
+    const input = document.createElement('input');
+    Object.defineProperty(input, 'files', { value: null });
+    const event = new Event('change');
+    Object.defineProperty(event, 'target', { value: input });
+    expect(() => component.onFileSelected(event)).not.toThrow();
+  });
+
+  it('onFileSelected() does nothing for non-image files', () => {
+    const file = new File(['content'], 'test.txt', { type: 'text/plain' });
+    const input = document.createElement('input');
+    Object.defineProperty(input, 'files', { value: [file] });
+    const event = new Event('change');
+    Object.defineProperty(event, 'target', { value: input });
+    component.onFileSelected(event);
+    expect(dockStateMock.setWallpaper).not.toHaveBeenCalled();
   });
 });
