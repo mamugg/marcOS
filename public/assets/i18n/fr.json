@@ -1,5 +1,6 @@
 {
   "dock": {
+    "ariaLabel": "Dock",
     "finder": "Finder",
     "terminal": "Terminal",
     "projects": "Projets",
