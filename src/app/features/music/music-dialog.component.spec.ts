@@ -112,10 +112,28 @@ describe('MusicDialogComponent', () => {
   });
 
   it('onIframeLoad() makes the effect eligible to apply volume', () => {
-    // Before load: no crash even if volume/mute change
     expect(() => {
       mockVolume.set(50);
       mockSoundEnabled.set(false);
     }).not.toThrow();
+  });
+
+  it('onIframeLoad() does not throw', () => {
+    expect(() => component.onIframeLoad()).not.toThrow();
+  });
+
+  it('selectTrack() resets iframeLoaded before setting new track', () => {
+    component.selectTrack(PLAYLIST[0]);
+    component.onIframeLoad();
+    component.selectTrack(PLAYLIST[1]);
+    expect(component.currentTrack()).toEqual(PLAYLIST[1]);
+  });
+
+  it('embedUrl() changes when switching tracks', () => {
+    component.selectTrack(PLAYLIST[0]);
+    const url0 = String(component.embedUrl());
+    component.selectTrack(PLAYLIST[1]);
+    const url1 = String(component.embedUrl());
+    expect(url0).not.toBe(url1);
   });
 });

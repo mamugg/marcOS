@@ -189,6 +189,47 @@ describe('DockMenuService', () => {
     expect(called).toBe(true);
   });
 
+  // ── Additional dock items ──────────────────────────────────────────────────
+
+  it('should call toggleMail when Mail dock item is triggered', () => {
+    let called = false;
+    dockState.toggleMail = () => { called = true; };
+    const mail = service.getDockItems().find((i) => i.label === 'Mail');
+    mail?.command?.({} as never);
+    expect(called).toBe(true);
+  });
+
+  it('should call toggleSettings when Settings dock item is triggered', () => {
+    let called = false;
+    (dockState as Record<string, unknown>)['toggleSettings'] = () => { called = true; };
+    const settings = service.getDockItems().find((i) => i.label === 'Settings');
+    settings?.command?.({} as never);
+    expect(called).toBe(true);
+  });
+
+  it('should have LinkedIn item with external URL', () => {
+    const linkedin = service.getDockItems().find((i) => i.label === 'LinkedIn');
+    expect(linkedin?.url).toContain('linkedin.com');
+    expect(linkedin?.target).toBe('_blank');
+  });
+
+  it('should have GitHub item with external URL', () => {
+    const github = service.getDockItems().find((i) => i.label === 'GitHub');
+    expect(github?.url).toContain('github.com');
+    expect(github?.target).toBe('_blank');
+  });
+
+  // ── View > Preferences ──────────────────────────────────────────────────────
+
+  it('should have View > System Preferences that calls toggleSettings', () => {
+    let called = false;
+    (dockState as Record<string, unknown>)['toggleSettings'] = () => { called = true; };
+    const view = service.getMenubarItems().find((i) => i.label === 'View');
+    const item = view?.items?.find((i) => i.label === 'System Preferences');
+    item?.command?.({} as never);
+    expect(called).toBe(true);
+  });
+
   // ── Help / Rick Roll ────────────────────────────────────────────────────────
 
   it('should bury 🎶 rick roll deep in Help > Check for Updates > Download Update > Verify Integrity > Run Diagnostics', () => {
