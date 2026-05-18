@@ -1,7 +1,7 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { StorageService } from '@app/shared/services/storage.service';
 
-const DEFAULT_WALLPAPER = "url('/wallpaper.png') center/cover no-repeat";
+const DEFAULT_WALLPAPER = "url('wallpaper.png') center/cover no-repeat";
 
 @Injectable({ providedIn: 'root' })
 export class DockStateService {
@@ -86,12 +86,14 @@ export class DockStateService {
     this.storageService.set('wallpaper', value);
   }
 
-  /** Migrate old URL-only format to full CSS background value. */
+  /** Migrate old URL-only or absolute-path format to relative CSS background value. */
   private _resolveWallpaper(): string {
     const stored = this.storageService.get<string>('wallpaper');
     if (!stored) return DEFAULT_WALLPAPER;
     const isRaw = !stored.startsWith('url(') && !stored.includes('gradient');
-    return isRaw ? DEFAULT_WALLPAPER : stored;
+    if (isRaw) return DEFAULT_WALLPAPER;
+    // Migrate absolute path stored by older versions
+    return stored.replace("url('/wallpaper.png')", "url('wallpaper.png')");
   }
 }
 

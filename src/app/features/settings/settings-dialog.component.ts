@@ -19,7 +19,7 @@ export interface WallpaperOption {
 }
 
 export const WALLPAPER_OPTIONS: WallpaperOption[] = [
-  { id: 'sonoma',   label: 'Sonoma',    value: "url('/wallpaper.png') center/cover no-repeat" },
+  { id: 'sonoma',   label: 'Sonoma',    value: "url('wallpaper.png') center/cover no-repeat" },
   { id: 'midnight', label: 'Midnight',  value: 'linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)' },
   { id: 'ocean',    label: 'Ocean',     value: 'linear-gradient(135deg, #000046 0%, #1cb5e0 100%)' },
   { id: 'aurora',   label: 'Aurora',    value: 'linear-gradient(135deg, #0652DD 0%, #9f6ef7 50%, #00d2d3 100%)' },

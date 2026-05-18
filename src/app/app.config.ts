@@ -35,7 +35,7 @@ export const appConfig: ApplicationConfig = {
       }
     }),
     provideTranslateService(),
-    ...provideTranslateHttpLoader({ prefix: '/assets/i18n/', suffix: '.json' }),
+    ...provideTranslateHttpLoader({ prefix: './assets/i18n/', suffix: '.json' }),
     {
       provide: APP_INITIALIZER,
       useFactory: initTranslate,
