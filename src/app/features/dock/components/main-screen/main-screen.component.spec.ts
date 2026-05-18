@@ -26,6 +26,6 @@ describe('MainScreenComponent', () => {
   });
 
   it('should expose dockState with a CSS background as default wallpaper', () => {
-    expect(component['dockState'].wallpaper()).toBe("url('/wallpaper.png') center/cover no-repeat");
+    expect(component['dockState'].wallpaper()).toBe("url('wallpaper.png') center/cover no-repeat");
   });
 });

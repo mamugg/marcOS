@@ -190,7 +190,7 @@ describe('DockStateService', () => {
   });
 
   it('should initialize wallpaper to default CSS background when nothing is stored', () => {
-    expect(service.wallpaper()).toBe("url('/wallpaper.png') center/cover no-repeat");
+    expect(service.wallpaper()).toBe("url('wallpaper.png') center/cover no-repeat");
   });
 
   it('should update wallpaper signal via setWallpaper', () => {
@@ -224,7 +224,17 @@ describe('DockStateService', () => {
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({ providers: [DockStateService, StorageService] });
     const freshService = TestBed.inject(DockStateService);
-    expect(freshService.wallpaper()).toBe("url('/wallpaper.png') center/cover no-repeat");
+    expect(freshService.wallpaper()).toBe("url('wallpaper.png') center/cover no-repeat");
+  });
+
+  it('should migrate old absolute-path url() wallpaper to relative path', () => {
+    const storageService = TestBed.inject(StorageService);
+    storageService.set('wallpaper', "url('/wallpaper.png') center/cover no-repeat");
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({ providers: [DockStateService, StorageService] });
+    const freshService = TestBed.inject(DockStateService);
+    expect(freshService.wallpaper()).toBe("url('wallpaper.png') center/cover no-repeat");
   });
 
   it('should allow updating wallpaper multiple times', () => {
