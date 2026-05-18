@@ -9,7 +9,7 @@ import { DockStateService } from '@features/dock/services/dock-state.service';
   template: `
     @if (dockState.rebooting()) {
       <div class="reboot-overlay">
-        <img src="/logo.png" alt="marcOS" class="reboot-logo" />
+        <img src="logo.png" alt="marcOS" class="reboot-logo" />
         <div class="reboot-bar-track">
           <div class="reboot-bar-fill"></div>
         </div>

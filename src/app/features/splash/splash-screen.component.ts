@@ -17,7 +17,7 @@ const SPLASH_DURATION_MS = 3200;
     @if (visible()) {
       <div class="splash-overlay" [class.splash-exit]="exiting()">
         <div class="splash-content">
-          <img src="/logo.png" alt="marcOS" class="splash-logo" />
+          <img src="logo.png" alt="marcOS" class="splash-logo" />
           <div class="splash-bar-track" role="progressbar" aria-label="Loading…">
             <div class="splash-bar-fill"></div>
           </div>
