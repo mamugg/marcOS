@@ -1,0 +1,217 @@
+{
+  "dock": {
+    "finder": "Finder",
+    "terminal": "Terminal",
+    "projects": "Projets",
+    "photos": "Photos",
+    "mail": "Mail",
+    "music": "Musique",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "settings": "Réglages",
+    "trash": "Corbeille"
+  },
+  "menu": {
+    "about": "À propos",
+    "file": "Fichier",
+    "file.newFinder": "Nouvelle fenêtre Finder",
+    "file.closeAll": "Fermer toutes les fenêtres",
+    "view": "Affichage",
+    "view.commandPalette": "Palette de commandes",
+    "view.preferences": "Préférences Système",
+    "view.reload": "Recharger",
+    "go": "Aller",
+    "go.contact": "Contact",
+    "window": "Fenêtre",
+    "window.contact": "Contact",
+    "window.preferences": "Préférences Système",
+    "window.closeAll": "Tout fermer",
+    "help": "Aide",
+    "help.shortcuts": "Raccourcis clavier",
+    "help.navigation": "Navigation",
+    "help.updates": "Vérifier les mises à jour",
+    "help.download": "Télécharger la mise à jour",
+    "help.verify": "Vérifier l'intégrité",
+    "help.diagnostics": "Lancer les diagnostics",
+    "quit": "Quitter"
+  },
+  "toast": {
+    "trash.summary": "La corbeille est vide",
+    "quit.summary": "Bien essayé 😏",
+    "quit.detail": "Impossible de quitter l'OS si facilement."
+  },
+  "notification": {
+    "message.summary": "Message de Marc-Antoine 💬",
+    "message.detail": "Le projet te plaît ? Envoie-moi un message via l'app Mail ! 📬",
+    "explorer.summary": "T'es toujours là toi 👀",
+    "explorer.detail": "Soit t'es vraiment intéressé, soit t'as oublié de fermer l'onglet. Dans les deux cas, merci."
+  },
+  "settings": {
+    "title": "Préférences Système",
+    "tab.appearance": "Apparence",
+    "tab.desktop": "Bureau",
+    "tab.general": "Général",
+    "tab.system": "Système",
+    "appearance.theme": "Thème",
+    "appearance.light": "Clair",
+    "appearance.dark": "Sombre",
+    "appearance.accent": "Couleur d'accentuation",
+    "desktop.wallpaper": "Fond d'écran",
+    "desktop.custom": "Fond personnalisé",
+    "desktop.customHint": "Choisissez une image depuis votre appareil.",
+    "desktop.chooseImage": "Choisir une image",
+    "desktop.current": "Actuel",
+    "general.language": "Langue",
+    "general.sound": "Son",
+    "general.systemSounds": "Sons système",
+    "system.reset": "Réinitialisation",
+    "system.resetTitle": "Réglages d'usine",
+    "system.resetDesc": "Efface toutes les préférences et redémarre l'OS comme à la première visite.",
+    "system.resetBtn": "Réinitialiser"
+  },
+  "about": {
+    "version": "Version 1.0 — 2025",
+    "subtitle": "Portfolio de Marc-Antoine Muggeo",
+    "builtWith": "Construit avec",
+    "source": "Code source",
+    "github": "GitHub"
+  },
+  "mail": {
+    "header": "Nouveau mail",
+    "name.label": "Nom",
+    "name.placeholder": "Votre nom",
+    "name.error": "Le nom est requis (min. 2 caractères)",
+    "email.label": "Email",
+    "email.placeholder": "votre@email.com",
+    "email.error": "Email invalide",
+    "subject.label": "Sujet",
+    "subject.placeholder": "Objet de votre message",
+    "message.label": "Message",
+    "message.placeholder": "Décrivez votre projet ou votre demande...",
+    "message.error": "Le message est requis (min. 10 caractères)",
+    "submit": "Envoyer",
+    "submitting": "Envoi en cours...",
+    "success.title": "Message envoyé !",
+    "success.message": "Je vous répondrai dans les plus brefs délais."
+  },
+  "projects": {
+    "header": "Projets",
+    "all": "Tout",
+    "featured": "⭐ En vedette",
+    "noResults": "Aucun projet trouvé pour",
+    "marcos.description": "Portfolio interactif style macOS construit avec Angular 21, PrimeNG et Tailwind CSS. Dock animé, terminal fonctionnel, finder et galerie photo.",
+    "project2.description": "Dashboard analytique avec charts temps réel, data tables paginées et gestion d'état réactive via Angular Signals.",
+    "project3.description": "API RESTful scalable avec Express, MongoDB, authentification JWT et documentation Swagger automatisée."
+  },
+  "terminal": {
+    "header": "Terminal",
+    "welcome": "Bienvenue sur le Terminal MarcOS — tapez 'help' pour afficher les commandes"
+  },
+  "galleria": {
+    "header": "Photos",
+    "back": "Retour à la galerie",
+    "setWallpaper": "Définir comme fond d'écran",
+    "error.empty": "Aucune image disponible",
+    "error.emptyTitle": "Galerie vide",
+    "error.load": "Erreur de chargement images"
+  },
+  "music": {
+    "title": "Musique",
+    "playlist": "Playlist",
+    "nowPlaying": "En cours de lecture",
+    "selectPrompt": "Sélectionnez un morceau pour l'écouter",
+    "openYoutube": "Ouvrir sur YouTube",
+    "track.duration": "Durée"
+  },
+  "finder": {
+    "header": "Finder",
+    "error.empty": "Aucun fichier disponible",
+    "error.emptyTitle": "Finder vide",
+    "error.load": "Erreur de chargement Finder"
+  },
+  "desktop": {
+    "icons.label": "Icônes du bureau",
+    "resume.label": "Resume.pdf",
+    "skills.label": "Skills.txt"
+  },
+  "resume": {
+    "title": "Développeur Full-Stack Angular",
+    "tab.experience": "Expérience",
+    "tab.education": "Formation",
+    "github": "Profil GitHub",
+    "linkedin": "Profil LinkedIn",
+    "exp1.role": "Développeur Full-Stack Angular",
+    "exp1.company": "Freelance / Projets personnels",
+    "exp1.period": "2023 — Présent",
+    "exp1.desc": "Conception et développement d'applications web Angular 21 avec PrimeNG, Tailwind CSS et intégrations API REST. Architecture signals, standalone components et tests Vitest.",
+    "exp2.role": "Développeur Frontend Angular",
+    "exp2.company": "Agence digitale",
+    "exp2.period": "2021 — 2023",
+    "exp2.desc": "Développement de dashboards analytiques, composants réutilisables et optimisation des performances. Migration de projets AngularJS vers Angular moderne.",
+    "exp3.role": "Développeur Web Junior",
+    "exp3.company": "Startup SaaS",
+    "exp3.period": "2020 — 2021",
+    "exp3.desc": "Intégration d'interfaces HTML/SCSS, maintenance d'APIs Node.js/Express et mise en place de pipelines CI/CD.",
+    "edu1.degree": "Baccalauréat en génie logiciel",
+    "edu1.school": "École de technologie supérieure (ÉTS)",
+    "edu1.period": "2017 — 2020"
+  },
+  "skills": {
+    "header": "Compétences techniques",
+    "cat.frontend": "Frontend",
+    "cat.backend": "Backend",
+    "cat.tools": "Outils & DevOps"
+  },
+  "topbar": {
+    "wifi.title": "Wi-Fi",
+    "wifi.available": "Réseaux disponibles",
+    "wifi.joined": "Connecté à",
+    "volume.title": "Volume",
+    "volume.mute": "Muet",
+    "search.title": "Rechercher (⌘K)",
+    "control.title": "Centre de contrôle",
+    "control.language": "Langue",
+    "control.sound": "Son",
+    "control.settings": "Préférences Système"
+  },
+  "reboot": {
+    "label": "Réinitialisation…"
+  },
+  "palette": {
+    "placeholder": "Rechercher une commande...",
+    "noResults": "Aucune commande trouvée pour",
+    "footer.navigate": "naviguer",
+    "footer.execute": "exécuter",
+    "footer.close": "fermer",
+    "footer.open": "ouvrir",
+    "finder.label": "Finder",
+    "finder.desc": "Ouvrir le Finder",
+    "terminal.label": "Terminal",
+    "terminal.desc": "Ouvrir le Terminal",
+    "projects.label": "Projets",
+    "projects.desc": "Voir mes projets",
+    "photos.label": "Photos",
+    "photos.desc": "Ouvrir la galerie photos",
+    "contact.label": "Contact",
+    "contact.desc": "M'envoyer un message",
+    "github.label": "GitHub",
+    "github.desc": "Voir mon profil GitHub",
+    "linkedin.label": "LinkedIn",
+    "linkedin.desc": "Mon profil LinkedIn",
+    "closeAll.label": "Fermer toutes les fenêtres",
+    "closeAll.desc": "Fermer tous les dialogs ouverts"
+  },
+  "notFound": {
+    "restoring": "Réinitialisation…"
+  },
+  "welcome": {
+    "title": "Bienvenue sur marcOS",
+    "subtitle": "Le portfolio de Marc-Antoine Muggeo",
+    "intro": "Vous explorez un portfolio interactif qui imite l'expérience d'un système d'exploitation macOS. Chaque application cache du contenu sur mon parcours, mes projets et comment me contacter.",
+    "tip.dock": "Le Dock en bas — cliquez sur les icônes pour ouvrir les apps",
+    "tip.topbar": "La barre du haut — menus et raccourcis système",
+    "tip.palette": "Palette de commandes — accès rapide avec ⌘K",
+    "cta": "Commencer l'exploration",
+    "hint": "Cette fenêtre ne s'affiche qu'une seule fois."
+  }
+}

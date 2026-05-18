@@ -1,0 +1,217 @@
+{
+  "dock": {
+    "finder": "Finder",
+    "terminal": "Terminal",
+    "projects": "Projects",
+    "photos": "Photos",
+    "mail": "Mail",
+    "music": "Music",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "settings": "Settings",
+    "trash": "Trash"
+  },
+  "menu": {
+    "about": "About",
+    "file": "File",
+    "file.newFinder": "New Finder Window",
+    "file.closeAll": "Close All Windows",
+    "view": "View",
+    "view.commandPalette": "Command Palette",
+    "view.preferences": "System Preferences",
+    "view.reload": "Reload",
+    "go": "Go",
+    "go.contact": "Contact",
+    "window": "Window",
+    "window.contact": "Contact",
+    "window.preferences": "System Preferences",
+    "window.closeAll": "Close All",
+    "help": "Help",
+    "help.shortcuts": "Keyboard Shortcuts",
+    "help.navigation": "Navigation",
+    "help.updates": "Check for Updates",
+    "help.download": "Download Update",
+    "help.verify": "Verify Integrity",
+    "help.diagnostics": "Run Diagnostics",
+    "quit": "Quit"
+  },
+  "toast": {
+    "trash.summary": "Trash is empty",
+    "quit.summary": "Nice try 😏",
+    "quit.detail": "You can't quit the OS that easily."
+  },
+  "notification": {
+    "message.summary": "Message from Marc-Antoine 💬",
+    "message.detail": "Enjoying the project? Drop me a message via the Mail app! 📬",
+    "explorer.summary": "Still here? 👀",
+    "explorer.detail": "Either you're genuinely interested, or you forgot to close the tab. Either way, thanks."
+  },
+  "settings": {
+    "title": "System Preferences",
+    "tab.appearance": "Appearance",
+    "tab.desktop": "Desktop",
+    "tab.general": "General",
+    "tab.system": "System",
+    "appearance.theme": "Theme",
+    "appearance.light": "Light",
+    "appearance.dark": "Dark",
+    "appearance.accent": "Accent Color",
+    "desktop.wallpaper": "Wallpaper",
+    "desktop.custom": "Custom Wallpaper",
+    "desktop.customHint": "Choose an image from your device.",
+    "desktop.chooseImage": "Choose Image",
+    "desktop.current": "Current",
+    "general.language": "Language",
+    "general.sound": "Sound",
+    "general.systemSounds": "System Sounds",
+    "system.reset": "Reset",
+    "system.resetTitle": "Factory Reset",
+    "system.resetDesc": "Clears all preferences and restarts the OS as if it were your first visit.",
+    "system.resetBtn": "Reset"
+  },
+  "about": {
+    "version": "Version 1.0 — 2025",
+    "subtitle": "Marc-Antoine Muggeo's Portfolio",
+    "builtWith": "Built with",
+    "source": "Source code",
+    "github": "GitHub"
+  },
+  "mail": {
+    "header": "New mail",
+    "name.label": "Name",
+    "name.placeholder": "Your name",
+    "name.error": "Name is required (min. 2 characters)",
+    "email.label": "Email",
+    "email.placeholder": "your@email.com",
+    "email.error": "Invalid email",
+    "subject.label": "Subject",
+    "subject.placeholder": "Subject of your message",
+    "message.label": "Message",
+    "message.placeholder": "Describe your project or request...",
+    "message.error": "Message is required (min. 10 characters)",
+    "submit": "Send",
+    "submitting": "Sending...",
+    "success.title": "Message sent!",
+    "success.message": "I'll get back to you as soon as possible."
+  },
+  "projects": {
+    "header": "Projects",
+    "all": "All",
+    "featured": "⭐ Featured",
+    "noResults": "No projects found for",
+    "marcos.description": "Interactive macOS-style portfolio built with Angular 21, PrimeNG and Tailwind CSS. Animated dock, functional terminal, finder and photo gallery.",
+    "project2.description": "Analytics dashboard with real-time charts, paginated data tables and reactive state management via Angular Signals.",
+    "project3.description": "Scalable RESTful API with Express, MongoDB, JWT authentication and automated Swagger documentation."
+  },
+  "terminal": {
+    "header": "Terminal",
+    "welcome": "Welcome to MarcOS Terminal — type 'help' for available commands"
+  },
+  "galleria": {
+    "header": "Photos",
+    "back": "Back to grid",
+    "setWallpaper": "Set as Wallpaper",
+    "error.empty": "No images available",
+    "error.emptyTitle": "Empty gallery",
+    "error.load": "Image load error"
+  },
+  "music": {
+    "title": "Music",
+    "playlist": "Playlist",
+    "nowPlaying": "Now Playing",
+    "selectPrompt": "Select a track to listen",
+    "openYoutube": "Open on YouTube",
+    "track.duration": "Duration"
+  },
+  "finder": {
+    "header": "Finder",
+    "error.empty": "No files available",
+    "error.emptyTitle": "Empty Finder",
+    "error.load": "Finder load error"
+  },
+  "desktop": {
+    "icons.label": "Desktop icons",
+    "resume.label": "Resume.pdf",
+    "skills.label": "Skills.txt"
+  },
+  "resume": {
+    "title": "Full-Stack Angular Developer",
+    "tab.experience": "Experience",
+    "tab.education": "Education",
+    "github": "GitHub Profile",
+    "linkedin": "LinkedIn Profile",
+    "exp1.role": "Full-Stack Angular Developer",
+    "exp1.company": "Freelance / Personal Projects",
+    "exp1.period": "2023 — Present",
+    "exp1.desc": "Design and development of Angular 21 web applications with PrimeNG, Tailwind CSS and REST API integrations. Signals architecture, standalone components and Vitest testing.",
+    "exp2.role": "Angular Frontend Developer",
+    "exp2.company": "Digital Agency",
+    "exp2.period": "2021 — 2023",
+    "exp2.desc": "Development of analytics dashboards, reusable components and performance optimisation. Migration of AngularJS projects to modern Angular.",
+    "exp3.role": "Junior Web Developer",
+    "exp3.company": "SaaS Startup",
+    "exp3.period": "2020 — 2021",
+    "exp3.desc": "HTML/SCSS integration, Node.js/Express API maintenance and CI/CD pipeline setup.",
+    "edu1.degree": "Bachelor's in Software Engineering",
+    "edu1.school": "École de technologie supérieure (ÉTS)",
+    "edu1.period": "2017 — 2020"
+  },
+  "skills": {
+    "header": "Technical Skills",
+    "cat.frontend": "Frontend",
+    "cat.backend": "Backend",
+    "cat.tools": "Tools & DevOps"
+  },
+  "topbar": {
+    "wifi.title": "Wi-Fi",
+    "wifi.available": "Available Networks",
+    "wifi.joined": "Connected to",
+    "volume.title": "Volume",
+    "volume.mute": "Mute",
+    "search.title": "Search (⌘K)",
+    "control.title": "Control Center",
+    "control.language": "Language",
+    "control.sound": "Sound",
+    "control.settings": "System Preferences"
+  },
+  "reboot": {
+    "label": "Resetting…"
+  },
+  "palette": {
+    "placeholder": "Search a command...",
+    "noResults": "No command found for",
+    "footer.navigate": "navigate",
+    "footer.execute": "execute",
+    "footer.close": "close",
+    "footer.open": "open",
+    "finder.label": "Finder",
+    "finder.desc": "Open Finder",
+    "terminal.label": "Terminal",
+    "terminal.desc": "Open Terminal",
+    "projects.label": "Projects",
+    "projects.desc": "View my projects",
+    "photos.label": "Photos",
+    "photos.desc": "Open photo gallery",
+    "contact.label": "Contact",
+    "contact.desc": "Send me a message",
+    "github.label": "GitHub",
+    "github.desc": "View my GitHub profile",
+    "linkedin.label": "LinkedIn",
+    "linkedin.desc": "My LinkedIn profile",
+    "closeAll.label": "Close all windows",
+    "closeAll.desc": "Close all open dialogs"
+  },
+  "notFound": {
+    "restoring": "Restoring…"
+  },
+  "welcome": {
+    "title": "Welcome to marcOS",
+    "subtitle": "Marc-Antoine Muggeo's Portfolio",
+    "intro": "You're exploring an interactive portfolio that mimics the experience of a macOS operating system. Each application holds content about my background, projects, and how to get in touch.",
+    "tip.dock": "The Dock at the bottom — click icons to open apps",
+    "tip.topbar": "The top bar — system menus and shortcuts",
+    "tip.palette": "Command palette — quick access with ⌘K",
+    "cta": "Start exploring",
+    "hint": "This window only appears once."
+  }
+}
