@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
-
-/** EmailJS credentials — configure at https://dashboard.emailjs.com */
-const EMAILJS_SERVICE_ID = 'EMAILJS_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'EMAILJS_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY = 'EMAILJS_PUBLIC_KEY';
+import { environment } from '../../../environments/environment';
 
 export interface EmailPayload {
   from_name: string;
@@ -21,15 +17,15 @@ export class EmailService {
    */
   send(payload: EmailPayload): Promise<EmailJSResponseStatus> {
     return emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
+      environment.emailJs.serviceId,
+      environment.emailJs.templateId,
       {
         from_name: payload.from_name,
         from_email: payload.from_email,
         subject: payload.subject,
         message: payload.message,
       },
-      { publicKey: EMAILJS_PUBLIC_KEY },
+      { publicKey: environment.emailJs.publicKey },
     );
   }
 }
