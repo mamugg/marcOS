@@ -56,3 +56,20 @@
   border-radius: 22%;
   pointer-events: none;
 }
+
+@media (max-width: 767px) {
+  .dock-bar {
+    max-width: calc(100vw - 20px);
+  }
+
+  .dock-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Disable magnification on mobile — inline transform is overridden */
+  .dock-item {
+    transform: none !important;
+  }
+}
