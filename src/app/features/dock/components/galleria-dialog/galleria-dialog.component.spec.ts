@@ -22,7 +22,7 @@ describe('GalleriaDialogComponent', () => {
     errorServiceMock = { handleError: () => {}, handleWarning: () => {} };
     dockStateMock = {
       displayGalleria: signal(false),
-      wallpaper: signal('/wallpaper.png'),
+      wallpaper: signal('wallpaper.png'),
       setGalleria: (v: boolean) => dockStateMock.displayGalleria.set(v),
       setWallpaper: (url: string) => dockStateMock.wallpaper.set(url)
     };
