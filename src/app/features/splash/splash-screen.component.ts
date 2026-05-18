@@ -132,6 +132,12 @@ export class SplashScreenComponent implements OnInit {
   ngOnInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
+    if (sessionStorage.getItem('marcOS_skipSplash') === '1') {
+      sessionStorage.removeItem('marcOS_skipSplash');
+      this.visible.set(false);
+      return;
+    }
+
     setTimeout(() => {
       this.exiting.set(true);
       setTimeout(() => this.visible.set(false), 500);
