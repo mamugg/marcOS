@@ -216,6 +216,45 @@
   "notFound": {
     "restoring": "Réinitialisation…"
   },
+  "notification_center": {
+    "title": "Centre de notifications",
+    "aria_label": "Centre de notifications",
+    "close": "Fermer le centre de notifications",
+    "footer": "marcOS — Portfolio de Marc-Antoine",
+    "date": {
+      "today": "Aujourd'hui",
+      "yesterday": "Hier",
+      "days_ago": "il y a {{count}} jour(s)",
+      "months_ago": "il y a {{count}} mois",
+      "years_ago": "il y a {{count}} an(s)"
+    },
+    "entry": {
+      "trash": {
+        "title": "Corbeille & Finder",
+        "description": "Arborescence absurde avec fichiers indélébiles et easter eggs cachés."
+      },
+      "responsive": {
+        "title": "Interface mobile",
+        "description": "Toutes les fenêtres adaptées — desktop, tablette et téléphone."
+      },
+      "dock": {
+        "title": "Dock avec effet loupe",
+        "description": "Magnification au survol, animation cubic-bezier fidèle à macOS."
+      },
+      "splash": {
+        "title": "Écran de démarrage",
+        "description": "Boot screen style macOS avec logo, barre de progression et animation."
+      },
+      "sounds": {
+        "title": "Sons système",
+        "description": "Boot, shutdown et interactions — effets audio via Web Audio API."
+      },
+      "deploy": {
+        "title": "Déploiement continu",
+        "description": "CI/CD GitHub Actions — déploiement automatique sur GitHub Pages."
+      }
+    }
+  },
   "welcome": {
     "title": "Bienvenue sur marcOS",
     "subtitle": "Le portfolio de Marc-Antoine Muggeo",
