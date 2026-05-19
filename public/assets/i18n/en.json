@@ -216,6 +216,45 @@
   "notFound": {
     "restoring": "Restoring…"
   },
+  "notification_center": {
+    "title": "Notification Center",
+    "aria_label": "Notification Center",
+    "close": "Close Notification Center",
+    "footer": "marcOS — Marc-Antoine's Portfolio",
+    "date": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "days_ago": "{{count}} day(s) ago",
+      "months_ago": "{{count}} month(s) ago",
+      "years_ago": "{{count}} year(s) ago"
+    },
+    "entry": {
+      "trash": {
+        "title": "Trash & Finder",
+        "description": "Bizarre folder tree with undeletable files and hidden easter eggs."
+      },
+      "responsive": {
+        "title": "Mobile interface",
+        "description": "All windows adapted — desktop, tablet and phone."
+      },
+      "dock": {
+        "title": "Dock with magnification",
+        "description": "Hover zoom effect with cubic-bezier animation, faithful to macOS."
+      },
+      "splash": {
+        "title": "Boot splash screen",
+        "description": "macOS-style startup screen with logo, progress bar and animation."
+      },
+      "sounds": {
+        "title": "System sounds",
+        "description": "Boot, shutdown and interactions — audio effects via Web Audio API."
+      },
+      "deploy": {
+        "title": "Continuous deployment",
+        "description": "GitHub Actions CI/CD — automatic deployment to GitHub Pages."
+      }
+    }
+  },
   "welcome": {
     "title": "Welcome to marcOS",
     "subtitle": "Marc-Antoine Muggeo's Portfolio",

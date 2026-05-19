@@ -39,7 +39,7 @@ interface WifiNetwork {
 })
 export class TopbarComponent {
   private dockMenuService = inject(DockMenuService);
-  private dockStateService = inject(DockStateService);
+  protected readonly dockStateService = inject(DockStateService);
   private router = inject(Router);
   private translate = inject(TranslateService);
   private messageService = inject(MessageService);
@@ -101,6 +101,10 @@ export class TopbarComponent {
   onVolumeClick(event: MouseEvent): void {
     this.sliderVolume.set(this.soundService.volume());
     this.volumePanel()?.toggle(event);
+  }
+
+  onNotificationCenterClick(): void {
+    this.dockStateService.toggleNotificationCenter();
   }
 
   onSearchClick(): void {

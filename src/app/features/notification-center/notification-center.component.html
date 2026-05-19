@@ -1,0 +1,45 @@
+@if (dockState.displayNotificationCenter()) {
+  <!-- Backdrop -->
+  <div class="nc-backdrop" (click)="onBackdropClick()" aria-hidden="true"></div>
+
+  <!-- Panel -->
+  <aside
+    class="nc-panel"
+    @slidePanel
+    role="complementary"
+    [attr.aria-label]="'notification_center.aria_label' | translate"
+  >
+    <!-- Header -->
+    <div class="nc-header">
+      <span class="nc-header-title">{{ 'notification_center.title' | translate }}</span>
+      <button
+        class="nc-close-btn"
+        (click)="dockState.setNotificationCenter(false)"
+        [attr.aria-label]="'notification_center.close' | translate"
+      >
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+
+    <!-- Feed -->
+    <div class="nc-feed" role="list">
+      @for (entry of feed; track entry.titleKey) {
+        <div class="nc-entry" [class]="'nc-entry--' + entry.type" role="listitem">
+          <div class="nc-entry-icon-wrap">
+            <i [class]="entry.icon + ' nc-entry-icon'"></i>
+          </div>
+          <div class="nc-entry-body">
+            <p class="nc-entry-title">{{ entry.titleKey | translate }}</p>
+            <p class="nc-entry-description">{{ entry.descriptionKey | translate }}</p>
+            <time class="nc-entry-date">{{ relativeDate(entry.date) }}</time>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Footer -->
+    <div class="nc-footer">
+      <span class="nc-footer-label">{{ 'notification_center.footer' | translate }}</span>
+    </div>
+  </aside>
+}
