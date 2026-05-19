@@ -229,37 +229,29 @@
       "years_ago": "il y a {{count}} an(s)"
     },
     "entry": {
-      "nc": {
-        "title": "Notification Center livré",
-        "description": "Panneau slide-in style macOS, feed d'activité, frosted glass, responsive mobile."
-      },
       "trash": {
-        "title": "Corbeille & Finder absurdes",
-        "description": "Fichiers indélébiles, arborescence délirante et easter eggs cachés dans le Finder."
+        "title": "Corbeille & Finder",
+        "description": "Arborescence absurde avec fichiers indélébiles et easter eggs cachés."
       },
       "responsive": {
-        "title": "Interface 100 % mobile",
-        "description": "Toutes les fenêtres et le dock adaptés — desktop, tablet et téléphone."
-      },
-      "sounds": {
-        "title": "Sons système Web Audio",
-        "description": "Boot, shutdown, ouverture d'apps — 6 effets sonores via Web Audio API."
-      },
-      "palette": {
-        "title": "Palette de commandes ⌘K",
-        "description": "Accès instantané à toutes les fonctions depuis le clavier."
+        "title": "Interface mobile",
+        "description": "Toutes les fenêtres adaptées — desktop, tablette et téléphone."
       },
       "dock": {
-        "title": "Dock avec magnification",
-        "description": "Effet loupe au survol, interpolation cubic-bezier fidèle au vrai macOS."
+        "title": "Dock avec effet loupe",
+        "description": "Magnification au survol, animation cubic-bezier fidèle à macOS."
       },
-      "resume": {
-        "title": "CV & Compétences interactifs",
-        "description": "Expérience, formation et barres de progression animées dans des dialogs draggables."
+      "splash": {
+        "title": "Écran de démarrage",
+        "description": "Boot screen style macOS avec logo, barre de progression et animation."
       },
-      "launch": {
-        "title": "marcOS mis en ligne",
-        "description": "Portfolio déployé sur GitHub Pages — Angular 21, PrimeNG, Tailwind CSS."
+      "sounds": {
+        "title": "Sons système",
+        "description": "Boot, shutdown et interactions — effets audio via Web Audio API."
+      },
+      "deploy": {
+        "title": "Déploiement continu",
+        "description": "CI/CD GitHub Actions — déploiement automatique sur GitHub Pages."
       }
     }
   },

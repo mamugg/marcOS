@@ -5,62 +5,48 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { DockStateService } from '@features/dock/services/dock-state.service';
 import { NotificationEntry } from '@app/shared/models';
 
-/** marcOS feature highlights — displayed as a chronological activity feed. */
+/** marcOS feature highlights — loosely based on the project git history. */
 export const NOTIFICATION_FEED: NotificationEntry[] = [
-  {
-    icon: 'pi pi-bell',
-    titleKey: 'notification_center.entry.nc.title',
-    descriptionKey: 'notification_center.entry.nc.description',
-    date: new Date('2026-05-19'),
-    type: 'success',
-  },
   {
     icon: 'pi pi-trash',
     titleKey: 'notification_center.entry.trash.title',
     descriptionKey: 'notification_center.entry.trash.description',
     date: new Date('2026-05-15'),
-    type: 'info',
+    type: 'success',
   },
   {
     icon: 'pi pi-mobile',
     titleKey: 'notification_center.entry.responsive.title',
     descriptionKey: 'notification_center.entry.responsive.description',
-    date: new Date('2026-05-10'),
-    type: 'success',
-  },
-  {
-    icon: 'pi pi-volume-up',
-    titleKey: 'notification_center.entry.sounds.title',
-    descriptionKey: 'notification_center.entry.sounds.description',
-    date: new Date('2026-04-20'),
-    type: 'info',
-  },
-  {
-    icon: 'pi pi-search',
-    titleKey: 'notification_center.entry.palette.title',
-    descriptionKey: 'notification_center.entry.palette.description',
-    date: new Date('2026-04-01'),
+    date: new Date('2026-05-08'),
     type: 'success',
   },
   {
     icon: 'pi pi-th-large',
     titleKey: 'notification_center.entry.dock.title',
     descriptionKey: 'notification_center.entry.dock.description',
-    date: new Date('2026-03-15'),
-    type: 'success',
-  },
-  {
-    icon: 'pi pi-id-card',
-    titleKey: 'notification_center.entry.resume.title',
-    descriptionKey: 'notification_center.entry.resume.description',
-    date: new Date('2026-02-28'),
+    date: new Date('2026-04-18'),
     type: 'info',
   },
   {
-    icon: 'pi pi-globe',
-    titleKey: 'notification_center.entry.launch.title',
-    descriptionKey: 'notification_center.entry.launch.description',
-    date: new Date('2025-02-15'),
+    icon: 'pi pi-power-off',
+    titleKey: 'notification_center.entry.splash.title',
+    descriptionKey: 'notification_center.entry.splash.description',
+    date: new Date('2026-03-10'),
+    type: 'info',
+  },
+  {
+    icon: 'pi pi-volume-up',
+    titleKey: 'notification_center.entry.sounds.title',
+    descriptionKey: 'notification_center.entry.sounds.description',
+    date: new Date('2026-02-05'),
+    type: 'success',
+  },
+  {
+    icon: 'pi pi-cloud-upload',
+    titleKey: 'notification_center.entry.deploy.title',
+    descriptionKey: 'notification_center.entry.deploy.description',
+    date: new Date('2026-01-12'),
     type: 'success',
   },
 ];

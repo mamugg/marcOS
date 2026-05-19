@@ -229,37 +229,29 @@
       "years_ago": "{{count}} year(s) ago"
     },
     "entry": {
-      "nc": {
-        "title": "Notification Center shipped",
-        "description": "macOS-style slide-in panel, activity feed, frosted glass, mobile responsive."
-      },
       "trash": {
-        "title": "Absurd Trash & Finder",
-        "description": "Undeletable files, bizarre folder tree and hidden easter eggs inside Finder."
+        "title": "Trash & Finder",
+        "description": "Bizarre folder tree with undeletable files and hidden easter eggs."
       },
       "responsive": {
-        "title": "100% mobile interface",
-        "description": "All windows and the dock adapted — desktop, tablet and phone."
-      },
-      "sounds": {
-        "title": "Web Audio system sounds",
-        "description": "Boot, shutdown, app open — 6 sound effects via Web Audio API."
-      },
-      "palette": {
-        "title": "Command Palette ⌘K",
-        "description": "Instant keyboard access to every function in the OS."
+        "title": "Mobile interface",
+        "description": "All windows adapted — desktop, tablet and phone."
       },
       "dock": {
         "title": "Dock with magnification",
-        "description": "Hover magnification effect with cubic-bezier interpolation, true to macOS."
+        "description": "Hover zoom effect with cubic-bezier animation, faithful to macOS."
       },
-      "resume": {
-        "title": "Interactive CV & Skills",
-        "description": "Experience, education and animated progress bars in draggable dialogs."
+      "splash": {
+        "title": "Boot splash screen",
+        "description": "macOS-style startup screen with logo, progress bar and animation."
       },
-      "launch": {
-        "title": "marcOS launched",
-        "description": "Portfolio deployed to GitHub Pages — Angular 21, PrimeNG, Tailwind CSS."
+      "sounds": {
+        "title": "System sounds",
+        "description": "Boot, shutdown and interactions — audio effects via Web Audio API."
+      },
+      "deploy": {
+        "title": "Continuous deployment",
+        "description": "GitHub Actions CI/CD — automatic deployment to GitHub Pages."
       }
     }
   },
