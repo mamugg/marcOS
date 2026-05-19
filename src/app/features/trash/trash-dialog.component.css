@@ -67,9 +67,7 @@
 .file-description {
   color: var(--p-text-muted-color);
   font-size: 0.8rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .file-actions {
