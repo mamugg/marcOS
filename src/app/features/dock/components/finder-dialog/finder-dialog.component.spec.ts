@@ -93,7 +93,7 @@ describe('FinderDialogComponent', () => {
     const fixture = TestBed.createComponent(FinderDialogComponent);
     component = fixture.componentInstance;
     component.onNodeSelect({ data: '__virus__' });
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/not-found']);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/404']);
   });
 
   it('should not navigate when a regular node is selected', () => {

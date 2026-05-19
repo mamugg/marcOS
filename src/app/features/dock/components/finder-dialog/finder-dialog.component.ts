@@ -34,7 +34,7 @@ export class FinderDialogComponent implements OnInit {
 
   onNodeSelect(node: TreeNode): void {
     if (node.data === '__virus__') {
-      void this.router.navigate(['/not-found']);
+      void this.router.navigate(['/404']);
     }
   }
 

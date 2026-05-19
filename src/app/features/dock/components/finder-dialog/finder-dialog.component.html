@@ -1,4 +1,4 @@
 <p-dialog [(visible)]="dockState.displayFinder" [breakpoints]="{ '960px': '70vw', '640px': '95vw' }" [style]="{ width: '30vw', height: '18rem' }" [draggable]="true" [resizable]="true" [header]="'finder.header' | translate">
-  <p-tree [value]="nodes()" (onNodeSelect)="onNodeSelect($event.node)" />
+  <p-tree [value]="nodes()" selectionMode="single" (onNodeSelect)="onNodeSelect($event.node)" />
 </p-dialog>
 
