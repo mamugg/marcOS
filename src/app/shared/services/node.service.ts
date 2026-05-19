@@ -63,7 +63,8 @@ export class NodeService {
               },
               { key: '0-3-1', label: 'driver_imprimante_windows.exe', icon: 'pi pi-fw pi-file', data: 'système non-Windows, évidemment' },
               { key: '0-3-2', label: 'setup_FINAL.dmg',               icon: 'pi pi-fw pi-file', data: 'jamais installé' },
-              { key: '0-3-3', label: 'facture_urgent.pdf',             icon: 'pi pi-fw pi-file-pdf', data: 'expirée depuis 8 mois' }
+              { key: '0-3-3', label: 'facture_urgent.pdf',             icon: 'pi pi-fw pi-file-pdf', data: 'expirée depuis 8 mois' },
+              { key: '0-3-4', label: 'flash_player_setup.exe',         icon: 'pi pi-fw pi-exclamation-triangle', data: '__virus__' }
             ]
           },
           {

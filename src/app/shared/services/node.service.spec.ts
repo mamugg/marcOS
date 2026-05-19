@@ -71,4 +71,13 @@ describe('NodeService', () => {
     expect(labels).toContain('node_modules');
     expect(labels).toContain('.env');
   });
+
+  it('Téléchargements should include the virus file with __virus__ data marker', async () => {
+    const files = await service.getFiles();
+    const disk = files.find((n: TreeNode) => n.label === 'Disque système');
+    const downloads = disk?.children?.find((c: TreeNode) => c.label === 'Téléchargements');
+    const virusNode = downloads?.children?.find((c: TreeNode) => c.data === '__virus__');
+    expect(virusNode).toBeTruthy();
+    expect(virusNode?.label).toBe('flash_player_setup.exe');
+  });
 });
