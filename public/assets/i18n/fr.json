@@ -45,8 +45,7 @@
     "emptyBtn": "Vider la corbeille",
     "deleteBtn": "Supprimer",
     "col.name": "Nom",
-    "col.size": "Taille",
-    "col.date": "Date",
+    "col.description": "Description",
     "col.actions": "Actions",
     "itemCount": "élément(s)",
     "empty.summary": "Certains fichiers résistent à la suppression",
@@ -144,8 +143,8 @@
   },
   "desktop": {
     "icons.label": "Icônes du bureau",
-    "resume.label": "Resume.pdf",
-    "skills.label": "Skills.txt"
+    "resume.label": "CV.pdf",
+    "skills.label": "Compétences.md"
   },
   "resume": {
     "title": "Développeur Full-Stack Angular",

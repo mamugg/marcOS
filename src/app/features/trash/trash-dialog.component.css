@@ -26,10 +26,9 @@
   white-space: nowrap;
 }
 
-.trash-table thead th:nth-child(1) { width: 36%; }
-.trash-table thead th:nth-child(2) { width: 14%; }
-.trash-table thead th:nth-child(3) { width: 30%; }
-.trash-table thead th:nth-child(4) { width: 20%; }
+.trash-table thead th:nth-child(1) { width: 45%; }
+.trash-table thead th:nth-child(2) { width: 35%; }
+.trash-table thead th:nth-child(3) { width: 20%; }
 
 .trash-table tbody tr {
   border-bottom: 1px solid var(--p-surface-100);
@@ -67,8 +66,7 @@
   font-size: 1rem;
 }
 
-.file-size,
-.file-date {
+.file-description {
   color: var(--p-text-muted-color);
   font-size: 0.8rem;
   overflow: hidden;

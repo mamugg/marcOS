@@ -3,7 +3,7 @@
   [modal]="false"
   [resizable]="true"
   [draggable]="true"
-  [style]="{ width: '580px' }"
+  [style]="{ width: '520px' }"
   [breakpoints]="{ '960px': '85vw', '640px': '95vw' }"
   [header]="'trash.header' | translate"
   styleClass="trash-dialog"
@@ -25,8 +25,7 @@
       <thead>
         <tr>
           <th scope="col">{{ 'trash.col.name' | translate }}</th>
-          <th scope="col">{{ 'trash.col.size' | translate }}</th>
-          <th scope="col">{{ 'trash.col.date' | translate }}</th>
+          <th scope="col">{{ 'trash.col.description' | translate }}</th>
           <th scope="col"><span class="sr-only">{{ 'trash.col.actions' | translate }}</span></th>
         </tr>
       </thead>
@@ -46,8 +45,7 @@
               </span>
               {{ file.name }}
             </td>
-            <td class="file-size">{{ file.size }}</td>
-            <td class="file-date">{{ file.date }}</td>
+            <td class="file-description">{{ file.description }}</td>
             <td class="file-actions">
               <button
                 pButton

@@ -58,10 +58,18 @@ describe('TrashDialogComponent', () => {
     expect(component.files().length).toBe(TRASH_FILES.length);
   });
 
-  it('should include ce_bug_que_je_comprends_pas.ts in the file list', () => {
+  it('should include ce_bug_que_je_comprends_pas.ts with a description', () => {
     const bug = component.files().find(f => f.undeletable);
     expect(bug).toBeTruthy();
     expect(bug?.name).toBe('ce_bug_que_je_comprends_pas.ts');
+    expect(bug?.description).toBeTruthy();
+  });
+
+  it('every file should have a name and description', () => {
+    component.files().forEach(f => {
+      expect(f.name).toBeTruthy();
+      expect(f.description).toBeTruthy();
+    });
   });
 
   it('hasUndeletable should be true when undeletable file is present', () => {

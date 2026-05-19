@@ -45,8 +45,7 @@
     "emptyBtn": "Empty Trash",
     "deleteBtn": "Delete",
     "col.name": "Name",
-    "col.size": "Size",
-    "col.date": "Date",
+    "col.description": "Description",
     "col.actions": "Actions",
     "itemCount": "item(s)",
     "empty.summary": "Some files resist deletion",
@@ -144,8 +143,8 @@
   },
   "desktop": {
     "icons.label": "Desktop icons",
-    "resume.label": "Resume.pdf",
-    "skills.label": "Skills.txt"
+    "resume.label": "CV.pdf",
+    "skills.label": "Compétences.md"
   },
   "resume": {
     "title": "Full-Stack Angular Developer",
