@@ -37,9 +37,20 @@
     "quit": "Quitter"
   },
   "toast": {
-    "trash.summary": "La corbeille est vide",
     "quit.summary": "Bien essayé 😏",
     "quit.detail": "Impossible de quitter l'OS si facilement."
+  },
+  "trash": {
+    "header": "Corbeille",
+    "emptyBtn": "Vider la corbeille",
+    "deleteBtn": "Supprimer",
+    "col.name": "Nom",
+    "col.description": "Description",
+    "col.actions": "Actions",
+    "itemCount": "élément(s)",
+    "empty.summary": "Certains fichiers résistent à la suppression",
+    "undeletable.summary": "Suppression impossible",
+    "undeletable.detail": "Ce fichier ne peut pas être supprimé."
   },
   "notification": {
     "message.summary": "Message de Marc-Antoine 💬",
@@ -132,8 +143,8 @@
   },
   "desktop": {
     "icons.label": "Icônes du bureau",
-    "resume.label": "Resume.pdf",
-    "skills.label": "Skills.txt"
+    "resume.label": "CV.pdf",
+    "skills.label": "Compétences.md"
   },
   "resume": {
     "title": "Développeur Full-Stack Angular",
