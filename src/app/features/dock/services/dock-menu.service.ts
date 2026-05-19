@@ -66,13 +66,7 @@ export class DockMenuService {
       {
         label: this.t('dock.trash'),
         icon: 'https://primefaces.org/cdn/primeng/images/dock/trash.png',
-        command: () => {
-          this.messageService.add({
-            severity: 'info',
-            summary: this.t('toast.trash.summary'),
-            key: 'tc'
-          });
-        }
+        command: () => this.dockState.toggleTrash()
       }
     ];
   }

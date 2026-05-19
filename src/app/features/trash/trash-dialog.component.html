@@ -1,0 +1,71 @@
+<p-dialog
+  [(visible)]="dockState.displayTrash"
+  [modal]="false"
+  [resizable]="true"
+  [draggable]="true"
+  [style]="{ width: '560px' }"
+  [breakpoints]="{ '960px': '85vw', '640px': '95vw' }"
+  [header]="'trash.header' | translate"
+  styleClass="trash-dialog"
+>
+  <div class="trash-toolbar">
+    <button
+      pButton
+      [label]="'trash.emptyBtn' | translate"
+      icon="pi pi-trash"
+      severity="danger"
+      size="small"
+      (click)="emptyTrash()"
+      [attr.aria-label]="'trash.emptyBtn' | translate"
+    ></button>
+  </div>
+
+  <div class="trash-table-wrapper">
+    <table class="trash-table" role="table">
+      <thead>
+        <tr>
+          <th scope="col">{{ 'trash.col.name' | translate }}</th>
+          <th scope="col">{{ 'trash.col.description' | translate }}</th>
+          <th scope="col"><span class="sr-only">{{ 'trash.col.actions' | translate }}</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (file of files(); track file.name) {
+          <tr [class.undeletable]="file.undeletable">
+            <td class="file-name">
+              <span class="file-icon">
+                @if (file.name.endsWith('.ts')) { 🟦 }
+                @else if (file.name.endsWith('.js')) { 🟨 }
+                @else if (file.name.endsWith('.pdf')) { 📄 }
+                @else if (file.name.endsWith('.zip')) { 🗜️ }
+                @else if (file.name.endsWith('.spec')) { 🧪 }
+                @else if (file.name.endsWith('.calendar')) { 📅 }
+                @else if (file.name.endsWith('.txt')) { 📝 }
+                @else { 📁 }
+              </span>
+              {{ file.name }}
+            </td>
+            <td class="file-description">{{ file.description }}</td>
+            <td class="file-actions">
+              <button
+                pButton
+                [label]="'trash.deleteBtn' | translate"
+                icon="pi pi-times"
+                severity="secondary"
+                size="small"
+                (click)="deleteFile(file)"
+                [attr.aria-label]="('trash.deleteBtn' | translate) + ' ' + file.name"
+              ></button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="trash-footer">
+    @if (hasUndeletable()) {
+      <span class="trash-count">{{ files().length }} {{ 'trash.itemCount' | translate }}</span>
+    }
+  </div>
+</p-dialog>

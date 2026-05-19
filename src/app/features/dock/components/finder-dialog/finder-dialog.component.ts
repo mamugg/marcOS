@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { TreeModule } from 'primeng/tree';
 import { TreeNode } from 'primeng/api';
@@ -21,6 +22,7 @@ export class FinderDialogComponent implements OnInit {
   private readonly nodeService = inject(NodeService);
   private readonly errorService = inject(ErrorService);
   private readonly translate = inject(TranslateService);
+  private readonly router = inject(Router);
   protected readonly dockState = inject(DockStateService);
 
   nodes = signal<TreeNode[]>([]);
@@ -28,6 +30,12 @@ export class FinderDialogComponent implements OnInit {
 
   ngOnInit(): void {
     void this.loadFiles();
+  }
+
+  onNodeSelect(node: TreeNode): void {
+    if (node.data === '__virus__') {
+      void this.router.navigate(['/404']);
+    }
   }
 
   private async loadFiles(): Promise<void> {

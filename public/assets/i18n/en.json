@@ -37,9 +37,20 @@
     "quit": "Quit"
   },
   "toast": {
-    "trash.summary": "Trash is empty",
     "quit.summary": "Nice try 😏",
     "quit.detail": "You can't quit the OS that easily."
+  },
+  "trash": {
+    "header": "Trash",
+    "emptyBtn": "Empty Trash",
+    "deleteBtn": "Delete",
+    "col.name": "Name",
+    "col.description": "Description",
+    "col.actions": "Actions",
+    "itemCount": "item(s)",
+    "empty.summary": "Some files resist deletion",
+    "undeletable.summary": "Cannot delete",
+    "undeletable.detail": "This file cannot be deleted."
   },
   "notification": {
     "message.summary": "Message from Marc-Antoine 💬",
@@ -132,8 +143,8 @@
   },
   "desktop": {
     "icons.label": "Desktop icons",
-    "resume.label": "Resume.pdf",
-    "skills.label": "Skills.txt"
+    "resume.label": "CV.pdf",
+    "skills.label": "Compétences.md"
   },
   "resume": {
     "title": "Full-Stack Angular Developer",

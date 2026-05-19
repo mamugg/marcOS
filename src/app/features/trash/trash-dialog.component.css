@@ -1,0 +1,95 @@
+.trash-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--p-surface-200);
+  margin-bottom: 0.5rem;
+}
+
+.trash-table-wrapper {
+  overflow-x: auto;
+}
+
+.trash-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  table-layout: fixed;
+}
+
+.trash-table thead th {
+  text-align: left;
+  padding: 0.4rem 0.75rem;
+  font-weight: 600;
+  color: var(--p-text-muted-color);
+  border-bottom: 1px solid var(--p-surface-200);
+  white-space: nowrap;
+}
+
+.trash-table thead th:nth-child(1) { width: 46%; }
+.trash-table thead th:nth-child(2) { width: 28%; }
+.trash-table thead th:nth-child(3) { width: 26%; }
+
+.trash-table tbody tr {
+  border-bottom: 1px solid var(--p-surface-100);
+  transition: background 0.15s;
+}
+
+.trash-table tbody tr:hover {
+  background: var(--p-surface-50);
+}
+
+.trash-table tbody tr.undeletable .file-name {
+  font-style: italic;
+  color: var(--p-red-500);
+}
+
+.trash-table td {
+  padding: 0.45rem 0.75rem;
+  vertical-align: middle;
+}
+
+.file-name {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  font-family: monospace;
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.file-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.file-description {
+  color: var(--p-text-muted-color);
+  font-size: 0.8rem;
+  overflow-wrap: anywhere;
+}
+
+.file-actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.trash-footer {
+  margin-top: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--p-text-muted-color);
+  text-align: right;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

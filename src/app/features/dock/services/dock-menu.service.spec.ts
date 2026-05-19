@@ -30,7 +30,6 @@ const EN: Record<string, string> = {
   'menu.help.download':     'Download Update',
   'menu.help.verify':       'Verify Integrity',
   'menu.help.diagnostics':  'Run Diagnostics',
-  'toast.trash.summary':    'Trash is empty',
 };
 
 const translateMock = { instant: (k: string) => EN[k] ?? k, onLangChange: EMPTY };
@@ -45,6 +44,7 @@ describe('DockMenuService', () => {
     toggleMail: () => void;
     toggleAbout: () => void;
     toggleCommandPalette: () => void;
+    toggleTrash: () => void;
     closeAll: () => void;
   };
   let messageAddCalls: unknown[];
@@ -58,6 +58,7 @@ describe('DockMenuService', () => {
       toggleMail: () => {},
       toggleAbout: () => {},
       toggleCommandPalette: () => {},
+      toggleTrash: () => {},
       closeAll: () => {}
     };
     messageAddCalls = [];
@@ -115,11 +116,12 @@ describe('DockMenuService', () => {
     expect(called).toBe(true);
   });
 
-  it('should add a toast when Trash dock item is triggered', () => {
+  it('should call toggleTrash when Trash dock item is triggered', () => {
+    let called = false;
+    dockState.toggleTrash = () => { called = true; };
     const trash = service.getDockItems().find((i) => i.label === 'Trash');
     trash?.command?.({} as never);
-    expect(messageAddCalls.length).toBe(1);
-    expect((messageAddCalls[0] as { severity: string }).severity).toBe('info');
+    expect(called).toBe(true);
   });
 
   // ── Menubar top-level labels ────────────────────────────────────────────────

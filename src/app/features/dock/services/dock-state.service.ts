@@ -18,6 +18,7 @@ export class DockStateService {
   displayCommandPalette = signal(false);
   displayResume = signal(false);
   displaySkills = signal(false);
+  displayTrash = signal(false);
   displayWelcome = signal(!this.storageService.get<boolean>('welcomeSeen'));
   rebooting = signal(false);
 
@@ -47,6 +48,7 @@ export class DockStateService {
   toggleCommandPalette(): void { this.displayCommandPalette.update(v => !v); }
   toggleResume(): void { this.displayResume.update(v => !v); }
   toggleSkills(): void { this.displaySkills.update(v => !v); }
+  toggleTrash(): void { this.displayTrash.update(v => !v); }
 
   setFinder(value: boolean): void { this.displayFinder.set(value); }
   setTerminal(value: boolean): void { this.displayTerminal.set(value); }
@@ -59,6 +61,7 @@ export class DockStateService {
   setCommandPalette(value: boolean): void { this.displayCommandPalette.set(value); }
   setResume(value: boolean): void { this.displayResume.set(value); }
   setSkills(value: boolean): void { this.displaySkills.set(value); }
+  setTrash(value: boolean): void { this.displayTrash.set(value); }
 
   /** Close all open application windows. */
   closeAll(): void {
