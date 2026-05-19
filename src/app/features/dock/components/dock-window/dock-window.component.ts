@@ -15,6 +15,7 @@ import { ResumeDialogComponent } from '@app/features/resume/resume-dialog.compon
 import { SkillsDialogComponent } from '@app/features/skills/skills-dialog.component';
 import { RebootOverlayComponent } from '../reboot-overlay/reboot-overlay.component';
 import { TrashDialogComponent } from '@app/features/trash/trash-dialog.component';
+import { NotificationCenterComponent } from '@app/features/notification-center/notification-center.component';
 
 @Component({
   selector: 'app-dock-window',
@@ -34,6 +35,7 @@ import { TrashDialogComponent } from '@app/features/trash/trash-dialog.component
     ResumeDialogComponent,
     SkillsDialogComponent,
     TrashDialogComponent,
+    NotificationCenterComponent,
     RebootOverlayComponent
   ],
   templateUrl: './dock-window.component.html',

@@ -11,8 +11,13 @@
       <!-- Volume -->
       <i [class]="volumeIcon()" class="topbar-icon" (click)="onVolumeClick($event)" [title]="'topbar.volume.title' | translate"></i>
 
-      <!-- Clock -->
-      <span class="topbar-time">{{ currentTime() }}</span>
+      <!-- Clock + Notification Center toggle -->
+      <span
+        class="topbar-time topbar-time--clickable"
+        (click)="onNotificationCenterClick()"
+        [title]="'notification_center.title' | translate"
+        [class.topbar-time--active]="dockStateService.displayNotificationCenter()"
+      >{{ currentTime() }}</span>
 
       <!-- Search → Command Palette -->
       <i class="pi pi-search topbar-icon" (click)="onSearchClick()" [title]="'topbar.search.title' | translate"></i>

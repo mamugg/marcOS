@@ -88,3 +88,17 @@ export interface TrashFile {
   /** When true, the file reappears immediately after deletion. */
   undeletable?: boolean;
 }
+
+/** A single entry in the Notification Center feed. */
+export interface NotificationEntry {
+  /** PrimeIcons class string (e.g. 'pi pi-check-circle'). */
+  icon: string;
+  /** i18n key for the entry title. */
+  titleKey: string;
+  /** i18n key for the entry body. */
+  descriptionKey: string;
+  /** Reference date used to compute the relative display string. */
+  date: Date;
+  /** Semantic colour tag: 'success' | 'info' | 'warning'. */
+  type: 'success' | 'info' | 'warning';
+}

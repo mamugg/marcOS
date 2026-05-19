@@ -38,6 +38,24 @@
   opacity: 0.9;
 }
 
+.topbar-time--clickable {
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: background 0.15s ease, opacity 0.15s ease;
+  user-select: none;
+}
+
+.topbar-time--clickable:hover {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  opacity: 1;
+}
+
+.topbar-time--active {
+  background: color-mix(in srgb, currentColor 14%, transparent);
+  opacity: 1;
+}
+
 /* ── Shared popover panel ──────────────────────────── */
 .topbar-panel {
   display: flex;

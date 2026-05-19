@@ -216,6 +216,53 @@
   "notFound": {
     "restoring": "Réinitialisation…"
   },
+  "notification_center": {
+    "title": "Centre de notifications",
+    "aria_label": "Centre de notifications",
+    "close": "Fermer le centre de notifications",
+    "footer": "marcOS — Portfolio de Marc-Antoine",
+    "date": {
+      "today": "Aujourd'hui",
+      "yesterday": "Hier",
+      "days_ago": "il y a {{count}} jour(s)",
+      "months_ago": "il y a {{count}} mois",
+      "years_ago": "il y a {{count}} an(s)"
+    },
+    "entry": {
+      "nc": {
+        "title": "Notification Center livré",
+        "description": "Panneau slide-in style macOS, feed d'activité, frosted glass, responsive mobile."
+      },
+      "trash": {
+        "title": "Corbeille & Finder absurdes",
+        "description": "Fichiers indélébiles, arborescence délirante et easter eggs cachés dans le Finder."
+      },
+      "responsive": {
+        "title": "Interface 100 % mobile",
+        "description": "Toutes les fenêtres et le dock adaptés — desktop, tablet et téléphone."
+      },
+      "sounds": {
+        "title": "Sons système Web Audio",
+        "description": "Boot, shutdown, ouverture d'apps — 6 effets sonores via Web Audio API."
+      },
+      "palette": {
+        "title": "Palette de commandes ⌘K",
+        "description": "Accès instantané à toutes les fonctions depuis le clavier."
+      },
+      "dock": {
+        "title": "Dock avec magnification",
+        "description": "Effet loupe au survol, interpolation cubic-bezier fidèle au vrai macOS."
+      },
+      "resume": {
+        "title": "CV & Compétences interactifs",
+        "description": "Expérience, formation et barres de progression animées dans des dialogs draggables."
+      },
+      "launch": {
+        "title": "marcOS mis en ligne",
+        "description": "Portfolio déployé sur GitHub Pages — Angular 21, PrimeNG, Tailwind CSS."
+      }
+    }
+  },
   "welcome": {
     "title": "Bienvenue sur marcOS",
     "subtitle": "Le portfolio de Marc-Antoine Muggeo",
