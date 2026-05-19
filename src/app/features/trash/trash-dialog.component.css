@@ -26,9 +26,9 @@
   white-space: nowrap;
 }
 
-.trash-table thead th:nth-child(1) { width: 45%; }
-.trash-table thead th:nth-child(2) { width: 35%; }
-.trash-table thead th:nth-child(3) { width: 20%; }
+.trash-table thead th:nth-child(1) { width: 46%; }
+.trash-table thead th:nth-child(2) { width: 28%; }
+.trash-table thead th:nth-child(3) { width: 26%; }
 
 .trash-table tbody tr {
   border-bottom: 1px solid var(--p-surface-100);
@@ -51,14 +51,12 @@
 
 .file-name {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.4rem;
   font-family: monospace;
   font-size: 0.82rem;
-  max-width: 200px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 
 .file-icon {

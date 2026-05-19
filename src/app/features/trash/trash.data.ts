@@ -9,5 +9,5 @@ export const TRASH_FILES: TrashFile[] = [
   { name: 'scope_initial.pdf',                description: 'illisible' },
   { name: 'code_propre_final_vrai.ts',        description: 'lui-même dans la corbeille' },
   { name: 'les_tests_quon_ecrira_apres.spec', description: 'jamais exécuté' },
-  { name: 'ce_bug_que_je_comprends_pas.ts',   description: '∞', undeletable: true },
+  { name: 'ce_bug_que_je_comprends_pas.ts',   description: '𒀭ψ⸸꩜𖤐⌬ꉣꆰ⍟ꫛ꒰ঌ꩜⟁', undeletable: true },
 ];
