@@ -37,9 +37,21 @@
     "quit": "Quit"
   },
   "toast": {
-    "trash.summary": "Trash is empty",
     "quit.summary": "Nice try 😏",
     "quit.detail": "You can't quit the OS that easily."
+  },
+  "trash": {
+    "header": "Trash",
+    "emptyBtn": "Empty Trash",
+    "deleteBtn": "Delete",
+    "col.name": "Name",
+    "col.size": "Size",
+    "col.date": "Date",
+    "col.actions": "Actions",
+    "itemCount": "item(s)",
+    "empty.summary": "Some files resist deletion",
+    "undeletable.summary": "Cannot delete",
+    "undeletable.detail": "This file cannot be deleted."
   },
   "notification": {
     "message.summary": "Message from Marc-Antoine 💬",

@@ -37,9 +37,21 @@
     "quit": "Quitter"
   },
   "toast": {
-    "trash.summary": "La corbeille est vide",
     "quit.summary": "Bien essayé 😏",
     "quit.detail": "Impossible de quitter l'OS si facilement."
+  },
+  "trash": {
+    "header": "Corbeille",
+    "emptyBtn": "Vider la corbeille",
+    "deleteBtn": "Supprimer",
+    "col.name": "Nom",
+    "col.size": "Taille",
+    "col.date": "Date",
+    "col.actions": "Actions",
+    "itemCount": "élément(s)",
+    "empty.summary": "Certains fichiers résistent à la suppression",
+    "undeletable.summary": "Suppression impossible",
+    "undeletable.detail": "Ce fichier ne peut pas être supprimé."
   },
   "notification": {
     "message.summary": "Message de Marc-Antoine 💬",

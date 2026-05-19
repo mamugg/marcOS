@@ -80,3 +80,12 @@ export interface SkillCategory {
   icon: string;
   skills: Skill[];
 }
+
+/** Represents a file entry in the Trash dialog. */
+export interface TrashFile {
+  name: string;
+  size: string;
+  date: string;
+  /** When true, the file reappears immediately after deletion. */
+  undeletable?: boolean;
+}

@@ -14,6 +14,7 @@ import { MusicDialogComponent } from '@app/features/music/music-dialog.component
 import { ResumeDialogComponent } from '@app/features/resume/resume-dialog.component';
 import { SkillsDialogComponent } from '@app/features/skills/skills-dialog.component';
 import { RebootOverlayComponent } from '../reboot-overlay/reboot-overlay.component';
+import { TrashDialogComponent } from '@app/features/trash/trash-dialog.component';
 
 @Component({
   selector: 'app-dock-window',
@@ -32,6 +33,7 @@ import { RebootOverlayComponent } from '../reboot-overlay/reboot-overlay.compone
     MusicDialogComponent,
     ResumeDialogComponent,
     SkillsDialogComponent,
+    TrashDialogComponent,
     RebootOverlayComponent
   ],
   templateUrl: './dock-window.component.html',
